@@ -1,0 +1,28 @@
+<App>
+
+  <Header>
+    <sexy img/>
+    <title>
+    <Nav>
+      <home>
+      <tools>
+      <blog>
+      <archive>
+    </Nav>
+  </Header>
+
+  <body>
+    <in body nav/>
+    <content>
+      <blog post>
+        <title>
+        <date>
+        <content>
+          <text>
+          <img>
+        </content>
+      </blog post>
+    </content>
+  </body>
+
+</App>
