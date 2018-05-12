@@ -10,13 +10,18 @@
   to { transform: rotate(360deg); }
 }
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: #236B8E;
   color: white;
+  height: 350px;
+  overflow: hidden;
+  padding-top: 20px;
 }
 .App-title {
   font-size: 1.5em;
+}
+.Banner{
+  /* height: inherit; */
+  /* width: 100%; */
 }
 .NavBar{
   border: 2px dotted white;

@@ -33,7 +33,7 @@ class Content extends Component {
         </div>
         <ul className="ContentNav">
           {this.state.posts.map(({fields}, i) =>
-            <a href={fields.path}><li key={i}>{fields.title}{fields.date}</li></a>
+            <a href={fields.path}><li key={i}>{fields.title} {fields.date}</li></a>
           )}
         </ul>
       </div>
