@@ -1,4 +1,4 @@
-import './App.css';
+import './../App.css';
 import 'bulma/css/bulma.css';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
@@ -10,15 +10,14 @@ class NavBar extends Component {
   render() {
     fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
     return (
-      <nav class="navbar is-fixed-top is-white" role="navigation" aria-label="dropdown navigation">
+      <nav class="navbar is-fixed-top is-white" aria-label="dropdown navigation">
         <div class="navbar-brand">
           <a class="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" alt="Madmoney" width="112" height="28"/>
+            <a class="navbar-item" href="/"><img src="https://bulma.io/images/bulma-logo.png" alt="Madmoney" width="112" height="28"/></a>
           </a>
         </div>
-        <a class="navbar-item" href="/"><span class="icon"><i class="fas fa-rss"></i></span>Home</a>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="/docs"><span class="icon"><i class="fas fa-book"></i></span>Docs</a>
+          <a class="navbar-link" href="/docs"><span class="icon"><i class="fas fa-book"></i></span> Docs</a>
           <div class="navbar-dropdown">
             <a class="navbar-item" href="/docs/1">Docs 1</a>
             <a class="navbar-item" href="/docs/2">Docs 2</a>
@@ -26,14 +25,14 @@ class NavBar extends Component {
           </div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="/tools"><span class="icon"><i class="fas fa-toolbox"></i></span>Tools</a>
+          <a class="navbar-link" href="/tools"><span class="icon"><i class="fas fa-toolbox"></i></span> Tools</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="/tools1">Tools 1</a>
-            <a class="navbar-item" href="/tools2">Tools 2</a>
-            <a class="navbar-item" href="/tools2">Tools 3</a>
+            <a class="navbar-item" href="/tools/1">Tools 1</a>
+            <a class="navbar-item" href="/tools/2">Tools 2</a>
+            <a class="navbar-item" href="/tools/2">Tools 3</a>
           </div>
         </div>
-        <a class="navbar-item" href="/archive"><span class="icon"><i class="fas fa-file-archive"></i></span>Archive</a>
+        <a class="navbar-item" href="/archive"><span class="icon"><i class="fas fa-rss"></i></span> Archive</a>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">

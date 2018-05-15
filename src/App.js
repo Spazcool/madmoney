@@ -1,8 +1,8 @@
 import './App.css';
-import Content from './Content';
-import Footer from './Footer';
-import Hero from './Hero';
-import NavBar from './NavBar';
+import Footer from './Components/Footer';
+import Hero from './Components/Hero';
+import Item from './Components/Item';
+import NavBar from './Components/NavBar';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -13,7 +13,11 @@ class App extends Component {
           <NavBar/>
           <Hero/>
         </header>
-        <Content/>
+        <body>
+          <Item
+            type={"blog"}
+          />
+        </body>
         <Footer/>
       </div>
     );

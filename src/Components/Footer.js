@@ -1,4 +1,4 @@
-import './App.css';
+import './../App.css';
 import 'bulma/css/bulma.css';
 import solid, {faHeart} from '@fortawesome/fontawesome-free-solid';
 import fontawesome from '@fortawesome/fontawesome';
