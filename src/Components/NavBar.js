@@ -8,7 +8,7 @@ import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fonta
 
 class NavBar extends Component {
   render() {
-    // // TODO: REFATOR THE FUNCTION TO BE REACT FRIENDLY
+    // // TODO: REFATOR THE FUNCTION TO BE REACT FRIENDLY, ADD STATE?
     document.addEventListener('DOMContentLoaded', function () {
     // Get all "navbar-burger" elements
       var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
