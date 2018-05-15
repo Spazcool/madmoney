@@ -13,11 +13,7 @@ class App extends Component {
           <NavBar/>
           <Hero/>
         </header>
-        <body>
-          <Item
-            type={"blog"}
-          />
-        </body>
+        <Item type={"blog"}/>
         <Footer/>
       </div>
     );
