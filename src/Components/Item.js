@@ -25,14 +25,16 @@ class Item extends Component {
     if (this.state.posts){
       return (
         <div className="Item">
-          <Section
-            data={this.state.posts}
-            type={this.props.type}
-          />
-          <Sections
-            data={this.state.posts}
-            type={this.props.type}
-          />
+          <div className="tile is-ancestor">
+            <Section
+              data={this.state.posts}
+              type={this.props.type}
+            />
+            <Sections
+              data={this.state.posts}
+              type={this.props.type}
+            />
+          </div>
         </div>
       )
     }

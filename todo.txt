@@ -1,2 +1,14 @@
 date formatter
+move social media icons down to footer
 fully intergrate bulma styling
+
+
+<div className="Section">
+  {this.props.data.map(({fields}, index) =>
+    <div className="box" key={index}>
+      <h1 className="title is -1">{fields.title}</h1>
+      <h6 className="subtitle">{fields.date} <a href={fields.path}>{fields.path}</a></h6>
+      <p>{fields.content}</p>
+    </div>
+  )}
+</div>
