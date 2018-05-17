@@ -7,27 +7,15 @@ import React, { Component } from 'react';
 import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.toggleBurger = this.toggleBurger.bind(this);
+  }
+  toggleBurger(event) {
+    document.getElementById('sibling-menu').classList.toggle("is-active");
+    document.getElementById('burger').classList.toggle("is-active");
+  }
   render() {
-    // // TODO: REFATOR THE FUNCTION TO BE REACT FRIENDLY, ADD STATE?
-    document.addEventListener('DOMContentLoaded', function () {
-    // Get all "navbar-burger" elements
-      var $navbarBurgers = [].slice.call(document.querySelectorAll('.burger-slice'));
-      // Check if there are any navbar burgers
-      if ($navbarBurgers.length > 0) {
-        // Add a click event on each of them
-        $navbarBurgers.forEach(function ($el) {
-          $el.addEventListener('click', function () {
-            // Get the target from the "data-target" attribute
-            var target = $el.id;
-            var $target = document.getElementById(target);
-            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-            // TODO STILL NOT TOGGLING, NOODLE HERE
-            $el.classList.toggle('is-active');
-            $target.classList.toggle('is-active');
-          });
-        });
-      }
-    });
     fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
     return (
       <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">
@@ -35,13 +23,13 @@ class NavBar extends Component {
           <a className="navbar-item" href="/">
             <div className="navbar-item"><img src="https://bulma.io/images/bulma-logo.png" alt="Madmoney" width="112" height="28"/></div>
           </a>
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-            <span className="burger-slice" id="Fart" aria-hidden="true">Fart</span>
-            <span className="burger-slice" id="Burp" aria-hidden="true">Burp</span>
-            <span className="burger-slice" id="Sneeze" aria-hidden="true">Sneeze</span>
+          <a role="button" className="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" onClick={this.toggleBurger}>
+            <span className="burger-slice" aria-hidden="true"></span>
+            <span className="burger-slice" aria-hidden="true"></span>
+            <span className="burger-slice" aria-hidden="true"></span>
           </a>
         </div>
-        <div className="navbar-menu">
+        <div className="navbar-menu" id="sibling-menu">
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
             <div className="navbar-dropdown">
