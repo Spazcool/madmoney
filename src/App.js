@@ -9,9 +9,9 @@ import Loading from './Components/Loading';
 import Tool from './Routes/Tool';
 import Tools from './Routes/Tools';
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-class Routing extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -42,18 +42,18 @@ class Routing extends Component {
   render(){
     return(
       <Router>
-        <div>
+        <Switch>
           <Route exact path="/"><Home data={this.state.posts} loaded={this.state.loaded}/></Route>
           <Route path="/blog" component={Blog}/>
-          <Route path="/blogs" component={Blogs}/>
+          <Route path="/blogs"><Blogs data={this.state.posts} loaded={this.state.loaded}/></Route>
           <Route path="/doc" component={Doc}/>
-          <Route path="/docs" component={Docs}/>
+          <Route path="/docs"><Docs data={this.state.posts} loaded={this.state.loaded}/></Route>
           <Route path="/tool" component={Tool}/>
-          <Route path="/tools" component={Tools}/>
-        </div>
+          <Route path="/tools"><Tools loaded={this.state.loaded}/></Route>
+        </Switch>
       </Router>
     )
   }
 }
 
-export default Routing;
+export default App;

@@ -8,8 +8,7 @@ import React, { Component } from 'react';
 
 class Home extends Component {
   render() {
-    if(this.props.loaded === true){
-      return (
+    return (
         <div className="App">
           <header>
             <NavBar/>
@@ -18,23 +17,13 @@ class Home extends Component {
           <Item
             data={this.props.data}
             limit={5}
+            loaded={this.props.loaded}
             type={"blog"}
           />
           <Footer/>
         </div>
       );
     }
-    return(
-      <div className="App">
-        <header>
-          <NavBar/>
-          <Hero/>
-        </header>
-        <Loading/>
-        <Footer/>
-      </div>
-    )
-  }
 }
 
 export default Home;

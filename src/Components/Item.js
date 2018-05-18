@@ -11,10 +11,12 @@ class Item extends Component {
           <Section
             data={this.props.data}
             limit={this.props.limit}
+            loaded={this.props.loaded}
             type={this.props.type}
           />
           <Sections
             data={this.props.data}
+            loaded={this.props.loaded}
             type={this.props.type}
           />
         </div>

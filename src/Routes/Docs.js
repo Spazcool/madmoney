@@ -4,6 +4,7 @@ import Hero from './../Components/Hero';
 import Item from './../Components/Item';
 import NavBar from './../Components/NavBar';
 import React, { Component } from 'react';
+import Sections from './../Components/Sections';
 
 class Docs extends Component {
   render() {
@@ -13,7 +14,11 @@ class Docs extends Component {
           <NavBar/>
           <Hero/>
         </header>
-        Need to put docs section here
+        <Sections
+          data={this.props.data}
+          loaded={this.props.loaded}
+          type={"doc"}
+        />
         <Footer/>
       </div>
     );
