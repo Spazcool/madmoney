@@ -2,6 +2,9 @@ date formatter
 move social media icons down to footer
 fully intergrate bulma styling
 
+limit HOME route to first 5 blogs in array
+
+routing for blog, doc and tool '/tools/tool-name' how to loop through this?
 
 <div className="Section">
   {this.props.data.map(({fields}, index) =>

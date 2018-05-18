@@ -1,73 +1,59 @@
 import './App.css';
-import Footer from './Components/Footer';
-import Hero from './Components/Hero';
-import Homer from './Home';
-import Item from './Components/Item';
-import NavBar from './Components/NavBar';
+import Blog from './Routes/Blog';
+import Blogs from './Routes/Blogs';
+import * as contentful from 'contentful';
+import Doc from './Routes/Doc';
+import Docs from './Routes/Docs';
+import Home from './Routes/Home';
+import Loading from './Components/Loading';
+import Tool from './Routes/Tool';
+import Tools from './Routes/Tools';
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+class Routing extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loaded: false,
+      posts: null
+    };
+  }
+  client = contentful.createClient({
+    space: 'dktgpvzygyep',
+    accessToken: '7687e36de5d2b00b1747c9832727c68300a22523ef63abb84a4d6e04e1b6cd1d'
+  })
+  componentDidMount() {
+    this.fetchPosts().then(this.setPosts);
+  }
+  componentDidUpdate() {
+    if(this.state.loaded === false){
+      this.setState({
+        loaded: true
+      })
+    }
+  }
+  fetchPosts = () => this.client.getEntries();
+  setPosts = response => {
+    this.setState({
+      posts: response.items
+    })
+  }
+  render(){
+    return(
+      <Router>
+        <div>
+          <Route exact path="/"><Home data={this.state.posts} loaded={this.state.loaded}/></Route>
+          <Route path="/blog" component={Blog}/>
+          <Route path="/blogs" component={Blogs}/>
+          <Route path="/doc" component={Doc}/>
+          <Route path="/docs" component={Docs}/>
+          <Route path="/tool" component={Tool}/>
+          <Route path="/tools" component={Tools}/>
+        </div>
+      </Router>
+    )
+  }
+}
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
-
-const Topic = ({ match }) => (
-  <div>
-    <h3>{match.params.topicId}</h3>
-  </div>
-)
-
-const Topics = ({ match }) => (
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li>
-        <Link to={`${match.url}/rendering`}>
-          Rendering with React
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/components`}>
-          Components
-        </Link>
-      </li>
-      <li>
-        <Link to={`${match.url}/props-v-state`}>
-          Props v. State
-        </Link>
-      </li>
-    </ul>
-
-    <Route path={`${match.path}/:topicId`} component={Topic}/>
-    <Route exact path={match.path} render={() => (
-      <h3>Please select a topic.</h3>
-    )}/>
-  </div>
-)
-
-const BasicExample = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
-
-      <hr/>
-
-      <Route exact path="/" component={Homer}/>
-      <Route path="/about" component={About}/>
-      <Route path="/topics" component={Topics}/>
-    </div>
-  </Router>
-)
-export default BasicExample
+export default Routing;
