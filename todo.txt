@@ -3,3 +3,97 @@ move social media icons down to footer
 routing for blog, doc and tool '/tools/tool-name' how to loop through this?
 
 api calls for specific content and save it as a different state var
+
+contentful docs type passed to the docs route
+
+
+routing to single sections e.g. 'docs/doc1' needs to limit to document desired
+
+navbar doc links data needs to be passed to it after loading is complete
+
+
+
+
+
+
+
+
+
+    if(this.props.display === 'sections'){
+      return (
+        <div className="App">
+          <header>
+            <NavBar/>
+            <Hero/>
+          </header>
+          <Sections
+            data={this.props.data}
+            display={this.props.display}
+            limit={5}
+            loaded={this.props.loaded}
+            type={"blog"}
+          />
+          <Footer/>
+        </div>
+      );
+    }
+
+loopLinks(type, data){
+  let arr = [];
+  let title = "Docs";
+  for (let i = 1; i < data.length + 1; i++) {
+    let href = "/"+type+"s/"+type + i;
+    arr.push(
+      <Route path={href}><Item data={data} loaded={this.state.loaded}/></Route>
+    );
+  }
+  return arr;
+}
+
+<div className="navbar-item">
+  <div className="field is-grouped">
+    <p className="control">
+      <a className="bd-tw-button button"
+        data-social-network="Facebook"
+        data-social-action="follow"
+        data-social-target="http://localhost:4000"
+        target="_blank"
+        href="https://facebook.com/Madmoney">
+        <span className="icon"><i className="fab fa-facebook"></i></span>
+        <span>Follow</span>
+      </a>
+    </p>
+    <p className="control">
+      <a className="bd-tw-button button"
+        data-social-network="Twitter"
+        data-social-action="tweet"
+        data-social-target="http://localhost:4000"
+        target="_blank"
+        href="https://twitter.com/intent/tweet?text=Madmoney&amp;hashtags=madmoney&amp;url=http://localhost:4000&amp;via=jgthms">
+        <span className="icon"><i className="fab fa-twitter"></i></span>
+        <span>Tweet</span>
+      </a>
+    </p>
+  </div>
+</div>
+<Route path="/doc" component={Doc}/>
+<Route path="/docs"><Docs loaded={this.state.loaded}/></Route>
+
+// {this.loopLinks('doc', DummyDocs)}
+// {this.loopLinks('tool', Calculator)}
+// <Route path="/tools"><Archive data={Calculator} loaded={this.state.loaded}/></Route>
+//<Route path="/tools/tool1"><Item data={Calculator} loaded={this.state.loaded}/></Route>
+// <Route path="/tools/tool2"><Item data={Calculator} loaded={this.state.loaded}/></Route>
+// <Route path="/tools/tool3"><Item data={Calculator} loaded={this.state.loaded}/></Route>
+// <Route path="/blogs"><Archive data={this.state.posts} loaded={this.state.loaded}/></Route>
+// <Route path="/docs"><Archive data={DummyDocs} loaded={this.state.loaded}/></Route>
+
+// let Topics = ({ match }) => (
+//
+//   <Router>
+//     <Switch>
+//       <Route path={`${match.path}/:topicId`} component={Item}/>
+//       <Route exact path={match.path} render={(props) => <Archive data={Calculator} loaded={this.state.loaded}/>}/>
+//     </Switch>
+//   </Router>
+// )

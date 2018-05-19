@@ -1,5 +1,7 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
+import Calculator from './../Tools/Calculator'; // mock data WILL NEED TO BE CODED
+import DummyDocs from './../Tools/DummyDocs'; // mock data WILL NEED TO BE PASSED FROM CONTENTFUL
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
@@ -10,6 +12,16 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.toggleBurger = this.toggleBurger.bind(this);
+  }
+  loopLinks(type, data){
+    let arr = [];
+    for (let i = 1; i < data.length + 1; i++) {
+      let href = "/"+type+"s/"+type + i;
+      arr.push(
+        <a className="navbar-item" href={href} key={type + "link" + i}>{type + i}</a>
+      );
+    }
+    return arr;
   }
   toggleBurger(event) {
     document.getElementById('sibling-menu').classList.toggle("is-active");
@@ -33,46 +45,16 @@ class NavBar extends Component {
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
             <div className="navbar-dropdown">
-              <a className="navbar-item" href="/docs/1">Docs 1</a>
-              <a className="navbar-item" href="/docs/2">Docs 2</a>
-              <a className="navbar-item" href="/docs/3">Docs 3</a>
+              {this.loopLinks('doc', DummyDocs)}
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Tools</a>
             <div className="navbar-dropdown">
-              <a className="navbar-item" href="/tools/1">Tools 1</a>
-              <a className="navbar-item" href="/tools/2">Tools 2</a>
-              <a className="navbar-item" href="/tools/2">Tools 3</a>
+              {this.loopLinks('tool', Calculator)}
             </div>
           </div>
-          <a className="navbar-item" href="/archive"><span className="icon"><i className="fas fa-rss"></i></span> Archive</a>
-          <div className="navbar-item">
-            <div className="field is-grouped">
-              <p className="control">
-                <a className="bd-tw-button button"
-                  data-social-network="Facebook"
-                  data-social-action="follow"
-                  data-social-target="http://localhost:4000"
-                  target="_blank"
-                  href="https://facebook.com/Madmoney">
-                  <span className="icon"><i className="fab fa-facebook"></i></span>
-                  <span>Follow</span>
-                </a>
-              </p>
-              <p className="control">
-                <a className="bd-tw-button button"
-                  data-social-network="Twitter"
-                  data-social-action="tweet"
-                  data-social-target="http://localhost:4000"
-                  target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Madmoney&amp;hashtags=madmoney&amp;url=http://localhost:4000&amp;via=jgthms">
-                  <span className="icon"><i className="fab fa-twitter"></i></span>
-                  <span>Tweet</span>
-                </a>
-              </p>
-            </div>
-          </div>
+          <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Archive</a>
         </div>
       </nav>
     );

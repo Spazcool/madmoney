@@ -5,14 +5,14 @@ import React, { Component } from 'react';
 class Hero extends Component {
   render() {
     return (
-      <section className="hero is-fullheight is-primary is-bold">
+      <section className="hero is-medium is-primary is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
-              Primary bold title
+              Madmoney
             </h1>
             <h2 className="subtitle">
-              Primary bold subtitle
+              Madmoney
             </h2>
           </div>
         </div>

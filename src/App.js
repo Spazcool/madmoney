@@ -1,15 +1,10 @@
 import './App.css';
-import Blog from './Routes/Blog';
-import Blogs from './Routes/Blogs';
-import * as contentful from 'contentful';
-import Doc from './Routes/Doc';
-import Docs from './Routes/Docs';
-import Home from './Routes/Home';
-import Loading from './Components/Loading';
-import Tool from './Routes/Tool';
-import Tools from './Routes/Tools';
-import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Calculator from './Tools/Calculator'; // mock data WILL NEED TO BE CODED
+import * as contentful from 'contentful';
+import DummyDocs from './Tools/DummyDocs'; // mock data WILL NEED TO BE PASSED FROM CONTENTFUL
+import Page from './Components/Page';
+import React, { Component } from 'react';
 
 class App extends Component {
   constructor() {
@@ -18,6 +13,7 @@ class App extends Component {
       loaded: false,
       posts: null
     };
+    this.nestURLs = this.nestURLs.bind(this);
   }
   client = contentful.createClient({
     space: 'dktgpvzygyep',
@@ -39,17 +35,52 @@ class App extends Component {
       posts: response.items
     })
   }
+  nestURLs({match}){
+    let data;
+    if(match.path === "/tools"){
+      data = Calculator;
+    }else if(match.path === "/docs"){
+      data = DummyDocs;
+    }else{
+      data = this.state.posts;
+    }
+    return(
+      <Router>
+        <Switch>
+          <Route path={`${match.path}/:topicId`} render={(props) =>
+              <Page
+                data={data}
+                displayBoth={true}
+                loaded={this.state.loaded}
+                path={props.match}
+              />}
+            />
+          <Route exact path={match.path} render={() =>
+              <Page
+                data={data}
+                displayBoth={false}
+                loaded={this.state.loaded}
+              />}
+            />
+        </Switch>
+      </Router>
+    )
+  }
   render(){
     return(
       <Router>
         <Switch>
-          <Route exact path="/"><Home data={this.state.posts} loaded={this.state.loaded}/></Route>
-          <Route path="/blog" component={Blog}/>
-          <Route path="/blogs"><Blogs data={this.state.posts} loaded={this.state.loaded}/></Route>
-          <Route path="/doc" component={Doc}/>
-          <Route path="/docs"><Docs data={this.state.posts} loaded={this.state.loaded}/></Route>
-          <Route path="/tool" component={Tool}/>
-          <Route path="/tools"><Tools loaded={this.state.loaded}/></Route>
+          <Route exact path="/">
+            <Page
+              data={this.state.posts}
+              displayBoth={true}
+              loaded={this.state.loaded}
+              path={"/"}
+            />
+          </Route>
+          <Route path="/blogs" component={this.nestURLs}/>
+          <Route path="/docs" component={this.nestURLs}/>
+          <Route path="/tools" component={this.nestURLs}/>
         </Switch>
       </Router>
     )

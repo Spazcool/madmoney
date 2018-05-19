@@ -5,13 +5,14 @@ import Sections from './Sections';
 
 class Item extends Component {
   render() {
-    return (
+    return(
       <div className="Item">
         <div className="tile is-ancestor">
           <Section
             data={this.props.data}
             limit={this.props.limit}
             loaded={this.props.loaded}
+            path={this.props.path}
             type={this.props.type}
           />
           <Sections
