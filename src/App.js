@@ -10,6 +10,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      assets: null,
       loaded: false,
       posts: null
     };
@@ -21,6 +22,7 @@ class App extends Component {
   })
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
+    // this.fetchAssets().then(this.setAssets);
   }
   componentDidUpdate() {
     if(this.state.loaded === false){
@@ -30,9 +32,15 @@ class App extends Component {
     }
   }
   fetchPosts = () => this.client.getEntries();
-  setPosts = response => {
+  setPosts = (response) => {
     this.setState({
       posts: response.items
+    })
+  }
+  // fetchAssets = () => this.client.getAssets();
+  setAssets = (response) => {
+    this.setState({
+      assets: response.items
     })
   }
   nestURLs({match}){

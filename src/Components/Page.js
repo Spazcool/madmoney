@@ -11,15 +11,11 @@ class Page extends Component {
     let sections =
       <Sections
         data={this.props.data}
-        display={this.props.display}
-        limit={5}
         loaded={this.props.loaded}
       />;
     let item =
       <Item
         data={this.props.data}
-        display={this.props.display}
-        limit={5}
         loaded={this.props.loaded}
         path={this.props.path}
       />;
