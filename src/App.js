@@ -39,11 +39,14 @@ class App extends Component {
   }
   fetchAssets = () => this.client.getAssets();
   setAssets = (response) => {
-    // TODO COPY response
-    // MODIFY RSEPONSE DATA TO FIT SECTION[S] DATA MODEL
-    // SAVE AS ASSETS
-    let tempObj = response.items[0].fields;
-    console.log("App tempObj: ",tempObj);
+    // MODIFY ASSET DATA TO FIT SECTION COMPONENT
+    let tempObj = response.items;
+    tempObj.forEach((element) => {
+      tempObj.fields.content = element.fields.title;
+      tempObj.fields.date = element.sys.createdAt;
+      tempObj.fields.path = element.fields.file.url;
+    });
+    console.log("App modded tempObj: ",tempObj);
     this.setState({
       assets: tempObj
     })
@@ -94,6 +97,13 @@ class App extends Component {
           <Route path="/blogs" component={this.nestURLs}/>
           <Route path="/docs" component={this.nestURLs}/>
           <Route path="/tools" component={this.nestURLs}/>
+          <Route exact path="/test">
+            <Page
+              data={this.state.assets}
+              displayBoth={true}
+              loaded={this.state.loaded}
+            />
+          </Route>
         </Switch>
       </Router>
     )
