@@ -8,6 +8,10 @@ import Sections from './Sections';
 
 class Page extends Component {
   render() {
+    // if(this.props.loaded){
+    //   console.log("loaded");
+    //   console.log("Page assets: ", this.state.assets);
+    // }
     let sections =
       <Sections
         data={this.props.data}

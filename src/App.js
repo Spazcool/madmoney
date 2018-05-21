@@ -22,10 +22,10 @@ class App extends Component {
   })
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
-    // this.fetchAssets().then(this.setAssets);
+    this.fetchAssets().then(this.setAssets);
   }
   componentDidUpdate() {
-    if(this.state.loaded === false){
+    if(this.state.loaded === false && this.state.assets !== null && this.state.posts !== null){
       this.setState({
         loaded: true
       })
@@ -37,10 +37,15 @@ class App extends Component {
       posts: response.items
     })
   }
-  // fetchAssets = () => this.client.getAssets();
+  fetchAssets = () => this.client.getAssets();
   setAssets = (response) => {
+    // TODO COPY response
+    // MODIFY RSEPONSE DATA TO FIT SECTION[S] DATA MODEL
+    // SAVE AS ASSETS
+    let tempObj = response.items[0].fields;
+    console.log("App tempObj: ",tempObj);
     this.setState({
-      assets: response.items
+      assets: tempObj
     })
   }
   nestURLs({match}){
