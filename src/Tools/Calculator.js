@@ -1,9 +1,20 @@
+import './../App.css';
+import React, { Component } from 'react';
+
+class Test extends Component {
+  render() {
+    return(
+      <div>This is a test</div>
+    )
+  }
+}
+
 const data = [
   {
     fields:{
-      title:'Taxes',
+      title:'Test',
       path: '/tools/tool1',
-      content: "'Add all but the BBQ sauce into a bowl.', 'Stir ingredients till well mixed.', 'Place mixture into oven pan.', 'Bake at 120 C for 1 hour, basting with BBQ sauce every 15 minutes.'",
+      content: 'to fill with relevant component',
       date: '2018-01-14T00:00+08:00',
     }
   },

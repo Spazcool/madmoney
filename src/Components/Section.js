@@ -11,6 +11,7 @@ class Section extends Component {
     return {__html: a};
   }
   render() {
+    console.log('sod, ', this.props.data[0].fields);
     fontawesome.library.add(solid, faSpinner);
     let filtered;
     let home;

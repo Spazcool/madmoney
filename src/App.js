@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       docs: null,
       loaded: false,
-      posts: null
+      posts: null,
+      tools: Calculator
     };
     this.nestURLs = this.nestURLs.bind(this);
   }
@@ -105,12 +106,12 @@ class App extends Component {
           <Route path="/tools" component={this.nestURLs}/>
           <Route exact path="/test">
             <Page
-              data={this.state.docs}
+              data={this.state.tools}
               displayBoth={true}
               docs={this.state.docs}
               loaded={this.state.loaded}
-              path={""}
-              tools={Calculator}
+              path={"/"}
+              tools={this.state.tools}
             />
           </Route>
         </Switch>
