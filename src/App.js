@@ -2,7 +2,6 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Calculator from './Tools/Calculator'; // mock data WILL NEED TO BE CODED
 import * as contentful from 'contentful';
-import DummyDocs from './Tools/DummyDocs'; // mock data WILL NEED TO BE PASSED FROM CONTENTFUL
 import Page from './Components/Page';
 import React, { Component } from 'react';
 
@@ -10,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      assets: null,
+      docs: null,
       loaded: false,
       posts: null
     };
@@ -22,10 +21,10 @@ class App extends Component {
   })
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
-    this.fetchAssets().then(this.setAssets);
+    this.fetchDocs().then(this.setDocs);
   }
   componentDidUpdate() {
-    if(this.state.loaded === false && this.state.assets !== null && this.state.posts !== null){
+    if(this.state.loaded === false && this.state.docs !== null && this.state.posts !== null){
       this.setState({
         loaded: true
       })
@@ -37,18 +36,19 @@ class App extends Component {
       posts: response.items
     })
   }
-  fetchAssets = () => this.client.getAssets();
-  setAssets = (response) => {
-    // MODIFY ASSET DATA TO FIT SECTION COMPONENT
-    let tempObj = response.items;
-    tempObj.forEach((element) => {
-      tempObj.fields.content = element.fields.title;
-      tempObj.fields.date = element.sys.createdAt;
-      tempObj.fields.path = element.fields.file.url;
+  fetchDocs = () => this.client.getAssets();
+  setDocs = (response) => {
+    // MODIFY ASSET DATA TO FIT SECTION COMPONENT DATA MODEL
+    let items = response.items;
+    items.forEach((item, index) => {
+      item.fields.content = item.fields.file.contentType;
+      item.fields.date = item.sys.createdAt;
+      item.fields.download = item.fields.file.url;
+      item.fields.id = item.sys.id;
+      item.fields.path = '/docs/doc' + (index + 1);
     });
-    console.log("App modded tempObj: ",tempObj);
     this.setState({
-      assets: tempObj
+      docs: items
     })
   }
   nestURLs({match}){
@@ -56,7 +56,7 @@ class App extends Component {
     if(match.path === "/tools"){
       data = Calculator;
     }else if(match.path === "/docs"){
-      data = DummyDocs;
+      data = this.state.docs;
     }else{
       data = this.state.posts;
     }
@@ -67,15 +67,19 @@ class App extends Component {
               <Page
                 data={data}
                 displayBoth={true}
+                docs={this.state.docs}
                 loaded={this.state.loaded}
                 path={props.match}
+                tools={Calculator}
               />}
             />
           <Route exact path={match.path} render={() =>
               <Page
                 data={data}
                 displayBoth={false}
+                docs={this.state.docs}
                 loaded={this.state.loaded}
+                tools={Calculator}
               />}
             />
         </Switch>
@@ -90,8 +94,10 @@ class App extends Component {
             <Page
               data={this.state.posts}
               displayBoth={true}
+              docs={this.state.docs}
               loaded={this.state.loaded}
               path={"/"}
+              tools={Calculator}
             />
           </Route>
           <Route path="/blogs" component={this.nestURLs}/>
@@ -99,9 +105,12 @@ class App extends Component {
           <Route path="/tools" component={this.nestURLs}/>
           <Route exact path="/test">
             <Page
-              data={this.state.assets}
+              data={this.state.docs}
               displayBoth={true}
+              docs={this.state.docs}
               loaded={this.state.loaded}
+              path={""}
+              tools={Calculator}
             />
           </Route>
         </Switch>

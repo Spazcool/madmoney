@@ -8,10 +8,6 @@ import Sections from './Sections';
 
 class Page extends Component {
   render() {
-    // if(this.props.loaded){
-    //   console.log("loaded");
-    //   console.log("Page assets: ", this.state.assets);
-    // }
     let sections =
       <Sections
         data={this.props.data}
@@ -26,7 +22,11 @@ class Page extends Component {
     return (
       <div className="App">
         <header>
-          <NavBar/>
+          <NavBar
+            docs={this.props.docs}
+            loaded={this.props.loaded}
+            tools={this.props.tools}
+          />
           <Hero/>
         </header>
         {this.props.displayBoth ? item : sections}

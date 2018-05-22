@@ -1,7 +1,5 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import Calculator from './../Tools/Calculator'; // mock data WILL NEED TO BE CODED
-import DummyDocs from './../Tools/DummyDocs'; // mock data WILL NEED TO BE PASSED FROM CONTENTFUL
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
@@ -29,6 +27,13 @@ class NavBar extends Component {
   }
   render() {
     fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
+    let docs;
+    let loading = <span><i className="fa fa-spinner fa-spin" key={'navlinkloading'}></i></span>;
+    let tools;
+    if(this.props.loaded){
+      docs = this.loopLinks('doc', this.props.docs);
+      tools = this.loopLinks('tool', this.props.tools);
+    }
     return (
       <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">
         <div className="navbar-brand">
@@ -45,13 +50,13 @@ class NavBar extends Component {
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
             <div className="navbar-dropdown">
-              {this.loopLinks('doc', DummyDocs)}
+            {this.props.loaded ? docs : loading}
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Tools</a>
             <div className="navbar-dropdown">
-              {this.loopLinks('tool', Calculator)}
+            {this.props.loaded ? tools : loading}
             </div>
           </div>
           <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Archive</a>
