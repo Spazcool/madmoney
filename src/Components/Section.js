@@ -11,7 +11,6 @@ class Section extends Component {
     return {__html: a};
   }
   render() {
-    console.log('sod, ', this.props.data[0].fields);
     fontawesome.library.add(solid, faSpinner);
     let filtered;
     let home;
@@ -22,6 +21,7 @@ class Section extends Component {
         <p><i className="fa fa-spinner fa-spin"></i></p>
       </article>;
     if(this.props.loaded){
+      console.log('sod, ', this.props.data[0].fields);
       // SHOW THE 5 MOST RECENT ARTICLES
       home =
         this.props.data.slice(0, 5).map(({fields}, index) =>
