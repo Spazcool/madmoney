@@ -110,7 +110,7 @@ class App extends Component {
               displayBoth={true}
               docs={this.state.docs}
               loaded={this.state.loaded}
-              path={"/"}
+              path={"test"}
               tools={this.state.tools}
             />
           </Route>

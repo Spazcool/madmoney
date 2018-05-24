@@ -1,20 +1,9 @@
-import './../App.css';
-import React, { Component } from 'react';
-
-class Test extends Component {
-  render() {
-    return(
-      <div>This is a test</div>
-    )
-  }
-}
-
 const data = [
   {
     fields:{
       title:'Test',
       path: '/tools/tool1',
-      content:{test: Test},
+      content: 'Test',
       date: '2018-01-14T00:00+08:00',
     }
   },
