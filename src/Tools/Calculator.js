@@ -14,7 +14,7 @@ const data = [
     fields:{
       title:'Test',
       path: '/tools/tool1',
-      content: 'to fill with relevant component',
+      content:{test: Test},
       date: '2018-01-14T00:00+08:00',
     }
   },
