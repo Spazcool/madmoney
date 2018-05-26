@@ -26,7 +26,7 @@ class Sections extends Component {
     }
     return(
       <div className="tile is-parent">
-        <div className="tile is-child notification is-success">
+        <div className="tile is-child notification">
           {this.props.loaded ? sections : loading}
         </div>
       </div>

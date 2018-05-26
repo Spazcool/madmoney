@@ -3,91 +3,112 @@ import 'bulma/css/bulma.css';
 import React, { Component } from 'react';
 
 class Calcul extends Component {
+  constructor() {
+    super();
+    this.state = {
+      variable_A: '',
+      variable_B: '',
+      result: 0,
+    };
+    this.addition = this.addition.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  addition(A,B) {
+    let _result = parseInt(A, 10) + parseInt(B, 10);
+    this.setState({
+      result: _result,
+    });
+  }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
   render() {
     return(
       <div className="Calcul">
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input"/>
+        <div className="field is-grouped">
+          <div className="control">
+            <label className="label">Variable A</label>
+            <input
+              className="input"
+              name="variable_A"
+              onChange={this.handleChange}
+              placeholder="A"
+              type="number"
+              value={this.state.variable_A}
+            />
           </div>
+          <div className="control">
+            <label className="label">Variable B</label>
+            <input
+              className="input"
+              name="variable_B"
+              onChange={this.handleChange}
+              placeholder="B"
+              type="number"
+              value={this.state.variable_B}
+            />
           </div>
+          <div className="control">
+            <div className="answer">
+              <label className="label">Result</label>
+              {this.state.result}
+            </div>
+          </div>
+        </div>
 
-          <div class="field">
-          <label class="label">Username</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="bulma"/>
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span>
+        <div className="field">
+          <div className="control">
+            <button className="button is-link" onClick={(e) => {e.preventDefault(); this.addition(this.state.variable_A, this.state.variable_B);}}>Submit</button>
           </div>
-          <p class="help is-success">This username is available</p>
-          </div>
+        </div>
 
-          <div class="field">
-          <label class="label">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-danger" type="email" placeholder="Email input" value="hello@"/>
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-          <p class="help is-danger">This email is invalid</p>
-          </div>
+        <div className="field">
+          <label className="label">Extra Stuff</label>
+        </div>
 
-          <div class="field">
-          <label class="label">Subject</label>
-          <div class="control">
-            <div class="select">
+        <div className="field">
+          <label className="label">Variable List</label>
+          <div className="control">
+            <div className="select">
               <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
+                <option>List Item A</option>
+                <option>List Item B</option>
+                <option>List Item C</option>
               </select>
             </div>
           </div>
-          </div>
+        </div>
 
-          <div class="field">
-          <label class="label">Message</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
-          </div>
-          </div>
-
-          <div class="field">
-          <div class="control">
-            <label class="checkbox">
+        <div className="field">
+          <div className="control">
+            <label className="checkbox">
               <input type="checkbox"/>
-              I agree to the <a href="#">terms and conditions</a>
+              I agree to the <a href="">terms and conditions</a>
             </label>
           </div>
-          </div>
+        </div>
 
-          <div class="field">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="question"/>
+        <div className="field">
+          <div className="control">
+            <label className="radio">
+              <input className="radio" name="question"/>
               Yes
             </label>
-            <label class="radio">
+            <label className="radio">
               <input type="radio" name="question"/>
               No
             </label>
           </div>
-          </div>
+        </div>
 
-          <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link">Submit</button>
           </div>
-          <div class="control">
-            <button class="button is-text">Cancel</button>
+          <div className="control">
+            <button className="button is-text">Cancel</button>
           </div>
         </div>
       </div>
