@@ -2,12 +2,12 @@ import './../App.css';
 import React, { Component } from 'react';
 import Section from './Section';
 import Sections from './Sections';
-
+// is-ancestor as addition class with tile
 class Item extends Component {
   render() {
     return(
       <div className="Item">
-        <div className="tile is-ancestor">
+        <div className="tile">
           <Section
             data={this.props.data}
             loaded={this.props.loaded}

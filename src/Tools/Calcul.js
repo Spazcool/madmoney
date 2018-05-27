@@ -19,6 +19,20 @@ class Calcul extends Component {
       result: _result,
     });
   }
+  brutYield(lostMonthes, monthlyMortgage, monthlyRent, price){
+    let annualRent = (monthlyRent * 12) - (monthlyRent * lostMonthes);
+    let brut = annualRent / price;
+    this.cashFlow(annualRent, monthlyMortgage);
+    return brut;
+  }
+  netYield(lostMonthes, monthlyExpenses, monthlyMortgage, monthlyRent, price){
+    let net = this.brutYield(lostMonthes, monthlyMortgage, monthlyRent, price) * price - (monthlyExpenses * 12) / price;
+    return net;
+  }
+  cashFlow(annual, mortgage){
+    let monthlyCash = annual / 12 - mortgage;
+    return monthlyCash;
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
