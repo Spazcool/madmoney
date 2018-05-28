@@ -1,3 +1,99 @@
+<div className="field is-grouped">
+  <div className="control">
+    <label className="label">Price w/out Fees</label>
+    <input
+      className="input"
+      name="basePrice"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.basePrice}
+    />
+  </div>
+  <div className="control">
+    <label className="label">Initial Repair Costs</label>
+    <input
+      className="input"
+      name="repairCosts"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.repairCosts}
+    />
+  </div>
+</div>
+<div className="field is-grouped">
+  <div className="control">
+    <label className="label">Monthly Expenses</label>
+    <input
+      className="input"
+      name="monthlyExpenses"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.monthlyExpenses}
+    />
+  </div>
+  <div className="control">
+    <label className="label">Monthly Mortgage</label>
+    <input
+      className="input"
+      name="monthlyMortgage"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.monthlyMortgage}
+    />
+  </div>
+</div>
+<div className="field is-grouped">
+  <div className="control">
+    <label className="label">Monthly Rent</label>
+    <input
+      className="input"
+      name="monthlyRent"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.monthlyRent}
+    />
+  </div>
+  <div className="control">
+    <label className="label">Vacant Monthes</label>
+    <input
+      className="input"
+      name="lostMonthes"
+      onChange={this.handleChange}
+      type="number"
+      value={this.state.lostMonthes}
+    />
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div className="field">
           <label className="label">Extra Stuff</label>
