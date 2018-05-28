@@ -1,0 +1,48 @@
+
+        <div className="field">
+          <label className="label">Extra Stuff</label>
+        </div>
+
+        <div className="field">
+          <label className="label">Variable List</label>
+          <div className="control">
+            <div className="select">
+              <select>
+                <option>List Item A</option>
+                <option>List Item B</option>
+                <option>List Item C</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <div className="control">
+            <label className="checkbox">
+              <input type="checkbox"/>
+              I agree to the <a href="">terms and conditions</a>
+            </label>
+          </div>
+        </div>
+
+        <div className="field">
+          <div className="control">
+            <label className="radio">
+              <input className="radio" name="question"/>
+              Yes
+            </label>
+            <label className="radio">
+              <input type="radio" name="question"/>
+              No
+            </label>
+          </div>
+        </div>
+
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link">Submit</button>
+          </div>
+          <div className="control">
+            <button className="button is-text">Cancel</button>
+          </div>
+        </div>
