@@ -53,7 +53,6 @@ class Section extends Component {
         loaded = filtered;
       }
     }
-
     return (
       <div className="tile is-vertical is-8">
         <div className="tile is-parent">

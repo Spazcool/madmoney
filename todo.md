@@ -9,6 +9,7 @@
 
 **NICETIES**
   []date formatter
+  []embed excel instead of google sheets, if one can edit it on the fly
   []move social media icons down to footer
   []articles are not entirely centered, some extra margin on the right side
   []sections categorized by type || year and couched into a dropdown bar

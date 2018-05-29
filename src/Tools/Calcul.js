@@ -23,15 +23,6 @@ class Calcul extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   calculateYield(oldProperty, basePrice, lostMonthes, monthlyExpenses, monthlyMortgage, monthlyRent, repairCosts){
-    let _arguments = [];
-    for (let argument of arguments) {
-      if(typeof(argument) === "boolean"){
-        _arguments.push(argument);
-      }else{
-        _arguments.push(parseInt(argument, 10));
-      }
-    }
-    console.log(_arguments);
     // TODO TOGGGLE FOR USER ON WHETHER THE PROPERTY IS OLD OR NEW
     // CLEAN INPUTS to numbers,
     // if not numbers intput box should light up warning user.
@@ -42,15 +33,6 @@ class Calcul extends Component {
     let brutYield = annualRent / totalPrice * 100;
     let netYield = (annualRent - annualExpenses) / totalPrice * 100;
     let monthlyCashFlow = (annualRent - annualExpenses) / 12 - monthlyMortgage;
-    console.log('notaryFee',notaryFee);
-    console.log('repairCosts', repairCosts);
-    console.log('annualExpenses ', annualExpenses);
-    console.log('annualRent ', annualRent);
-    console.log('totalPrice ', totalPrice);
-    console.log('brutYield ', brutYield);
-    console.log('netYield ', netYield);
-    console.log('monthlyCashFlow ', monthlyCashFlow);
-
     let _data = Object.assign({}, this.state.data);
     _data.brut = brutYield.toFixed(2);
     _data.net = netYield.toFixed(2);
@@ -60,47 +42,76 @@ class Calcul extends Component {
     });
   }
   handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    if(event.target.name === "oldProperty"){
+      let _toggle = this.state.oldProperty === true ? false : true;
+      this.setState({
+        oldProperty: _toggle,
+      });
+    }else{
+      this.setState({
+        [event.target.name]: event.target.value,
+      });
+    }
   }
-
   render() {
-    let inputs = Object.keys(this.state).filter(input =>
-      input !== 'data' && input !== 'oldProperty').map((input, index) =>
-      <div className="control" key={input + index}>
-        <label className="label">{input}</label>
-        <input
-          className="input"
-          name={input}
-          onChange={this.handleChange}
-          type="number"
-          value={this.state[{input}]}
-        />
-      </div>);
+    // console.log('here', this.state);
+    // TODO FIX LOGIC OF INPUTS FILTERING, ITS COUNTING DOWN INSTEAD OF BREAKING IT INTO 2S
+    const rows = ["rowThree", "rowTwo", "rowOne"];
+    let inputs =
+      rows.map((row, rowIndex) => {
+        return(
+          <div className={row "field is-grouped"} key={row + rowIndex}>
+            {Object.keys(this.state).filter((input, filterIndex) =>
+              input !== 'data' &&
+              input !== 'oldProperty' &&
+              filterIndex % 2 === rowIndex).map((input, index) => {
+            return(
+              <div className="control" key={input + index}>
+                <label className="label">{input}</label>
+                <input
+                  className="input"
+                  name={input}
+                  onChange={this.handleChange}
+                  type="number"
+                  value={this.state[input]}
+                />
+              </div>
+            )})}
+          </div>
+        )});
+    let outputs =
+      <div className="field is-grouped">
+        {Object.keys(this.state.data).map((output, index) =>
+          <div className="control" key={output + index}>
+            <div className="answer">
+              <label className="label">{output}</label>
+              {this.state.data[output]}
+            </div>
+          </div>)}
+      </div>;
+    let radios = [];
+    for (let i = 0; i < 2; i++) {
+      radios.push(
+        <label className="radio" key={"oldProperty"+i}>
+          <input
+            checked={this.state.oldProperty === (i === 0 ? true : false)}
+            name="oldProperty"
+            onChange={this.handleChange}
+            type="radio"
+            value={i === 0 ? true : false}
+          />
+          {i === 0 ? "Yes" : "No"}
+        </label>
+      );
+    }
     return(
       <div className="Calcul">
         {inputs}
-        <div className="field is-grouped">
-          <div className="control">
-            <div className="answer">
-              <label className="label">Brut</label>
-              {this.state.data.brut}
-            </div>
-          </div>
-          <div className="control">
-            <div className="answer">
-              <label className="label">Net</label>
-              {this.state.data.net}
-            </div>
-          </div><div className="control">
-            <div className="answer">
-              <label className="label">Monthly Cash Flow</label>
-              {this.state.data.cashFlow}
-            </div>
-          </div>
+        <div className="control">
+          <label className="label">Old Property?</label>
+          {radios}
         </div>
-
+        {outputs}
         <div className="field">
           <div className="control">
             <button className="button is-link" onClick={(e) => {

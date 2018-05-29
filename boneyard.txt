@@ -1,3 +1,48 @@
+// let inputs = [];
+// for (let i = 0; i < Object.keys(this.state).length; i++) {
+//   if(i % 2 === 0){
+//     inputs.push(
+//       Object.keys(this.state)[i]
+//     )
+//   }
+//
+//   console.log(inputs);
+// };
+// let inputs = Object.keys(this.state).filter(input =>
+//   input !== 'data' && input !== 'oldProperty').map((input, index) =>
+//   // TODO COUPLE THESE INPUT FIELDS
+//   <div className="control" key={input + index}>
+//     <label className="label">{input}</label>
+//     <input
+//       className="input"
+//       name={input}
+//       onChange={this.handleChange}
+//       type="number"
+//       value={this.state[input]}
+//     />
+//   </div>);
+
+
+<div className="control">
+  <div className="answer">
+    <label className="label">Brut</label>
+    {this.state.data.brut}
+  </div>
+</div>
+<div className="control">
+  <div className="answer">
+    <label className="label">Net</label>
+    {this.state.data.net}
+  </div>
+</div><div className="control">
+  <div className="answer">
+    <label className="label">Monthly Cash Flow</label>
+    {this.state.data.cashFlow}
+  </div>
+</div>
+
+
+
 <div className="field is-grouped">
   <div className="control">
     <label className="label">Price w/out Fees</label>
