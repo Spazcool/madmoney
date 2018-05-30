@@ -23,9 +23,10 @@ class Calcul extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   calculateYield(oldProperty, basePrice, lostMonthes, monthlyExpenses, monthlyMortgage, monthlyRent, repairCosts){
-    // TODO TOGGGLE FOR USER ON WHETHER THE PROPERTY IS OLD OR NEW
-    // CLEAN INPUTS to numbers,
-    // if not numbers intput box should light up warning user.
+    // TODO sexier TOGGGLE
+    // TODO ANOTHER TOGGLE FOR BRUT & NET || JUST MAKE BRUT INTPUTS REQUIRED 
+    // TODO CLEAN INPUTS to numbers, dont trust user
+    // TODO if not numbers intput box should light up warning user.
     let notaryFee = oldProperty ? 0.08 : 0.045;
     let annualExpenses = monthlyExpenses * 12;
     let annualRent = monthlyRent * 12 - monthlyRent * lostMonthes;
@@ -55,30 +56,27 @@ class Calcul extends Component {
   }
   render() {
     // console.log('here', this.state);
-    // TODO FIX LOGIC OF INPUTS FILTERING, ITS COUNTING DOWN INSTEAD OF BREAKING IT INTO 2S
-    const rows = ["rowThree", "rowTwo", "rowOne"];
+    const rows = ["rowOne", "rowTwo", "rowThree"];
     let inputs =
-      rows.map((row, rowIndex) => {
-        return(
-          <div className={row "field is-grouped"} key={row + rowIndex}>
-            {Object.keys(this.state).filter((input, filterIndex) =>
-              input !== 'data' &&
-              input !== 'oldProperty' &&
-              filterIndex % 2 === rowIndex).map((input, index) => {
-            return(
-              <div className="control" key={input + index}>
-                <label className="label">{input}</label>
-                <input
-                  className="input"
-                  name={input}
-                  onChange={this.handleChange}
-                  type="number"
-                  value={this.state[input]}
-                />
-              </div>
-            )})}
-          </div>
-        )});
+      rows.map((row, rowIndex) =>
+        <div className={row + " field is-grouped is-grouped-multiline"} key={row + rowIndex}>
+          {Object.keys(this.state).filter((input) =>
+            input !== 'data' &&
+            input !== 'oldProperty').filter((input, filterIndex)=>
+            filterIndex % 3 === rowIndex).map((input, index) =>
+            <div className="control" key={input + index}>
+              <label className="label">{input}</label>
+              <input
+                className="input"
+                name={input}
+                onChange={this.handleChange}
+                type="number"
+                value={this.state[input]}
+              />
+            </div>
+          )}
+        </div>
+      );
     let outputs =
       <div className="field is-grouped">
         {Object.keys(this.state.data).map((output, index) =>
