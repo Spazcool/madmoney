@@ -1,5 +1,7 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
+import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
+
 import React, { Component } from 'react';
 
 class Calcul extends Component {
@@ -24,7 +26,7 @@ class Calcul extends Component {
   }
   calculateYield(oldProperty, basePrice, lostMonthes, monthlyExpenses, monthlyMortgage, monthlyRent, repairCosts){
     // TODO sexier TOGGGLE
-    // TODO ANOTHER TOGGLE FOR BRUT & NET || JUST MAKE BRUT INTPUTS REQUIRED 
+    // TODO ANOTHER TOGGLE FOR BRUT & NET || JUST MAKE BRUT INTPUTS REQUIRED
     // TODO CLEAN INPUTS to numbers, dont trust user
     // TODO if not numbers intput box should light up warning user.
     let notaryFee = oldProperty ? 0.08 : 0.045;
@@ -53,6 +55,14 @@ class Calcul extends Component {
         [event.target.name]: event.target.value,
       });
     }
+    this.calculateYield(
+      this.state.oldProperty,
+      this.state.basePrice,
+      this.state.lostMonthes,
+      this.state.monthlyExpenses,
+      this.state.monthlyMortgage,
+      this.state.monthlyRent,
+      this.state.repairCosts)
   }
   render() {
     // console.log('here', this.state);
@@ -102,12 +112,25 @@ class Calcul extends Component {
         </label>
       );
     }
+    let switcher =
+      <div className="field">
+        <input
+          id="switchExample"
+          onChange={this.handleChange}
+          type="checkbox"
+          name="oldProperty"
+          className="switch"
+          checked={this.state.oldProperty === true ? false : true}
+        />
+        <label for="switchExample">Switch example</label>
+      </div>;
     return(
       <div className="Calcul">
         {inputs}
         <div className="control">
           <label className="label">Old Property?</label>
           {radios}
+          {switcher}
         </div>
         {outputs}
         <div className="field">

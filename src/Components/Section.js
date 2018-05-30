@@ -54,7 +54,7 @@ class Section extends Component {
       }
     }
     return (
-      <div className="tile is-vertical is-8">
+      <div className="tile is-vertical is-9">
         <div className="tile is-parent">
           <div className="tile is-child notification">
             {this.props.loaded ? loaded : loading}

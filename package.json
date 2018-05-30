@@ -10,6 +10,7 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "@fortawesome/react-fontawesome": "0.0.19",
     "bulma": "^0.7.1",
+    "bulma-extensions": "^1.0.31",
     "chalk": "^2.4.1",
     "cli-table2": "^0.2.0",
     "contentful": "^6.1.0",
