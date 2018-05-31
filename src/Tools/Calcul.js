@@ -2,6 +2,8 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
 import Inputs from './Inputs';
+import Outputs from './Outputs';
+
 import React, { Component } from 'react';
 
 class Calcul extends Component {
@@ -29,8 +31,8 @@ class Calcul extends Component {
       },
       prix:{
         basePrice:0,
-        oldProperty:false,
         repairCosts:0,
+        oldProperty:false,
       },
       revenus:{
         lostMonthes:0,
@@ -57,6 +59,7 @@ class Calcul extends Component {
     _data.annualExpenses = annualExpenses.toFixed(2);
     // BUG annualrent getting /10 when lostMonthes = 1
     _data.annualRent = annualRent.toFixed(2);
+
     _data.cashFlow = monthlyCashFlow.toFixed(2);
     _data.totalPurchase = totalPurchase.toFixed(2);
     _data.yieldBrut = brutYield.toFixed(2);
@@ -75,7 +78,7 @@ class Calcul extends Component {
     }else if(event.target.name in this.state.prix){
       let _prix = Object.assign({}, this.state.prix);
       if(event.target.name === "oldProperty"){
-        _prix[event.target.name] = this.state.prix.oldProperty === true ? false : true;
+        _prix[event.target.name] = this.state.prix.oldProperty ? false : true;
       }else{
         _prix[event.target.name] = event.target.value;
       }
@@ -92,88 +95,21 @@ class Calcul extends Component {
     this.calculateYield()
   }
   render() {
-    let switcher =
-      <div className="control">
-        <label className="label">Old Property</label>
-        <div className="field">
-          <input
-            id="switchExample"
-            onChange={this.handleChange}
-            type="checkbox"
-            name="oldProperty"
-            className="switch"
-            checked={this.state.prix.oldProperty === true ? false : true}
-          />
-        <label htmlFor="switchExample"></label>
-        </div>
-      </div>;
-    let frais =
-      <div className="field">
-        <h2>Frais</h2>
-        {Object.keys(this.state.frais).map((input, index) =>
-          <div className="control" key={input}>
-            <label className="label">{input}</label>
-            <input
-              className="input"
-              name={input}
-              onChange={this.handleChange}
-              type="number"
-              value={this.state.frais[input]}
-            />
-          </div>
-        )}
-      </div>;
-    let prix =
-      <div className="field">
-        <h2>Prix</h2>
-        {Object.keys(this.state.prix).filter((input) =>
-          input !== 'oldProperty').map((input, index) =>
-          <div className="control" key={input}>
-            <label className="label">{input}</label>
-            <input
-              className="input"
-              name={input}
-              onChange={this.handleChange}
-              type="number"
-              value={this.state.prix[input]}
-            />
-          </div>
-        )}
-        {switcher}
-      </div>;
-    let revenus =
-      <div className="field">
-        <h2>Revenus</h2>
-        {Object.keys(this.state.revenus).map((input, index) =>
-          <div className="control" key={input}>
-            <label className="label">{input}</label>
-            <input
-              className="input"
-              name={input}
-              onChange={this.handleChange}
-              type="number"
-              value={this.state.revenus[input]}
-            />
-          </div>
-        )}
-      </div>;
-    let outputs =
-      <div className="field is-grouped">
-        {Object.keys(this.state.data).map((output, index) =>
-          <div className="control" key={output + index}>
-            <div className="answer">
-              <label className="label">{output}</label>
-              {this.state.data[output]}
-            </div>
-          </div>)}
-      </div>;
     return(
       <div className="Calcul">
-        <Inputs/>
-        {prix}
-        {revenus}
-        {frais}
-        {outputs}
+        <Inputs
+          frais={this.state.frais}
+          fraisKeys={Object.keys(this.state.frais)}
+          prix={this.state.prix}
+          prixKeys={Object.keys(this.state.prix)}
+          revenus={this.state.revenus}
+          revenusKeys={Object.keys(this.state.revenus)}
+          handleChange={this.handleChange}
+        />
+        <Outputs
+          dataKeys={Object.keys(this.state.data)}
+          data={this.state.data}
+        />
       </div>
     )
   }
