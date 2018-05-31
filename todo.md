@@ -9,8 +9,9 @@
     []ANOTHER TOGGLE FOR BRUT & NET || JUST MAKE BRUT INTPUTS REQUIRED
     []CLEAN INPUTS to numbers, dont trust user
     []if not numbers intput box should light up warning user.
-    [] lostMonthes must be a number between 0 & 12
-    
+    []lostMonthes must be a number between 0 & 12
+    []pass props to Inputs
+
 **NICETIES**
   []date formatter
   []embed excel instead of google sheets, if one can edit it on the fly
