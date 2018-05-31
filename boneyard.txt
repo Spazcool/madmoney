@@ -1,3 +1,67 @@
+<div className="field">
+  <div className="control">
+    <button className="button is-link" onClick={(e) => {
+        this.calculateYield(
+          this.state.prix.oldProperty,
+          this.state.prix.basePrice,
+          this.state.revenus.lostMonthes,
+          this.state.frais.monthlyExpenses,
+          this.state.frais.monthlyMortgage,
+          this.state.revenus.monthlyRent,
+          this.state.prix.repairCosts);
+        }}>Submit</button>
+  </div>
+</div>
+
+
+
+
+let radios = [];
+for (let i = 0; i < 2; i++) {
+  radios.push(
+    <label className="radio" key={"oldProperty"+i}>
+      <input
+        checked={this.state.oldProperty === (i === 0 ? true : false)}
+        name="oldProperty"
+        onChange={this.handleChange}
+        type="radio"
+        value={i === 0 ? true : false}
+      />
+      {i === 0 ? "Yes" : "No"}
+    </label>
+  );
+}
+
+
+
+
+// console.log('here', this.state);
+// const rows = ["rowOne", "rowTwo", "rowThree"];
+// let inputs =
+//   rows.map((row, rowIndex) =>
+//     <div className={row + " field is-grouped is-grouped-multiline"} key={row + rowIndex}>
+//       {Object.keys(this.state).filter((input) =>
+//         input !== 'data' &&
+//         input !== 'oldProperty').filter((input, filterIndex)=>
+//         filterIndex % 3 === rowIndex).map((input, index) =>
+//         <div className="control" key={input + index}>
+//           <label className="label">{input}</label>
+//           <input
+//             className="input"
+//             name={input}
+//             onChange={this.handleChange}
+//             type="number"
+//             value={this.state[input]}
+//           />
+//         </div>
+//       )}
+//     </div>
+//   );
+
+
+
+
+
 // let inputs = [];
 // for (let i = 0; i < Object.keys(this.state).length; i++) {
 //   if(i % 2 === 0){
