@@ -43,7 +43,6 @@ class Calcul extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   calculateYield(){
-    // BUG annualrent getting /10 when lostMonthes = 1
     // TODO WHATS THE DIFFERENCE / VALUE OF USING OBJECT.ASSIGN FOR _DATA?
     // let _data = this.state.data;
     let _frais = this.state.frais;
@@ -52,6 +51,7 @@ class Calcul extends Component {
     let _data = Object.assign({}, this.state.data);
     let notaryFee = (_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice;
     _data.annualExpenses = (_frais.monthlyExpenses * 12).toFixed(2);
+    // BUG annualrent getting /10 when lostMonthes = 1
     _data.annualRent = (_revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes).toFixed(2);
     _data.cashFlow = ((_data.annualRent - _data.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(2);
     _data.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee).toFixed(2);
@@ -65,7 +65,8 @@ class Calcul extends Component {
     for(let obj in this.state){
       if(event.target.name in this.state[obj]){
         let _temp = Object.assign({}, this.state[obj]);
-        // may need an if statement here for oldProperty
+        // BUG may need an if statement here for oldProperty
+        // oldProperty getting stuck if i turn it to off
         _temp[event.target.name] = event.target.value;
         this.setState({
           [obj]: _temp,
@@ -76,7 +77,7 @@ class Calcul extends Component {
   }
   render() {
     return(
-      <div className="Calcul tile">
+      <div className="Calcul tile is-ancestor">
         <Inputs
           frais={this.state.frais}
           prix={this.state.prix}

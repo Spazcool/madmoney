@@ -32,7 +32,7 @@ class Inputs extends Component {
     }
     for(let i = 0; i < inputTitles.length; i++){
       inputs.push(
-        <div className="field" key={inputTitles[i]}>
+        <div className="tile is-child box field" key={inputTitles[i]}>
           <h2>{inputTitles[i]}</h2>
           {inputNames.filter(input =>
             input[0] === inputTitles[i]).map(input =>
@@ -52,12 +52,8 @@ class Inputs extends Component {
       );
     }
     return(
-      <div className="tile is-vertical is-9">
-        <div className="tile is-parent">
-          <div className="tile is-child notification">
-            {inputs}
-          </div>
-        </div>
+      <div className="tile is-parent is-vertical">
+          {inputs}
       </div>
     )
   }
