@@ -6,7 +6,7 @@ class Outputs extends Component {
   render(){
     return(
       <div className="field is-grouped">
-        {this.props.dataKeys.map((output, index) =>
+        {Object.keys(this.props.data).map((output, index) =>
           <div className="control" key={output + index}>
             <div className="answer">
               <label className="label">{output}</label>

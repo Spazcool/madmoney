@@ -43,71 +43,47 @@ class Calcul extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   calculateYield(){
+    // BUG annualrent getting /10 when lostMonthes = 1
+    // TODO WHATS THE DIFFERENCE / VALUE OF USING OBJECT.ASSIGN FOR _DATA?
+    // let _data = this.state.data;
     let _frais = this.state.frais;
     let _prix = this.state.prix;
     let _revenus = this.state.revenus;
-    let notaryFee = (_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice;
-    let annualExpenses = _frais.monthlyExpenses * 12;
-    let annualRent = _revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes;
-    let totalPrice = parseInt(_prix.basePrice, 10) + _prix.basePrice * notaryFee + parseInt(_prix.repairCosts, 10);
-    let brutYield = annualRent / totalPrice * 100;
-    let netYield = (annualRent - annualExpenses) / totalPrice * 100;
-    let monthlyCashFlow = (annualRent - annualExpenses) / 12 - _frais.monthlyMortgage;
-    let totalPurchase = parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee;
     let _data = Object.assign({}, this.state.data);
-
-    _data.annualExpenses = annualExpenses.toFixed(2);
-    // BUG annualrent getting /10 when lostMonthes = 1
-    _data.annualRent = annualRent.toFixed(2);
-
-    _data.cashFlow = monthlyCashFlow.toFixed(2);
-    _data.totalPurchase = totalPurchase.toFixed(2);
-    _data.yieldBrut = brutYield.toFixed(2);
-    _data.yieldNet = netYield.toFixed(2);
+    let notaryFee = (_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice;
+    _data.annualExpenses = (_frais.monthlyExpenses * 12).toFixed(2);
+    _data.annualRent = (_revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes).toFixed(2);
+    _data.cashFlow = ((_data.annualRent - _data.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(2);
+    _data.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee).toFixed(2);
+    _data.yieldBrut = (_data.annualRent / _data.totalPurchase * 100).toFixed(2);
+    _data.yieldNet = ((_data.annualRent - _data.annualExpenses) / _data.totalPurchase * 100).toFixed(2);
     this.setState({
       data: _data
     });
   }
   handleChange(event) {
-    if(event.target.name in this.state.frais){
-      let _frais = Object.assign({}, this.state.frais);
-      _frais[event.target.name] = event.target.value;
-      this.setState({
-        frais: _frais,
-      });
-    }else if(event.target.name in this.state.prix){
-      let _prix = Object.assign({}, this.state.prix);
-      if(event.target.name === "oldProperty"){
-        _prix[event.target.name] = this.state.prix.oldProperty ? false : true;
-      }else{
-        _prix[event.target.name] = event.target.value;
+    for(let obj in this.state){
+      if(event.target.name in this.state[obj]){
+        let _temp = Object.assign({}, this.state[obj]);
+        // may need an if statement here for oldProperty
+        _temp[event.target.name] = event.target.value;
+        this.setState({
+          [obj]: _temp,
+        })
       }
-      this.setState({
-        prix: _prix,
-      });
-    }else if(event.target.name in this.state.revenus){
-      let _revenus = Object.assign({}, this.state.revenus);
-      _revenus[event.target.name] = event.target.value;
-      this.setState({
-        revenus: _revenus,
-      });
     }
     this.calculateYield()
   }
   render() {
     return(
-      <div className="Calcul">
+      <div className="Calcul tile">
         <Inputs
           frais={this.state.frais}
-          fraisKeys={Object.keys(this.state.frais)}
           prix={this.state.prix}
-          prixKeys={Object.keys(this.state.prix)}
           revenus={this.state.revenus}
-          revenusKeys={Object.keys(this.state.revenus)}
           handleChange={this.handleChange}
         />
         <Outputs
-          dataKeys={Object.keys(this.state.data)}
           data={this.state.data}
         />
       </div>

@@ -20,47 +20,44 @@ class Inputs extends Component {
         <label htmlFor="switchExample"></label>
         </div>
       </div>;
-    // let inputTitles = ["prix", "revenus", "frais"];
-    // let inputs = [];
-    // for (let i = 0; i < inputTitles.length; i++) {
-      // inputs.push(
-      //   <div className="field" key={inputTitles[i] + i}>
-      //     <h2>{inputTitles[i]}</h2>
-      //     {this.props[inputTitles[i]].map((input, index) =>
-      //       input === "oldProperty" ? switcher :
-      //       <div className="control" key={input}>
-      //         <label className="label">{input}</label>
-      //         <input
-      //           className="input"
-      //           name={input}
-      //           onChange={this.props.handleChange}
-      //           type="number"
-      //           value={this.props[inputTitles[i]][input]}
-      //         />
-      //       </div>
-      //     )}
-      //   </div>
-      // );
-    // }
-
-  // TODO MODIDY THE ABOVE ARRAY CENTRIC DATA MANIPULATION TO FOLLOW THE BELOW OBJECT CENTRIC STYLE
-    for (let item in this.props.prix) {
-      // skip loop if the property is from prototype
-      if (!this.props.prix.hasOwnProperty(item)) continue;
-      console.log(item);
-      // var obj = validation_messages[key];
-      // for (var prop in obj) {
-      //     // skip loop if the property is from prototype
-      //     if(!obj.hasOwnProperty(prop)) continue;
-      //
-      //     // your code
-      //     alert(prop + " = " + obj[prop]);
-      // }
+    let inputs = [];
+    let inputNames = [];
+    let inputTitles = [];
+    for(let data in this.props){
+      if(!this.props.hasOwnProperty(data) || data === "handleChange") continue;
+      for(let datem in this.props[data]){
+        inputNames.push([data, datem])
+      }
+      inputTitles.push(data);
     }
-
+    for(let i = 0; i < inputTitles.length; i++){
+      inputs.push(
+        <div className="field" key={inputTitles[i]}>
+          <h2>{inputTitles[i]}</h2>
+          {inputNames.filter(input =>
+            input[0] === inputTitles[i]).map(input =>
+              input[1] === "oldProperty" ? switcher :
+              <div className="control" key={input[1]}>
+                <label className="label">{input[1]}</label>
+                <input
+                  className="input"
+                  name={input[1]}
+                  onChange={this.props.handleChange}
+                  type="number"
+                  value={this.props[input[1]]}
+                />
+              </div>
+            )}
+        </div>
+      );
+    }
     return(
-      <div>
-      {switcher}
+      <div className="tile is-vertical is-9">
+        <div className="tile is-parent">
+          <div className="tile is-child notification">
+            {inputs}
+          </div>
+        </div>
       </div>
     )
   }

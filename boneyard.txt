@@ -1,3 +1,49 @@
+let annualExpenses = _frais.monthlyExpenses * 12;
+let annualRent = _revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes;
+let totalPrice = parseInt(_prix.basePrice, 10) + _prix.basePrice * notaryFee + parseInt(_prix.repairCosts, 10);
+let brutYield = annualRent / totalPrice * 100;
+let netYield = (annualRent - annualExpenses) / totalPrice * 100;
+let monthlyCashFlow = (annualRent - annualExpenses) / 12 - _frais.monthlyMortgage;
+let totalPurchase = parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee;
+
+
+
+
+
+// if(event.target.name in this.state.frais){
+//   let _frais = Object.assign({}, this.state.frais);
+//   _frais[event.target.name] = event.target.value;
+//   this.setState({
+//     frais: _frais,
+//   });
+// }else if(event.target.name in this.state.prix){
+//   let _prix = Object.assign({}, this.state.prix);
+//   if(event.target.name === "oldProperty"){
+//     _prix[event.target.name] = this.state.prix.oldProperty ? false : true;
+//   }else{
+//     _prix[event.target.name] = event.target.value;
+//   }
+//   this.setState({
+//     prix: _prix,
+//   });
+// }else if(event.target.name in this.state.revenus){
+//   let _revenus = Object.assign({}, this.state.revenus);
+//   _revenus[event.target.name] = event.target.value;
+//   this.setState({
+//     revenus: _revenus,
+//   });
+// }
+
+
+
+
+
+
+
+
+
+
+
 let switcher =
   <div className="control">
     <label className="label">Old Property</label>
