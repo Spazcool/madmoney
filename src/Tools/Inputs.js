@@ -15,9 +15,9 @@ class Inputs extends Component {
             type="checkbox"
             name="oldProperty"
             className="switch"
-            checked={this.props.prix.oldProperty ? false : true}
+            checked={this.props.prix.oldProperty}
           />
-        <label htmlFor="switchExample"></label>
+        <label htmlFor="switchExample"/>
         </div>
       </div>;
     let inputs = [];
@@ -52,8 +52,8 @@ class Inputs extends Component {
       );
     }
     return(
-      <div className="tile is-parent is-vertical">
-          {inputs}
+      <div className="tile is-parent is-vertical is-4">
+        {inputs}
       </div>
     )
   }

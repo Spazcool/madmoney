@@ -6,11 +6,14 @@
     [x]navbar doc links data needs to be passed to it after loading is complete
   *Calculator*
     []Tools/modals components as well as the logic behind Mad's income calculations
-    []ANOTHER TOGGLE FOR BRUT & NET || JUST MAKE BRUT INTPUTS REQUIRED
     []CLEAN INPUTS to numbers, dont trust user
     []if not numbers intput box should light up warning user.
     []lostMonthes must be a number between 0 & 12
-    []pass props to Inputs
+    [X]pass props to Inputs
+    []vertical order of render prix, revenus, frais
+    []embiggen output numbers
+    []charts instead || w/ output numbers
+    []show notaryFee next to oldProperty toggle
 
 **NICETIES**
   []date formatter

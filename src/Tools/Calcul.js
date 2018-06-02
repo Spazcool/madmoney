@@ -1,9 +1,7 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
 import Inputs from './Inputs';
 import Outputs from './Outputs';
-
 import React, { Component } from 'react';
 
 class Calcul extends Component {
@@ -15,7 +13,6 @@ class Calcul extends Component {
         annualRent:0,
         cashFlow:0,
         totalPurchase:0,
-        yieldBrut:0,
         yieldNet:0,
       },
       frais:{
@@ -43,36 +40,49 @@ class Calcul extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   calculateYield(){
-    // TODO WHATS THE DIFFERENCE / VALUE OF USING OBJECT.ASSIGN FOR _DATA?
-    // let _data = this.state.data;
+    // TODO WHATS THE DIFFERENCE / VALUE OF USING OBJECT.ASSIGN FOR _DATA \ let _data = this.state.data;
+    // LAG IN TYPED INPUT DUE TO RENDERING DATA FROM STATE.prix
+    // BUT CALCULATING WITH DATA FROM STATE.DATA
+    console.log('calc basePrice ', this.state.prix.basePrice);
     let _frais = this.state.frais;
     let _prix = this.state.prix;
     let _revenus = this.state.revenus;
     let _data = Object.assign({}, this.state.data);
     let notaryFee = (_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice;
-    _data.annualExpenses = (_frais.monthlyExpenses * 12).toFixed(2);
-    // BUG annualrent getting /10 when lostMonthes = 1
-    _data.annualRent = (_revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes).toFixed(2);
-    _data.cashFlow = ((_data.annualRent - _data.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(2);
-    _data.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee).toFixed(2);
-    _data.yieldBrut = (_data.annualRent / _data.totalPurchase * 100).toFixed(2);
-    _data.yieldNet = ((_data.annualRent - _data.annualExpenses) / _data.totalPurchase * 100).toFixed(2);
+
+    _data.annualExpenses = (_frais.monthlyExpenses * 12).toFixed(0);
+    _data.annualRent = ((_revenus.monthlyRent * 12) - (_revenus.monthlyRent * _revenus.lostMonthes)).toFixed(0);
+    _data.cashFlow = ((_data.annualRent - _data.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(0);
+    _data.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee).toFixed(0);
+    _data.yieldNet = ((_data.annualRent - _data.annualExpenses) / _data.totalPurchase * 100).toFixed(0);
+
     this.setState({
       data: _data
     });
   }
   handleChange(event) {
+    // console.log('handleChange start basePrice ', this.state.prix.basePrice);
+
     for(let obj in this.state){
       if(event.target.name in this.state[obj]){
-        let _temp = Object.assign({}, this.state[obj]);
-        // BUG may need an if statement here for oldProperty
-        // oldProperty getting stuck if i turn it to off
-        _temp[event.target.name] = event.target.value;
+        let _tempName = Object.assign({}, this.state[obj]);
+        if(event.target.name === "oldProperty"){
+          let _tempValue = this.state.prix.oldProperty ? false : true;
+          _tempName[event.target.name] = _tempValue;
+        }else{
+          _tempName[event.target.name] = event.target.value;
+          console.log('_tempName ', _tempName);
+          console.log('OBJ ', obj);
+          console.log('obj & tempnam ', obj[_tempName]);
+        }
         this.setState({
-          [obj]: _temp,
+          [obj]: _tempName,
         })
+
       }
     }
+    console.log('handleChange end basePrice ', this.state.prix.basePrice);
+
     this.calculateYield()
   }
   render() {
