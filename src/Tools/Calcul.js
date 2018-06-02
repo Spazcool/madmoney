@@ -43,7 +43,7 @@ class Calcul extends Component {
     // TODO WHATS THE DIFFERENCE / VALUE OF USING OBJECT.ASSIGN FOR _DATA \ let _data = this.state.data;
     // LAG IN TYPED INPUT DUE TO RENDERING DATA FROM STATE.prix
     // BUT CALCULATING WITH DATA FROM STATE.DATA
-    console.log('calc basePrice ', this.state.prix.basePrice);
+    // console.log('calc basePrice ', this.state.prix.basePrice);
     let _frais = this.state.frais;
     let _prix = this.state.prix;
     let _revenus = this.state.revenus;
@@ -55,14 +55,11 @@ class Calcul extends Component {
     _data.cashFlow = ((_data.annualRent - _data.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(0);
     _data.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + notaryFee).toFixed(0);
     _data.yieldNet = ((_data.annualRent - _data.annualExpenses) / _data.totalPurchase * 100).toFixed(0);
-
     this.setState({
       data: _data
-    });
+    })
   }
   handleChange(event) {
-    // console.log('handleChange start basePrice ', this.state.prix.basePrice);
-
     for(let obj in this.state){
       if(event.target.name in this.state[obj]){
         let _tempName = Object.assign({}, this.state[obj]);
@@ -71,19 +68,14 @@ class Calcul extends Component {
           _tempName[event.target.name] = _tempValue;
         }else{
           _tempName[event.target.name] = event.target.value;
-          console.log('_tempName ', _tempName);
-          console.log('OBJ ', obj);
-          console.log('obj & tempnam ', obj[_tempName]);
         }
         this.setState({
-          [obj]: _tempName,
-        })
-
+          [obj]: _tempName
+        }, () => {
+          this.calculateYield();
+        });
       }
     }
-    console.log('handleChange end basePrice ', this.state.prix.basePrice);
-
-    this.calculateYield()
   }
   render() {
     return(
