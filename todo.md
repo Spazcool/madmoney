@@ -8,12 +8,15 @@
     []Tools/modals components as well as the logic behind Mad's income calculations
     []CLEAN INPUTS to numbers, dont trust user
     []if not numbers intput box should light up warning user.
-    []lostMonthes must be a number between 0 & 12
+    [x]lostMonthes must be a number between 0 & 12
     [X]pass props to Inputs
-    []vertical order of render prix, revenus, frais
-    []embiggen output numbers
+    [x]vertical order of render prix, revenus, frais
+    [x]embiggen output numbers
     []charts instead || w/ output numbers
-    []show notaryFee next to oldProperty toggle
+    []sexier slider for lostMonthes
+    []outputs should have a space after every 1000th eg "52 000"
+    [x]show notaryFee next to oldProperty toggle
+    []revenus inputs monthlyRent on top
 
 **NICETIES**
   []date formatter

@@ -1,3 +1,43 @@
+{Object.keys(this.props.output).filter(output =>
+output !== "cashFlow" &&
+output !== "notaryFee" &&
+output !== "yieldNet").map((output, index) =>
+  <div className="tile is-child control box" key={output + index}>
+    <div className="answer">
+      <label className="label">{output}</label>
+      <h1 className="embiggen">{this.props.output[output]}</h1>
+    </div>
+  </div>
+)}
+
+{Object.keys(this.props.output).filter(output =>
+output !== "annualExpenses" &&
+output !== "annualRent" &&
+output !== "notaryFee" &&
+output !== "totalPurchase").map((output, index) =>
+  <div className="tile is-child control box" key={output + index}>
+    <div className="answer">
+      <label className="label">{output}</label>
+      <h1 className="embiggen">{this.props.output[output]}</h1>
+    </div>
+  </div>
+)}
+
+{Object.keys(this.props.output).filter(output =>
+output ).map((output, index) =>
+  <div className=" control" key={output + index}>
+    <div className="answer">
+      <label className="label">{output}</label>
+      <h1 className="embiggen">{this.props.output[output]}</h1>
+    </div>
+  </div>
+)}
+
+
+
+
+
+
 let annualExpenses = _frais.monthlyExpenses * 12;
 let annualRent = _revenus.monthlyRent * 12 - _revenus.monthlyRent * _revenus.lostMonthes;
 let totalPrice = parseInt(_prix.basePrice, 10) + _prix.basePrice * notaryFee + parseInt(_prix.repairCosts, 10);
