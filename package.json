@@ -18,8 +18,11 @@
     "marked": "^0.3.19",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-drop-down": "^1.0.2",
+    "react-dropdown": "^1.5.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-simple-dropdown": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

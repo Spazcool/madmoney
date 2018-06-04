@@ -50,13 +50,13 @@ class NavBar extends Component {
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
             <div className="navbar-dropdown">
-            {this.props.loaded ? docs : loading}
+              {this.props.loaded ? docs : loading}
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Tools</a>
             <div className="navbar-dropdown">
-            {this.props.loaded ? tools : loading}
+              {this.props.loaded ? tools : loading}
             </div>
           </div>
           <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Archive</a>
