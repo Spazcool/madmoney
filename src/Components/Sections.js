@@ -5,14 +5,16 @@ import React, { Component } from 'react';
 import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 
 class Sections extends Component {
-  handleSelect(e){
-    console.log(e.target.value);
-    // document.getElementById("foo").onchange = function() {
-    //   if (this.selectedIndex!==0) {
-    //     window.location.href = this.value;
-    //   }
-    // };
+  constructor(props) {
+    super(props);
+    this.state = { title: 'Select Target' };
+    this.handleSelect = this.handleSelect.bind(this);
+  }
 
+  handleSelect(e){
+    console.log('target', e.target.value);
+    this.setState({ title: e.target.value }, () => {console.log('state', this.state);});
+    // this.props.passTargetToParent(e.target);
   }
 
   render() {
@@ -39,28 +41,16 @@ class Sections extends Component {
             <div>{fields.title}</div>
             <div>{fields.date}</div>
           </a>);
-
-      let hackdropdown =
-        <div className="navbar-item has-dropdown is-hoverable is-fullwidth">
-          <h1 className="navbar-link subtitle is-fullwidth">Dropdown</h1>
-          <div className="navbar-dropdown is-fullwidth">
-            {sections}
+      // TODO TRY ONE MORE TIME WITH THE STANDARD BULMA DROPDOW BEFORE USING THIS HACK
+      dropdown =
+        <div className="navbar-menu" id="sibling-menu">
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
+            <div className="navbar-dropdown">
+              {sections}
+            </div>
           </div>
         </div>;
-
-      dropdown =
-      <div class="field">
-        <div class="control">
-          <div class="select is-primary">
-            <select id="foo" onChange={this.handleSelect}>
-              <option value={"/tools/calcul"}>Select dropdown</option>
-              <option>With options</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-
     }
 
     return(
