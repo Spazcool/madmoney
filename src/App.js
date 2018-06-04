@@ -1,9 +1,9 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Calculator from './Tools/Calculator'; // mock data WILL NEED TO BE CODED
 import * as contentful from 'contentful';
 import Page from './Components/Page';
 import React, { Component } from 'react';
+import Tools from './Tools/Tools';
 
 class App extends Component {
   constructor() {
@@ -12,14 +12,16 @@ class App extends Component {
       docs: null,
       loaded: false,
       posts: null,
-      tools: Calculator
+      tools: Tools
     };
     this.nestURLs = this.nestURLs.bind(this);
   }
+
   client = contentful.createClient({
     space: 'dktgpvzygyep',
     accessToken: '7687e36de5d2b00b1747c9832727c68300a22523ef63abb84a4d6e04e1b6cd1d'
   })
+
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
     this.fetchDocs().then(this.setDocs);
@@ -31,15 +33,18 @@ class App extends Component {
       })
     }
   }
+
   fetchPosts = () => this.client.getEntries();
   setPosts = (response) => {
+    let items = response.items;
     this.setState({
-      posts: response.items
+      posts: items
     })
   }
+
   fetchDocs = () => this.client.getAssets();
   setDocs = (response) => {
-    // MODIFY ASSET DATA TO FIT SECTION COMPONENT DATA MODEL
+    // MODIFY DOCS ASSET DATA TO FIT POSTS ASSET DATA MODEL
     let items = response.items;
     items.forEach((item, index) => {
       item.fields.content = item.fields.file.contentType;
@@ -52,10 +57,11 @@ class App extends Component {
       docs: items
     })
   }
+
   nestURLs({match}){
     let data;
     if(match.path === "/tools"){
-      data = Calculator;
+      data = this.state.tools;
     }else if(match.path === "/docs"){
       data = this.state.docs;
     }else{
@@ -71,7 +77,7 @@ class App extends Component {
                 docs={this.state.docs}
                 loaded={this.state.loaded}
                 path={props.match}
-                tools={Calculator}
+                tools={this.state.tools}
               />}
             />
           <Route exact path={match.path} render={() =>
@@ -80,7 +86,7 @@ class App extends Component {
                 displayBoth={false}
                 docs={this.state.docs}
                 loaded={this.state.loaded}
-                tools={Calculator}
+                tools={this.state.tools}
               />}
             />
         </Switch>
@@ -98,22 +104,22 @@ class App extends Component {
               docs={this.state.docs}
               loaded={this.state.loaded}
               path={"/"}
-              tools={Calculator}
+              tools={this.state.tools}
             />
           </Route>
-          <Route path="/blogs" component={this.nestURLs}/>
-          <Route path="/docs" component={this.nestURLs}/>
-          <Route path="/tools" component={this.nestURLs}/>
-          <Route exact path="/test">
+          <Route exact path="/tools/calcul">
             <Page
               data={this.state.tools}
               displayBoth={true}
               docs={this.state.docs}
               loaded={this.state.loaded}
-              path={"test"}
+              path={"/tools/calcul"}
               tools={this.state.tools}
             />
           </Route>
+          <Route path="/blogs" component={this.nestURLs}/>
+          <Route path="/docs" component={this.nestURLs}/>
+          <Route path="/tools" component={this.nestURLs}/>
         </Switch>
       </Router>
     )

@@ -24,7 +24,7 @@ class Outputs extends Component {
         </div>
       )
     }
-    
+
     return(
       <div className="tile">
         <div className="tile is-vertical is-parent">

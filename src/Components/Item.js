@@ -2,7 +2,7 @@ import './../App.css';
 import React, { Component } from 'react';
 import Section from './Section';
 import Sections from './Sections';
-// is-ancestor as addition class with tile
+
 class Item extends Component {
   render() {
     return(

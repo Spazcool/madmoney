@@ -11,12 +11,12 @@ class NavBar extends Component {
     super(props);
     this.toggleBurger = this.toggleBurger.bind(this);
   }
-  loopLinks(type, data){
+  loopLinks(data){
     let arr = [];
-    for (let i = 1; i < data.length + 1; i++) {
-      let href = "/"+type+"s/"+type + i;
+    for (let i = 0; i < data.length; i++) {
+      let href = data[i].fields.path;
       arr.push(
-        <a className="navbar-item" href={href} key={type + "link" + i}>{type + i}</a>
+        <a className="navbar-item" href={href} key={href + "link" + i}>{data[i].fields.title}</a>
       );
     }
     return arr;
@@ -31,8 +31,8 @@ class NavBar extends Component {
     let loading = <span><i className="fa fa-spinner fa-spin" key={'navlinkloading'}></i></span>;
     let tools;
     if(this.props.loaded){
-      docs = this.loopLinks('doc', this.props.docs);
-      tools = this.loopLinks('tool', this.props.tools);
+      docs = this.loopLinks(this.props.docs);
+      tools = this.loopLinks(this.props.tools);
     }
     return (
       <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">

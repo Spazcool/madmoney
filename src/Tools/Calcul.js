@@ -42,6 +42,7 @@ class Calcul extends Component {
   }
 
   calculateYield(){
+    // TODO LOOP THROUGH VALUES TO APPLY PARSEINT AND TOFIXED
     let _frais = this.state.frais;
     let _prix = this.state.prix;
     let _revenus = this.state.revenus;
@@ -51,7 +52,8 @@ class Calcul extends Component {
     _output.cashFlow = ((_output.annualRent - _output.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(0);
     _output.notaryFee = ((_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice).toFixed(0);
     _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10)).toFixed(0);
-    _output.yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100).toFixed(0);
+    let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100).toFixed(0);
+    _output.yieldNet = isNaN(_yieldNet) ? 0 : _yieldNet;
     this.setState({
       output: _output
     })
@@ -64,7 +66,7 @@ class Calcul extends Component {
         if(event.target.name === "oldProperty"){
           _tempName[event.target.name] = this.state[obj].oldProperty ? false : true;
         }else{
-          _tempName[event.target.name] = event.target.value;
+          _tempName[event.target.name] = Number(event.target.value);
         }
         this.setState({
           [obj]: _tempName
@@ -74,7 +76,7 @@ class Calcul extends Component {
       }
     }
   }
-  
+
   render() {
     return(
       <div className="Calcul tile is-ancestor">

@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 
 class Inputs extends Component {
   render(){
+
     let switcher =
       <div className="control" key="switcher">
         <label className="label">Old Property</label>
@@ -21,7 +22,7 @@ class Inputs extends Component {
         <label htmlFor="switchExample"> + {this.props.output.notaryFee}</label>
         </div>
       </div>;
-      
+
     let lostMonthes =
       <div className="control" key="lostMonthesBox">
         <label className="label">Lost Monthes</label>
@@ -36,7 +37,7 @@ class Inputs extends Component {
           type="range"
           value={this.props.revenus.lostMonthes}
         />
-        <output for="lostMonthes">{this.props.revenus.lostMonthes}</output>
+        <output htmlFor="lostMonthes">{this.props.revenus.lostMonthes}</output>
       </div>;
 
     let inputs = [];
@@ -56,20 +57,20 @@ class Inputs extends Component {
         <div className="tile is-child box field" key={inputTitles[i]}>
           <h2 className="label">{inputTitles[i]}</h2>
           {inputNames.filter(input =>
-            input[0] === inputTitles[i]).map(input =>
-              input[1] === "oldProperty" ? switcher :
-              (input[1] === "lostMonthes" ? lostMonthes :
-              <div className="control" key={input[1]}>
-                <label className="label">{input[1]}</label>
-                <input
-                  className="input"
-                  name={input[1]}
-                  onChange={this.props.handleChange}
-                  type="number"
-                  value={this.props[input[1]]}
-                />
-              </div>
-            ))}
+          input[0] === inputTitles[i]).map(input =>
+          input[1] === "oldProperty" ? switcher :
+          (input[1] === "lostMonthes" ? lostMonthes :
+            <div className="control" key={input[1]}>
+              <label className="label">{input[1]}</label>
+              <input
+                className="input"
+                name={input[1]}
+                onChange={this.props.handleChange}
+                type="number"
+                value={this.props[input[1]]}
+              />
+            </div>
+          ))}
         </div>
       );
     }

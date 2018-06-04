@@ -13,9 +13,9 @@ class Section extends Component {
   }
   render() {
     fontawesome.library.add(solid, faSpinner);
+    let calcul;
     let filtered;
     let home;
-    let tools;
     let loaded;
     let loading =
       <article className="box">
@@ -24,13 +24,13 @@ class Section extends Component {
         <p><i className="fa fa-spinner fa-spin"></i></p>
       </article>;
     if(this.props.loaded){
-      console.log(this.props.path);
+      // console.log(this.props.path);
       // SHOW THE 5 MOST RECENT ARTICLES
       home =
         this.props.data.slice(0, 5).map(({fields}, index) =>
           <article className="box" key={fields.title + index}>
-            <h1 className="title is -1">{fields.title}</h1>
-            <h6 className="subtitle">{fields.date} <a href={fields.path}>{fields.path}</a></h6>
+            <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+            <h6 className="subtitle">{fields.date}</h6>
             <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
           </article>);
       // SHOW SINGLE MATCHING SECTION FOR URL PATH
@@ -39,24 +39,24 @@ class Section extends Component {
           fields.path === this.props.path.url)
           .map(({fields}, index) =>
             <article className="box" key={fields.title + index}>
-              <h1 className="title is -1">{fields.title}</h1>
-              <h6 className="subtitle">{fields.date} <a href={fields.path}>{fields.path}</a></h6>
+              <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+              <h6 className="subtitle">{fields.date}</h6>
               <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
             </article>);
       // SHOW TOOL MODALS
-      tools = <Calcul/>;
+      calcul = <Calcul/>;
       if(this.props.path === '/'){
         loaded = home;
-      }else if(this.props.path === 'test'){
-        loaded = tools;
+      }else if(this.props.path === '/tools/calcul'){
+        loaded = calcul;
       }else{
         loaded = filtered;
       }
     }
     return (
-      <div className="tile is-vertical is-9">
+      <div className="tile is-vertical is-10">
         <div className="tile is-parent">
-          <div className="tile is-child notification">
+          <div className="tile is-child">
             {this.props.loaded ? loaded : loading}
           </div>
         </div>
