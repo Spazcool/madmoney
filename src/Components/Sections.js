@@ -21,7 +21,7 @@ class Sections extends Component {
 
     let dropdown;
     let loading = [];
-
+    let type = 'something';
     for (let i = 0; i < 3; i++) {
       loading.push(
         <article className="Sections box" key={'sections-loading' + i}>
@@ -31,6 +31,12 @@ class Sections extends Component {
     }
 
     if(this.props.loaded){
+      console.log(this.props.data[0].sys.type);
+      if(this.props.data[0].sys.type === "tool"){
+        type = 'a ' + this.props.data[0].sys.type;
+      }else{
+        type = 'an ' + this.props.data[0].sys.type;
+      }
       let listYears = [];
       this.props.data.forEach(item =>
         listYears.push(parseInt(item.fields.date, 10))
@@ -57,11 +63,9 @@ class Sections extends Component {
     }
 
     return(
-      <div className="tile is-parent">
-        <div className="tile is-child notification">
-          <h1 className="title is-5">Looking for something?</h1>
-          {this.props.loaded ? dropdown : loading}
-        </div>
+      <div className="notification is-danger is-radiusless">
+        <h1 className="title is-5">Looking for {type}?</h1>
+        {this.props.loaded ? dropdown : loading}
       </div>
     );
   }

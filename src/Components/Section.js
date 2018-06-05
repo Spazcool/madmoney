@@ -1,5 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
+import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import Calcul from './../Tools/Calcul';
 import fontawesome from '@fortawesome/fontawesome';
 import marked from 'marked';
@@ -18,31 +19,39 @@ class Section extends Component {
     let home;
     let loaded;
     let loading =
-      <article className="box">
-        <h1 className="title is -1"><i className="fa fa-spinner fa-spin"></i></h1>
-        <h6 className="subtitle"><i className="fa fa-spinner fa-spin"></i></h6>
-        <p><i className="fa fa-spinner fa-spin"></i></p>
-      </article>;
+      <section className="section">
+        <div className="container">
+          <h1 className="title is -1"><i className="fa fa-spinner fa-spin"></i></h1>
+          <h6 className="subtitle"><i className="fa fa-spinner fa-spin"></i></h6>
+          <p><i className="fa fa-spinner fa-spin"></i></p>
+        </div>
+      </section>;
     if(this.props.loaded){
       // console.log(this.props.path);
       // SHOW THE 5 MOST RECENT ARTICLES
       home =
         this.props.data.slice(0, 5).map(({fields}, index) =>
-          <article className="box" key={fields.title + index}>
-            <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
-            <h6 className="subtitle">{fields.date}</h6>
-            <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
-          </article>);
+          <section className="section" key={fields.title + index}>
+            <div class="container">
+              <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+              <h6 className="subtitle">{fields.date}</h6>
+              <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+              <div className="is-divider"></div>
+            </div>
+          </section>);
       // SHOW SINGLE MATCHING SECTION FOR URL PATH
       filtered =
         this.props.data.filter(({fields}, index) =>
           fields.path === this.props.path.url)
           .map(({fields}, index) =>
-            <article className="box" key={fields.title + index}>
-              <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
-              <h6 className="subtitle">{fields.date}</h6>
-              <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
-            </article>);
+            <section className="section" key={fields.title + index}>
+              <div class="container">
+                <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+                <h6 className="subtitle">{fields.date}</h6>
+                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+                <div className="is-divider"></div>
+              </div>
+            </section>);
       // SHOW TOOL MODALS
       calcul = <Calcul/>;
       if(this.props.path === '/'){
@@ -54,12 +63,8 @@ class Section extends Component {
       }
     }
     return (
-      <div className="tile is-vertical is-10">
-        <div className="tile is-parent">
-          <div className="tile is-child">
-            {this.props.loaded ? loaded : loading}
-          </div>
-        </div>
+      <div>
+        {this.props.loaded ? loaded : loading}
       </div>
     );
   }

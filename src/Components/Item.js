@@ -7,7 +7,6 @@ class Item extends Component {
   render() {
     return(
       <div className="Item">
-        <div className="tile">
           <Section
             data={this.props.data}
             loaded={this.props.loaded}
@@ -17,7 +16,6 @@ class Item extends Component {
             data={this.props.data}
             loaded={this.props.loaded}
           />
-        </div>
       </div>
     )
   }
