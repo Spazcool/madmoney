@@ -40,25 +40,25 @@ class Sections extends Component {
       )
 
       dropdown =
-      years.map((year, index) =>
-        <div key={year + index}>
-          <div className="control">
-            <div className="select is-large is-fullwidth">
-              <select onChange={this.handleSelect}>
-                <option>{year}</option>
-                {this.props.data.filter(({fields}, index) =>
-                parseInt(fields.date, 10) === year).map(({fields}, index) =>
-                <option value={fields.path} key={fields.title + index}>{fields.title}</option>)}
-              </select>
+        years.map((year, index) =>
+          <div key={year + index}>
+            <div className="control">
+              <div className="select is-large is-fullwidth">
+                <select onChange={this.handleSelect}>
+                  <option>{year}</option>
+                  {this.props.data.filter(({fields}, index) =>
+                  parseInt(fields.date, 10) === year).map(({fields}, index) =>
+                  <option value={fields.path} key={fields.title + index}>{fields.title}</option>)}
+                </select>
+              </div>
             </div>
-          </div>
-        <br/>
-      </div>);
+          <br/>
+        </div>);
     }
 
     return(
       <div className="tile is-parent">
-        <div className="tile is-child notification has-background-white-ter">
+        <div className="tile is-child notification">
           <h1 className="title is-5">Looking for something?</h1>
           {this.props.loaded ? dropdown : loading}
         </div>

@@ -12,7 +12,9 @@
     []lostmonthes tooltip moving with slider => https://wikiki.github.io/form/slider/
 
 **NICETIES**
-  []move social media icons down to footer
+  [x]move social media icons down to footer
   [x]sections categorized by type || year and couched into a dropdown bar
+  []footer links black to blue
+
   []page loader? instead of loading icons => https://wikiki.github.io/elements/pageloader/
   []carousel for the banner img? => https://wikiki.github.io/components/carousel/
