@@ -31,12 +31,12 @@ class Sections extends Component {
     }
 
     if(this.props.loaded){
-      console.log(this.props.data[0].sys.type);
       if(this.props.data[0].sys.type === "tool"){
         type = 'a ' + this.props.data[0].sys.type;
       }else{
         type = 'an ' + this.props.data[0].sys.type;
       }
+
       let listYears = [];
       this.props.data.forEach(item =>
         listYears.push(parseInt(item.fields.date, 10))

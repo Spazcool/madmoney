@@ -5,6 +5,83 @@ import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
 import React, { Component } from 'react';
 
 class Inputs extends Component {
+  // Find output DOM associated to the DOM element passed as parameter
+  findOutputForSlider( element ) {
+   var idVal = element.id;
+   let outputs = document.getElementsByTagName( 'output' );
+   for( var i = 0; i < outputs.length; i++ ) {
+     if ( outputs[ i ].htmlFor == idVal )
+       return outputs[ i ];
+   }
+}
+//
+// function getSliderOutputPosition( slider ) {
+//   // Update output position
+//   var newPlace,
+//       minValue;
+//
+//   var style = window.getComputedStyle( slider, null );
+//   // Measure width of range input
+//   sliderWidth = parseInt( style.getPropertyValue( 'width' ), 10 );
+//
+//   // Figure out placement percentage between left and right of input
+//   if ( !slider.getAttribute( 'min' ) ) {
+//     minValue = 0;
+//   } else {
+//     minValue = slider.getAttribute( 'min' );
+//   }
+//   var newPoint = ( slider.value - minValue ) / ( slider.getAttribute( 'max' ) - minValue );
+//
+//   // Prevent bubble from going beyond left or right (unsupported browsers)
+//   if ( newPoint < 0 ) {
+//     newPlace = 0;
+//   } else if ( newPoint > 1 ) {
+//     newPlace = sliderWidth;
+//   } else {
+//     newPlace = sliderWidth * newPoint;
+//   }
+//
+//   return {
+//     'position': newPlace + 'px'
+//   }
+// }
+
+  handleSlide(e) {
+    // console.log(e);
+    // Get all document sliders
+    const sliders = document.querySelectorAll( 'input[type="range"].slider' );
+    console.log('SLIDERS', sliders);
+
+    [].forEach.call( sliders, function ( slider ) {
+
+      const output = this.findOutputForSlider( slider );
+      console.log('OUTPUT', output);
+})
+      // if ( output ) {
+      //   if ( slider.classList.contains( 'has-output-tooltip' ) ) {
+      //     // Get new output position
+      //     const newPosition = getSliderOutputPosition( slider );
+      //
+      //     // Set output position
+      //     output.style[ 'left' ] = newPosition.position;
+      //   }
+
+    //     // Add event listener to update output when slider value change
+    //     slider.addEventListener( 'input', function( event ) {
+    //       if ( event.target.classList.contains( 'has-output-tooltip' ) ) {
+    //         // Get new output position
+    //         var newPosition = getSliderOutputPosition( event.target );
+    //
+    //         // Set output position
+    //         output.style[ 'left' ] = newPosition.position;
+    //       }
+    //
+    //       // Update output with slider value
+    //       output.value = event.target.value;
+    //     } );
+    //   }
+    // } );
+  }
   render(){
 
     let switcher =
@@ -27,12 +104,12 @@ class Inputs extends Component {
       <div className="control" key="lostMonthesBox">
         <label className="label">Lost Monthes</label>
         <input
-          className="slider is-fullwidth is-info is-small has-output"
+          className="slider is-fullwidth is-info is-small has-output-tooltip"
           id="lostMonthes"
           min="0"
           max="12"
           name="lostMonthes"
-          onChange={this.props.handleChange}
+          onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
           step="1"
           type="range"
           value={this.props.revenus.lostMonthes}

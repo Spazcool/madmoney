@@ -32,7 +32,7 @@ class Section extends Component {
       home =
         this.props.data.slice(0, 5).map(({fields}, index) =>
           <section className="section" key={fields.title + index}>
-            <div class="container">
+            <div className="container">
               <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
               <h6 className="subtitle">{fields.date}</h6>
               <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
@@ -45,7 +45,7 @@ class Section extends Component {
           fields.path === this.props.path.url)
           .map(({fields}, index) =>
             <section className="section" key={fields.title + index}>
-              <div class="container">
+              <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
                 <h6 className="subtitle">{fields.date}</h6>
                 <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>

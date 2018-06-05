@@ -79,6 +79,7 @@ class Calcul extends Component {
 
   render() {
     return(
+      <div className="box notification">
       <div className="Calcul tile is-ancestor">
         <Inputs
           output={this.state.output}
@@ -90,6 +91,7 @@ class Calcul extends Component {
         <Outputs
           output={this.state.output}
         />
+      </div>
       </div>
     )
   }
