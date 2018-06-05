@@ -18,7 +18,7 @@ class Outputs extends Component {
       outputs.push(
         <div className="tile is-child box" key={outputNames[i][1]}>
           <div className="answer">
-            <label className="label">{outputNames[i][1]}</label>
+            <label className="label is-capitalized">{outputNames[i][1]}</label>
             <h1 className="embiggen">{this.props.output[outputNames[i][1]]}</h1>
           </div>
         </div>

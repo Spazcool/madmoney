@@ -1,3 +1,25 @@
+<div className="navbar-menu" id="sibling-menu">
+  <div className="navbar-item has-dropdown is-hoverable">
+    <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
+    <div className="navbar-dropdown">
+      {sections}
+    </div>
+  </div>
+</div>;
+
+
+sections =
+  this.props.data.map(({fields}, index) =>
+    <a href={fields.path} className="navbar-item" style={{textDecoration: 'none'}} key={fields.title}>
+      <div>{fields.title}</div>
+      <div>{fields.date}</div>
+    </a>);
+
+
+
+
+
+
 {Object.keys(this.props.output).filter(output =>
 output !== "cashFlow" &&
 output !== "notaryFee" &&

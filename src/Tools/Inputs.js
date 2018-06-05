@@ -55,13 +55,13 @@ class Inputs extends Component {
     for(let i = 0; i < inputTitles.length; i++){
       inputs.push(
         <div className="tile is-child box field" key={inputTitles[i]}>
-          <h2 className="label">{inputTitles[i]}</h2>
+          <h2 className="label is-capitalized">{inputTitles[i]}</h2>
           {inputNames.filter(input =>
           input[0] === inputTitles[i]).map(input =>
           input[1] === "oldProperty" ? switcher :
           (input[1] === "lostMonthes" ? lostMonthes :
             <div className="control" key={input[1]}>
-              <label className="label">{input[1]}</label>
+              <label className="label is-capitalized">{input[1]}</label>
               <input
                 className="input"
                 name={input[1]}

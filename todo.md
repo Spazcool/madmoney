@@ -5,8 +5,14 @@
     []if not numbers input box should light up warning user
     []charts instead || w/ output numbers
     []outputs should have a space after every 1000th eg "52 000"
+    []data items will be renamed in french
     []revenus inputs monthlyRent on top
+
+    []notaryfee with a tooltip explaining it => https://wikiki.github.io/elements/tooltip/
+    []lostmonthes tooltip moving with slider => https://wikiki.github.io/form/slider/
 
 **NICETIES**
   []move social media icons down to footer
-  []sections categorized by type || year and couched into a dropdown bar
+  [x]sections categorized by type || year and couched into a dropdown bar
+  []page loader? instead of loading icons => https://wikiki.github.io/elements/pageloader/
+  []carousel for the banner img? => https://wikiki.github.io/components/carousel/

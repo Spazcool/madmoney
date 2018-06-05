@@ -7,14 +7,13 @@ import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 class Sections extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: 'Select Target' };
     this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleSelect(e){
-    console.log('target', e.target.value);
-    this.setState({ title: e.target.value }, () => {console.log('state', this.state);});
-    // this.props.passTargetToParent(e.target);
+    if (typeof window !== 'undefined') {
+      window.location.href = e.target.value;
+    }
   }
 
   render() {
@@ -22,7 +21,6 @@ class Sections extends Component {
 
     let dropdown;
     let loading = [];
-    let sections;
 
     for (let i = 0; i < 3; i++) {
       loading.push(
@@ -33,29 +31,35 @@ class Sections extends Component {
     }
 
     if(this.props.loaded){
-      // console.log(this.props.data[0].fields.date);
-      // TODO HOW TO PARSE JUST THE YEAR FROM ISO8601
-      sections =
-        this.props.data.map(({fields}, index) =>
-          <a href={fields.path} className="navbar-item" style={{textDecoration: 'none'}} key={fields.title}>
-            <div>{fields.title}</div>
-            <div>{fields.date}</div>
-          </a>);
-      // TODO TRY ONE MORE TIME WITH THE STANDARD BULMA DROPDOW BEFORE USING THIS HACK
+      let listYears = [];
+      this.props.data.forEach(item =>
+        listYears.push(parseInt(item.fields.date, 10))
+      )
+      let years = listYears.filter((item, position) =>
+        listYears.indexOf(item) === position
+      )
+
       dropdown =
-        <div className="navbar-menu" id="sibling-menu">
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
-            <div className="navbar-dropdown">
-              {sections}
+      years.map((year, index) =>
+        <div key={year + index}>
+          <div className="control">
+            <div className="select is-large is-fullwidth">
+              <select onChange={this.handleSelect}>
+                <option>{year}</option>
+                {this.props.data.filter(({fields}, index) =>
+                parseInt(fields.date, 10) === year).map(({fields}, index) =>
+                <option value={fields.path} key={fields.title + index}>{fields.title}</option>)}
+              </select>
             </div>
           </div>
-        </div>;
+        <br/>
+      </div>);
     }
 
     return(
       <div className="tile is-parent">
-        <div className="tile is-child notification">
+        <div className="tile is-child notification has-background-white-ter">
+          <h1 className="title is-5">Looking for something?</h1>
           {this.props.loaded ? dropdown : loading}
         </div>
       </div>
