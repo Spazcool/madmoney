@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
+import madLogo from './../Imgs/images.png';
 import React, { Component } from 'react';
 import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 
@@ -38,7 +39,7 @@ class NavBar extends Component {
       <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
-            <div className="navbar-item"><img src="https://bulma.io/images/bulma-logo.png" alt="Madmoney" width="112" height="28"/></div>
+            <div className="navbar-item"><img src={madLogo} alt="Madmoney" width="50" height="30"/></div>
           </a>
           <a role="button" className="navbar-burger" id="burger" aria-label="menu" aria-expanded="false" onClick={this.toggleBurger}>
             <span className="burger-slice" aria-hidden="true"></span>
