@@ -2,6 +2,8 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-slider/dist/bulma-slider.min.css';
 import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
+import 'bulma-extensions/bulma-tooltip/dist/bulma-tooltip.min.css';
+import FadeIn from 'react-fade-in';
 import React, { Component } from 'react';
 
 class Inputs extends Component {
@@ -16,7 +18,8 @@ class Inputs extends Component {
     let idVal = element.id;
     let outputs = document.getElementsByTagName('output');
     for(let i = 0; i < outputs.length; i++){
-      if (outputs[i].htmlFor === idVal){
+      console.log(outputs[i].htmlFor.value)
+      if (outputs[i].htmlFor.value === idVal){
         return outputs[i];
       }
     }
@@ -38,8 +41,8 @@ class Inputs extends Component {
     // Prevent bubble from going beyond left or right (unsupported browsers)
     if (newPoint < 0) {
       newPlace = 0;
-    } else if (newPoint > 1) {
-      newPlace = sliderWidth;
+    } else if (newPoint >= 1) {
+      newPlace = sliderWidth - 50;
     } else {
       newPlace = sliderWidth * newPoint;
     }
@@ -76,7 +79,6 @@ class Inputs extends Component {
   }
 
   render(){
-
     let switcher =
       <div className="control" key="switcher">
         <label className="label">Old Property</label>
@@ -89,7 +91,7 @@ class Inputs extends Component {
             onChange={this.props.handleChange}
             type="checkbox"
           />
-        <label htmlFor="switchExample"> + {this.props.output.notaryFee}</label>
+        <label htmlFor="switchExample"> + <span className="tooltip" data-tooltip={this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>{this.props.output.notaryFee}</span></label>
         </div>
       </div>;
 
@@ -107,7 +109,7 @@ class Inputs extends Component {
           type="range"
           value={this.props.revenus.lostMonthes}
         />
-        <output htmlFor="lostMonthes">{this.props.revenus.lostMonthes}</output>
+      <output htmlFor="lostMonthes">{this.props.revenus.lostMonthes}</output>
       </div>;
 
     let inputs = [];

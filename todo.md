@@ -8,9 +8,8 @@
     []data items will be renamed in french
     []revenus inputs monthlyRent on top
 
-    []notaryfee with a tooltip explaining it => https://wikiki.github.io/elements/tooltip/
-
-    []lostmonthes tooltip moving with slider => https://wikiki.github.io/form/slider/
+    [x]notaryfee with a tooltip explaining it => https://wikiki.github.io/elements/tooltip/
+    [x]lostmonthes tooltip moving beyond slider card and should be pointing at it => https://wikiki.github.io/form/slider/
 
 **NICETIES**
   [x]move social media icons down to footer
