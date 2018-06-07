@@ -14,14 +14,31 @@ class Dropdown extends Component {
     }
   }
 
+  prettyDate(date){
+    let _date = date.split(/[-T]/);
+    return ' ' + _date[1] + '/' + _date[2];
+  }
+
+  sortMonthDay(a, b){
+    a = Date.parse(a);
+    b = Date.parse(b);
+
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
   render() {
     let listYears = [];
     this.props.data.forEach(item =>
-      listYears.push(parseInt(item.fields.date, 10))
+      listYears.push(item.fields.date.split(/[-T]/)[0])
     )
     let years = listYears.filter((item, position) =>
-      listYears.indexOf(item) === position
-    )
+      listYears.indexOf(item) === position).sort((a, b) => b - a)
 
     let dropdown =
       years.map((year, index) =>
@@ -31,8 +48,9 @@ class Dropdown extends Component {
               <select onChange={this.handleSelect}>
                 <option>{year}</option>
                 {this.props.data.filter(({fields}, index) =>
-                parseInt(fields.date, 10) === year).map(({fields}, index) =>
-                <option value={fields.path} key={fields.title + index}>{fields.title}</option>)}
+                parseInt(fields.date, 10) === parseInt(year, 10)).sort((a, b) =>
+                this.sortMonthDay(a.fields.date, b.fields.date)).map(({fields}, index) =>
+                <option value={fields.path} key={fields.title + index}>{this.prettyDate(fields.date)} - {fields.title}</option>)}
               </select>
             </div>
           </div>
