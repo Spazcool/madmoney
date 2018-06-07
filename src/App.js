@@ -44,7 +44,7 @@ class App extends Component {
 
   fetchDocs = () => this.client.getAssets();
   setDocs = (response) => {
-    // MODIFY DOCS ASSET DATA TO FIT POSTS ASSET DATA MODEL
+    // MODIFY DOCS/ASSET DATA TO FIT POSTS DATA MODEL
     let items = response.items;
     items.forEach((item, index) => {
       item.fields.content = item.fields.file.contentType;
@@ -67,6 +67,8 @@ class App extends Component {
     }else{
       data = this.state.posts;
     }
+    //TODO GET THE CALCULATOR WORKING AS A NESTED URL OF /TOOLS
+    console.log('arf', match);
     return(
       <Router>
         <Switch>
