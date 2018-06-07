@@ -16,7 +16,7 @@ class Inputs extends Component {
     let idVal = element.id;
     let outputs = document.getElementsByTagName('output');
     for(let i = 0; i < outputs.length; i++){
-      if (outputs[i].htmlFor == idVal){
+      if (outputs[i].htmlFor === idVal){
         return outputs[i];
       }
     }
