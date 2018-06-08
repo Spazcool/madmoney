@@ -10,16 +10,11 @@ class Sections extends Component {
   render() {
     fontawesome.library.add(solid, faSpinner);
 
-    let loading = [];
+    let loading =
+      <article className="Sections box">
+        <i className="fa fa-spinner fa-spin"></i>
+      </article>;
     let type = 'something';
-    
-    for (let i = 0; i < 3; i++) {
-      loading.push(
-        <article className="Sections box" key={'sections-loading' + i}>
-          <i className="fa fa-spinner fa-spin"></i>
-        </article>
-      );
-    }
 
     if(this.props.loaded){
       if(this.props.data[0].sys.type === "tool"){
