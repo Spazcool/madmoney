@@ -1,3 +1,53 @@
+
+      <div className="Item">
+          <Section
+            data={this.props.data}
+            loaded={this.props.loaded}
+            path={this.props.path}
+          />
+          <Sections
+            data={this.props.data}
+            loaded={this.props.loaded}
+          />
+          {this.props.path === '/' ? <Mission/> : ''}
+      </div>
+      
+  <Switch>
+    <Route exact path="/">
+      <Page
+        data={this.state.posts}
+        displayBoth={true}
+        docs={this.state.docs}
+        loaded={this.state.loaded}
+        path={"/"}
+        tools={this.state.tools}
+      />
+    </Route>
+    <Route exact path="/tools/calcul">
+      <Page
+        data={this.state.tools}
+        displayBoth={true}
+        docs={this.state.docs}
+        loaded={this.state.loaded}
+        path={"/tools/calcul"}
+        tools={this.state.tools}
+      />
+    </Route>
+    <Route path="/blogs" render={(props) => (
+      <Page
+        data={this.state.posts}
+        displayBoth={false}
+        docs={this.state.docs}
+        loaded={this.state.loaded}
+        tools={this.state.tools}/>
+    )}/>
+    <Route path="/docs" component={this.nestURLs}/>
+    <Route path="/tools" component={this.nestURLs}/>
+  </Switch>
+
+
+
+
 <div className="navbar-menu" id="sibling-menu">
   <div className="navbar-item has-dropdown is-hoverable">
     <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>

@@ -1,6 +1,9 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import * as contentful from 'contentful';
+import Hero from './Components/Hero';
+import Item from './Components/Item';
+import NavBar from './Components/NavBar';
 import Page from './Components/Page';
 import React, { Component } from 'react';
 import Tools from './Tools/Tools';
@@ -69,6 +72,7 @@ class App extends Component {
     }
     //TODO GET THE CALCULATOR WORKING AS A NESTED URL OF /TOOLS
     console.log('arf', match);
+
     return(
       <Router>
         <Switch>
@@ -95,34 +99,27 @@ class App extends Component {
       </Router>
     )
   }
+
   render(){
     return(
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <Page
-              data={this.state.posts}
-              displayBoth={true}
+        <div>
+          <header>
+            <NavBar
               docs={this.state.docs}
               loaded={this.state.loaded}
-              path={"/"}
               tools={this.state.tools}
             />
-          </Route>
-          <Route exact path="/tools/calcul">
-            <Page
-              data={this.state.tools}
-              displayBoth={true}
-              docs={this.state.docs}
-              loaded={this.state.loaded}
-              path={"/tools/calcul"}
-              tools={this.state.tools}
-            />
-          </Route>
-          <Route path="/blogs" component={this.nestURLs}/>
-          <Route path="/docs" component={this.nestURLs}/>
-          <Route path="/tools" component={this.nestURLs}/>
-        </Switch>
+            <Hero/>
+          </header>
+          <Item
+            data={this.state.posts}
+            displayBoth={false}
+            docs={this.state.docs}
+            loaded={this.state.loaded}
+            tools={this.state.tools}
+          />
+        </div>
       </Router>
     )
   }
