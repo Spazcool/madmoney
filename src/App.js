@@ -1,14 +1,15 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import * as contentful from 'contentful';
+import Footer from './Components/Footer';
 import Hero from './Components/Hero';
-import Item from './Components/Item';
+import Main from './Components/Main';
 import NavBar from './Components/NavBar';
-import Page from './Components/Page';
 import React, { Component } from 'react';
 import Tools from './Tools/Tools';
 
 class App extends Component {
+  
   constructor() {
     super();
     this.state = {
@@ -17,7 +18,6 @@ class App extends Component {
       posts: null,
       tools: Tools
     };
-    this.nestURLs = this.nestURLs.bind(this);
   }
 
   client = contentful.createClient({
@@ -29,6 +29,7 @@ class App extends Component {
     this.fetchPosts().then(this.setPosts);
     this.fetchDocs().then(this.setDocs);
   }
+
   componentDidUpdate() {
     if(this.state.loaded === false && this.state.docs !== null && this.state.posts !== null){
       this.setState({
@@ -61,64 +62,23 @@ class App extends Component {
     })
   }
 
-  nestURLs({match}){
-    let data;
-    if(match.path === "/tools"){
-      data = this.state.tools;
-    }else if(match.path === "/docs"){
-      data = this.state.docs;
-    }else{
-      data = this.state.posts;
-    }
-    //TODO GET THE CALCULATOR WORKING AS A NESTED URL OF /TOOLS
-    console.log('arf', match);
-
-    return(
-      <Router>
-        <Switch>
-          <Route path={`${match.path}/:topicId`} render={(props) =>
-              <Page
-                data={data}
-                displayBoth={true}
-                docs={this.state.docs}
-                loaded={this.state.loaded}
-                path={props.match}
-                tools={this.state.tools}
-              />}
-            />
-          <Route exact path={match.path} render={() =>
-              <Page
-                data={data}
-                displayBoth={false}
-                docs={this.state.docs}
-                loaded={this.state.loaded}
-                tools={this.state.tools}
-              />}
-            />
-        </Switch>
-      </Router>
-    )
-  }
-
   render(){
     return(
       <Router>
         <div>
-          <header>
-            <NavBar
-              docs={this.state.docs}
-              loaded={this.state.loaded}
-              tools={this.state.tools}
-            />
-            <Hero/>
-          </header>
-          <Item
-            data={this.state.posts}
-            displayBoth={false}
+          <NavBar
             docs={this.state.docs}
             loaded={this.state.loaded}
             tools={this.state.tools}
           />
+          <Hero/>
+          <Main
+            docs={this.state.docs}
+            loaded={this.state.loaded}
+            posts={this.state.posts}
+            tools={this.state.tools}
+          />
+          <Footer/>
         </div>
       </Router>
     )

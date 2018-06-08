@@ -20,6 +20,17 @@ const data = [
     sys:{
       type:'tool'
     }
+  },
+  {
+    fields:{
+      title:'Another Calculator',
+      path: '/tools/2018/06/08/tool',
+      content: "Nothing to see here.",
+      date: '2019-03-14',
+    },
+    sys:{
+      type:'tool'
+    }
   }
 ];
 

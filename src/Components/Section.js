@@ -14,6 +14,7 @@ class Section extends Component {
   }
   render() {
     fontawesome.library.add(solid, faSpinner);
+    
     let calcul;
     let filtered;
     let home;
@@ -26,9 +27,9 @@ class Section extends Component {
           <p><i className="fa fa-spinner fa-spin"></i></p>
         </div>
       </section>;
+
     if(this.props.loaded){
-      // console.log(this.props.path);
-      // SHOW THE 5 MOST RECENT ARTICLES
+      // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
       home =
         this.props.data.slice(0, 5).map(({fields}, index) =>
           <section className="section" key={fields.title + index}>
@@ -39,10 +40,10 @@ class Section extends Component {
               <div className="is-divider"></div>
             </div>
           </section>);
-      // SHOW SINGLE MATCHING SECTION FOR URL PATH
+      // SHOW SINGLE MATCHING SECTION FOR "/URL PATH"
       filtered =
         this.props.data.filter(({fields}, index) =>
-          fields.path === this.props.path.url)
+          fields.path === this.props.routing.match.url)
           .map(({fields}, index) =>
             <section className="section" key={fields.title + index}>
               <div className="container">
@@ -54,7 +55,8 @@ class Section extends Component {
             </section>);
       // SHOW TOOL MODALS
       calcul = <Calcul/>;
-      if(this.props.path === '/'){
+
+      if(this.props.routing.match.url === '/'){
         loaded = home;
       }else if(this.props.path === '/tools/calcul'){
         loaded = calcul;
@@ -62,6 +64,7 @@ class Section extends Component {
         loaded = filtered;
       }
     }
+
     return (
       <div>
         {this.props.loaded ? loaded : loading}

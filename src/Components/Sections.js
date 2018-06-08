@@ -12,6 +12,7 @@ class Sections extends Component {
 
     let loading = [];
     let type = 'something';
+    
     for (let i = 0; i < 3; i++) {
       loading.push(
         <article className="Sections box" key={'sections-loading' + i}>
