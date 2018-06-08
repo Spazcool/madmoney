@@ -8,10 +8,12 @@ import React, { Component } from 'react';
 import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 
 class NavBar extends Component {
+
   constructor(props) {
     super(props);
     this.toggleBurger = this.toggleBurger.bind(this);
   }
+
   loopLinks(data){
     let arr = [];
     for (let i = 0; i < data.length; i++) {
@@ -22,19 +24,24 @@ class NavBar extends Component {
     }
     return arr;
   }
+
   toggleBurger(event) {
     document.getElementById('sibling-menu').classList.toggle("is-active");
     document.getElementById('burger').classList.toggle("is-active");
   }
+
   render() {
     fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
+    
     let docs;
     let loading = <span><i className="fa fa-spinner fa-spin" key={'navlinkloading'}></i></span>;
     let tools;
+
     if(this.props.loaded){
       docs = this.loopLinks(this.props.docs);
       tools = this.loopLinks(this.props.tools);
     }
+
     return (
       <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">
         <div className="navbar-brand">
