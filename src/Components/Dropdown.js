@@ -33,10 +33,11 @@ class Dropdown extends Component {
   }
 
   render() {
+    // PARSE YEAR FROM ALL DATA OBJ
     let listYears = [];
     this.props.data.forEach(item =>
-      listYears.push(item.fields.date.split(/[-T]/)[0])
-    )
+      listYears.push(item.fields.date.split(/[-T]/)[0]))
+    // FILTER OUT DUPLICATE YEARS
     let years = listYears.filter((item, position) =>
       listYears.indexOf(item) === position).sort((a, b) => b - a)
 

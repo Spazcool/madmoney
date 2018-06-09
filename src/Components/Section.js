@@ -1,7 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
-import Calcul from './../Tools/Calcul';
 import fontawesome from '@fortawesome/fontawesome';
 import marked from 'marked';
 import React, { Component } from 'react';
@@ -12,10 +11,28 @@ class Section extends Component {
   interpretHTML(a) {
     return {__html: a};
   }
+
+  prettyDate(date){
+    let _date = date.split(/[-T]/);
+    return ' ' + _date[0] + '/' + _date[1] + '/' + _date[2];
+  }
+
+  sortMonthDay(a, b){
+    a = Date.parse(a);
+    b = Date.parse(b);
+
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
   render() {
     fontawesome.library.add(solid, faSpinner);
-    
-    let calcul;
+
     let filtered;
     let home;
     let loaded;
@@ -31,11 +48,12 @@ class Section extends Component {
     if(this.props.loaded){
       // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
       home =
-        this.props.data.slice(0, 5).map(({fields}, index) =>
+        this.props.data.sort((a, b) =>
+        this.sortMonthDay(a.fields.date, b.fields.date)).slice(0, 5).map(({fields}, index) =>
           <section className="section" key={fields.title + index}>
             <div className="container">
               <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
-              <h6 className="subtitle">{fields.date}</h6>
+              <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
               <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
               <div className="is-divider"></div>
             </div>
@@ -48,21 +66,12 @@ class Section extends Component {
             <section className="section" key={fields.title + index}>
               <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
-                <h6 className="subtitle">{fields.date}</h6>
+                <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                 <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
-                <div className="is-divider"></div>
               </div>
             </section>);
-      // SHOW TOOL MODALS
-      calcul = <Calcul/>;
 
-      if(this.props.routing.match.url === '/'){
-        loaded = home;
-      }else if(this.props.path === '/tools/calcul'){
-        loaded = calcul;
-      }else{
-        loaded = filtered;
-      }
+      loaded = this.props.routing.match.url === '/' ? home : filtered;
     }
 
     return (

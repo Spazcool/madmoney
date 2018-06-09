@@ -32,9 +32,9 @@ class NavBar extends Component {
 
   render() {
     fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
-    
+
     let docs;
-    let loading = <span><i className="fa fa-spinner fa-spin" key={'navlinkloading'}></i></span>;
+    let loading = <span><i className="fa fa-spinner fa-spin"></i></span>;
     let tools;
 
     if(this.props.loaded){

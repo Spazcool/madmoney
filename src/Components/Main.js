@@ -1,5 +1,4 @@
-import './../App.css';
-import 'bulma/css/bulma.css';
+import Calcul from './../Tools/Calcul';
 import Mission from './Mission';
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
@@ -19,7 +18,8 @@ class Main extends Component {
         <Route exact path='/tools' render={(props) =>
           <Sections data={this.props.tools} loaded={this.props.loaded} />
         }/>
-        <Route path='/blogs/:number' render={(props) =>
+
+        <Route path='/blogs/:year/:month/:day/:title' render={(props) =>
           <div>
             <Section
               data={this.props.posts}
@@ -29,7 +29,8 @@ class Main extends Component {
             <Sections data={this.props.posts} loaded={this.props.loaded} />
           </div>
         }/>
-        <Route path='/docs/:number' render={(props) =>
+
+        <Route path='/docs/:year/:month/:day/:title' render={(props) =>
           <div>
             <Section
               data={this.props.docs}
@@ -39,16 +40,14 @@ class Main extends Component {
             <Sections data={this.props.docs} loaded={this.props.loaded} />
           </div>
         }/>
-        <Route path='/tools/:number' render={(props) =>
+
+        <Route path='/tools/:year/:month/:day/:title' render={(props) =>
           <div>
-            <Section
-              data={this.props.tools}
-              loaded={this.props.loaded}
-              routing={props}
-            />
+            <Calcul/>
             <Sections data={this.props.tools} loaded={this.props.loaded} />
           </div>
         }/>
+
         <Route exact path='/' render={(props) =>
           <div>
             <Section

@@ -1,4 +1,3 @@
-import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom';
 import * as contentful from 'contentful';
 import Footer from './Components/Footer';
@@ -6,17 +5,16 @@ import Hero from './Components/Hero';
 import Main from './Components/Main';
 import NavBar from './Components/NavBar';
 import React, { Component } from 'react';
-import Tools from './Tools/Tools';
+import ToolLinks from './Tools/Links'; //DUMB OBJ FOR THE LINKS
 
 class App extends Component {
-  
   constructor() {
     super();
     this.state = {
       docs: null,
       loaded: false,
       posts: null,
-      tools: Tools
+      tools: ToolLinks
     };
   }
 
@@ -24,6 +22,14 @@ class App extends Component {
     space: 'dktgpvzygyep',
     accessToken: '7687e36de5d2b00b1747c9832727c68300a22523ef63abb84a4d6e04e1b6cd1d'
   })
+
+  createPath(type, date, title){
+    let _type = type === "Entry" ? "blogs" : "docs";
+    let _date = date.split(/[-T]/);
+    let _title = title.replace(/ /g,"_");
+    let _path = '/' + _type + '/' + _date[0] + '/' + _date[1] + '/' + _date[2] + '/' + _title;
+    return _path;
+  }
 
   componentDidMount() {
     this.fetchPosts().then(this.setPosts);
@@ -40,7 +46,12 @@ class App extends Component {
 
   fetchPosts = () => this.client.getEntries();
   setPosts = (response) => {
+    // MODIFY POSTS DATA TO LESSEN USER INPUT
     let items = response.items;
+    items.forEach((item, index) => {
+      item.fields.date = item.sys.createdAt;
+      item.fields.path = this.createPath(item.sys.type, item.sys.createdAt, item.fields.title);
+    })
     this.setState({
       posts: items
     })
@@ -55,7 +66,7 @@ class App extends Component {
       item.fields.date = item.sys.createdAt;
       item.fields.download = item.fields.file.url;
       item.fields.id = item.sys.id;
-      item.fields.path = '/docs/doc' + (index + 1);
+      item.fields.path = this.createPath(item.sys.type, item.sys.createdAt, item.fields.title);
     });
     this.setState({
       docs: items
@@ -65,7 +76,7 @@ class App extends Component {
   render(){
     return(
       <Router>
-        <div>
+        <div className="App">
           <NavBar
             docs={this.state.docs}
             loaded={this.state.loaded}

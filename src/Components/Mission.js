@@ -1,6 +1,5 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import React, { Component } from 'react';
 
 class Mission extends Component {
