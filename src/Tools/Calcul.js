@@ -80,18 +80,18 @@ class Calcul extends Component {
   render() {
     return(
       <div className="box notification">
-      <div className="Calcul tile is-ancestor">
-        <Inputs
-          output={this.state.output}
-          frais={this.state.frais}
-          prix={this.state.prix}
-          revenus={this.state.revenus}
-          handleChange={this.handleChange}
-        />
-        <Outputs
-          output={this.state.output}
-        />
-      </div>
+        <div className="Calcul tile is-ancestor">
+          <Inputs
+            output={this.state.output}
+            frais={this.state.frais}
+            prix={this.state.prix}
+            revenus={this.state.revenus}
+            handleChange={this.handleChange}
+          />
+          <Outputs
+            output={this.state.output}
+          />
+        </div>
       </div>
     )
   }
