@@ -14,20 +14,7 @@ class Section extends Component {
 
   prettyDate(date){
     let _date = date.split(/[-T]/);
-    return ' ' + _date[0] + '/' + _date[1] + '/' + _date[2];
-  }
-
-  sortMonthDay(a, b){
-    a = Date.parse(a);
-    b = Date.parse(b);
-
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-    } else {
-      return 0;
-    }
+    return _date[2] + '/' + _date[1] + '/' + _date[0];
   }
 
   render() {
@@ -46,28 +33,28 @@ class Section extends Component {
       </section>;
 
     if(this.props.loaded){
+      console.log(this.props.data);
       // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
       home =
-        this.props.data.sort((a, b) =>
-        this.sortMonthDay(a.fields.date, b.fields.date)).slice(0, 5).map(({fields}, index) =>
+        this.props.data.slice(0, 5).map(({fields}, index) =>
           <section className="section" key={fields.title + index}>
             <div className="container">
               <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
               <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-              <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+              <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
               <div className="is-divider"></div>
             </div>
           </section>);
       // SHOW SINGLE MATCHING SECTION FOR "/URL PATH"
       filtered =
         this.props.data.filter(({fields}, index) =>
-          fields.path === this.props.routing.match.url)
-          .map(({fields}, index) =>
+          fields.path === this.props.routing.match.url).map(({fields}, index) =>
             <section className="section" key={fields.title + index}>
               <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
+                {fields.download ? <a href={fields.download}>Download</a> : ''}
               </div>
             </section>);
 

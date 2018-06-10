@@ -7,7 +7,7 @@ const data = [
       date: '2018-06-01',
     },
     sys:{
-      type:'tool'
+      type:'Tool'
     }
   },
 ];

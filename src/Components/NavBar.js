@@ -15,14 +15,14 @@ class NavBar extends Component {
   }
 
   loopLinks(data){
-    let arr = [];
+    let _arr = [];
     for (let i = 0; i < data.length; i++) {
       let href = data[i].fields.path;
-      arr.push(
+      _arr.push(
         <a className="navbar-item" href={href} key={href + "link" + i}>{data[i].fields.title}</a>
       );
     }
-    return arr;
+    return _arr;
   }
 
   toggleBurger(event) {
@@ -55,19 +55,19 @@ class NavBar extends Component {
           </a>
         </div>
         <div className="navbar-menu" id="sibling-menu">
+          <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Blogs</a>
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Docs</a>
+            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Downloads</a>
             <div className="navbar-dropdown">
               {this.props.loaded ? docs : loading}
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Tools</a>
+            <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Calculator</a>
             <div className="navbar-dropdown">
               {this.props.loaded ? tools : loading}
             </div>
           </div>
-          <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Archive</a>
         </div>
       </nav>
     );

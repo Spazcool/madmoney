@@ -16,8 +16,8 @@ class Sections extends Component {
       </article>;
     let type = 'something';
 
-    if(this.props.loaded){
-      if(this.props.data[0].sys.type === "tool"){
+    if(this.props.loaded && this.props.data.length > 0){
+      if(this.props.data[0].sys.type === "Tool"){
         type = 'a ' + this.props.data[0].sys.type;
       }else{
         type = 'an ' + this.props.data[0].sys.type;

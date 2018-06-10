@@ -52,6 +52,7 @@ class App extends Component {
       item.fields.date = item.sys.createdAt;
       item.fields.path = this.createPath(item.sys.type, item.sys.createdAt, item.fields.title);
     })
+    items.sort((a, b) => this.sortMonthDay(a.fields.date, b.fields.date));
     this.setState({
       posts: items
     })
@@ -66,11 +67,26 @@ class App extends Component {
       item.fields.date = item.sys.createdAt;
       item.fields.download = item.fields.file.url;
       item.fields.id = item.sys.id;
+      item.fields.image = item.fields.file.url;
       item.fields.path = this.createPath(item.sys.type, item.sys.createdAt, item.fields.title);
     });
+    items.sort((a, b) => this.sortMonthDay(a.fields.date, b.fields.date));
     this.setState({
       docs: items
     })
+  }
+
+  sortMonthDay(a, b){
+    a = Date.parse(a);
+    b = Date.parse(b);
+
+    if (a < b) {
+      return 1;
+    } else if (a > b) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 
   render(){
@@ -80,6 +96,7 @@ class App extends Component {
           <NavBar
             docs={this.state.docs}
             loaded={this.state.loaded}
+            posts={this.state.posts}
             tools={this.state.tools}
           />
           <Hero/>
