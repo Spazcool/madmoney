@@ -1,5 +1,4 @@
 import Calcul from './../Tools/Calcul';
-import Mission from './Mission';
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Section from './Section';
@@ -56,7 +55,12 @@ class Main extends Component {
               routing={props}
             />
             <Sections data={this.props.posts} loaded={this.props.loaded} />
-            <Mission />
+            <Section
+              data={this.props.posts}
+              isMission={true}
+              loaded={this.props.loaded}
+              routing={props}
+            />
           </div>
         }/>
       </Switch>

@@ -23,6 +23,7 @@ class Section extends Component {
     let filtered;
     let home;
     let loaded;
+    let mission;
     let loading =
       <section className="section">
         <div className="container">
@@ -34,18 +35,7 @@ class Section extends Component {
 
     if(this.props.loaded){
       console.log(this.props.data);
-      // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
-      home =
-        this.props.data.slice(0, 5).map(({fields}, index) =>
-          <section className="section" key={fields.title + index}>
-            <div className="container">
-              <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
-              <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-              <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
-              <div className="is-divider"></div>
-            </div>
-          </section>);
-      // SHOW SINGLE MATCHING SECTION FOR "/URL PATH"
+      // SHOW SINGLE MATCHING SECTION FOR "/URL/PATH/TO/SECTION"
       filtered =
         this.props.data.filter(({fields}, index) =>
           fields.path === this.props.routing.match.url).map(({fields}, index) =>
@@ -57,8 +47,30 @@ class Section extends Component {
                 {fields.download ? <a href={fields.download}>Download</a> : ''}
               </div>
             </section>);
+      // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
+      home =
+        this.props.data.slice(0, 5).map(({fields}, index) =>
+          <section className="section" key={fields.title + index}>
+            <div className="container">
+              <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+              <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
+              <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
+              <div className="is-divider"></div>
+            </div>
+          </section>);
+      // SHOW THE 1st || OLDEST ARTICLE AS STANDALONE MISSON STATEMENT
+      mission =
+        this.props.data.filter(({fields}, index) =>
+          index === this.props.data.length - 1).map(({fields}, index) =>
+            <section className="section" key={fields.title + index}>
+              <div className="container">
+                <h1 className="title is -1">{fields.title}</h1>
+                <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
+                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+              </div>
+            </section>);
 
-      loaded = this.props.routing.match.url === '/' ? home : filtered;
+      loaded = this.props.routing.match.url === '/' ? (this.props.isMission ? mission : home) : filtered;
     }
 
     return (
