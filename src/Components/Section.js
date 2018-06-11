@@ -13,6 +13,13 @@ class Section extends Component {
     return {__html: a};
   }
 
+  checkImg(e){
+    // console.log('checkImg', e);
+    let found = document.getElementsByTagName('.written');
+    // let found = document.querySelector(".written");
+    console.log('checkImg', found);
+  }
+
   prettyDate(date){
     let _date = date.split(/[-T]/);
     return _date[2] + '/' + _date[1] + '/' + _date[0];
@@ -43,7 +50,7 @@ class Section extends Component {
               <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
+                <p className="written" dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
                 {fields.download ? <a href={fields.download}>Download</a> : ''}
                 <br/>
                 <Share
@@ -80,11 +87,12 @@ class Section extends Component {
               <div className="container">
                 <h1 className="title is -1">{fields.title}</h1>
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.content))}/>
+                <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
               </div>
             </section>);
 
       loaded = this.props.routing.match.url === '/' ? (this.props.isMission ? mission : home) : filtered;
+      this.checkImg();
     }
 
     return (
