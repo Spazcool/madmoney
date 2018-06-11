@@ -4,6 +4,7 @@ import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
 import marked from 'marked';
 import React, { Component } from 'react';
+import Share from './Share';
 import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 
 class Section extends Component {
@@ -34,7 +35,6 @@ class Section extends Component {
       </section>;
 
     if(this.props.loaded){
-      console.log(this.props.data);
       // SHOW SINGLE MATCHING SECTION FOR "/URL/PATH/TO/SECTION"
       filtered =
         this.props.data.filter(({fields}, index) =>
@@ -45,6 +45,13 @@ class Section extends Component {
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                 <p dangerouslySetInnerHTML = {this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
                 {fields.download ? <a href={fields.download}>Download</a> : ''}
+                <br/>
+                <Share
+                  media={fields.content}
+                  source={fields.path}
+                  title={fields.title}
+                  url={fields.path}
+                />
               </div>
             </section>);
       // SHOW THE 5 MOST RECENT ARTICLES FOR "/"
@@ -55,6 +62,13 @@ class Section extends Component {
               <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
               <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
               <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
+              <br/>
+              <Share
+                media={fields.content}
+                source={fields.path}
+                title={fields.title}
+                url={fields.path}
+              />
               <div className="is-divider"></div>
             </div>
           </section>);
