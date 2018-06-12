@@ -8,16 +8,31 @@ import Share from './Share';
 import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 
 class Section extends Component {
+  constructor(props) {
+     super(props);
+     this.handleImg = this.handleImg.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('load', this.handleImg);
+  }
+
+  handleImg() {
+    // let found = document.getElementsByTagName('img');
+    // found.item(1).classList.add("thing");
+    // found.item(2).classList.add("thing");
+    // // if found > 2 grab those in the middle and add to a span that is created here
+    // let node = document.createElement("DIV");
+    // node.appendChild(found.item(1));
+    // node.appendChild(found.item(2));
+    // document.getElementById('entryField').appendChild(node)
+    //
+    // console.log('change', found.item(1));
+    // console.log('change', found.item(2));
+  }
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
     return {__html: a};
-  }
-
-  checkImg(e){
-    // console.log('checkImg', e);
-    let found = document.getElementsByTagName('.written');
-    // let found = document.querySelector(".written");
-    console.log('checkImg', found);
   }
 
   prettyDate(date){
@@ -50,7 +65,7 @@ class Section extends Component {
               <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                <p className="written" dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
+                <p id="entryField" dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
                 {fields.download ? <a href={fields.download}>Download</a> : ''}
                 <br/>
                 <Share
@@ -92,7 +107,6 @@ class Section extends Component {
             </section>);
 
       loaded = this.props.routing.match.url === '/' ? (this.props.isMission ? mission : home) : filtered;
-      this.checkImg();
     }
 
     return (
