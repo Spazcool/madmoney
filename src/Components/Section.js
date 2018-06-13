@@ -13,10 +13,6 @@ class Section extends Component {
      this.handleImg = this.handleImg.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('load', this.handleImg);
-  }
-
   handleImg() {
     // let found = document.getElementsByTagName('img');
     // found.item(1).classList.add("thing");
@@ -26,13 +22,36 @@ class Section extends Component {
     // node.appendChild(found.item(1));
     // node.appendChild(found.item(2));
     // document.getElementById('entryField').appendChild(node)
-    //
     // console.log('change', found.item(1));
     // console.log('change', found.item(2));
   }
+
+  // split a into arr
+  // cycle through reattaching < to each ele
+  // put img ele into separate arr
+  // put return the rest as HTML
+  // then
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
-    return {__html: a};
+    let text = a.replace(/<img.*>/g, '');
+    // let imgs = a.replace(/(^<img.*>)/g, '');
+
+    let imgs = a.replace(/<(?!img.{2,}>).*/g, '');
+    // <\s*a[^>]*>(.*?)<\s*/\s*a>
+    console.log(imgs);
+    // splits.forEach(element =>{
+    //   if(element.length > 1){
+    //     if(regex.test(element)){
+    //       imgs.push(fix.concat(element))
+    //     }else{
+    //       content.push(fix.concat(element))
+    //     }
+    //   }})
+    // console.log('imgs', imgs);
+    // console.log('content', content);
+
+    // console.log('after markked', a);
+    return {__html: text};
   }
 
   prettyDate(date){
@@ -65,7 +84,7 @@ class Section extends Component {
               <div className="container">
                 <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
                 <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                <p id="entryField" dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
+                <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
                 {fields.download ? <a href={fields.download}>Download</a> : ''}
                 <br/>
                 <Share
