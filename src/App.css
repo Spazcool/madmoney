@@ -16,14 +16,25 @@
   color: red;
   /* color:hsl(171, 100%, 41%); */
 }
-.section p{
+
+.markedWrapper{
   overflow: auto;
   text-align: left;
 }
-.section p img{
-  border-radius: 5px;
+.imgBox {
+  /* margin-top:  -2em; */
+  border: 1px dotted red;
   float: right;
   width: 30em;
+}
+.imgBox img{
+  border-radius: 5px;
+}
+.single{
+
+}
+.multiple{
+
 }
 
 /*SHARE BUTTONS*/

@@ -10,48 +10,36 @@ import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 class Section extends Component {
   constructor(props) {
      super(props);
-     this.handleImg = this.handleImg.bind(this);
+     this.handleImgs = this.handleImgs.bind(this);
   }
 
-  handleImg() {
-    // let found = document.getElementsByTagName('img');
-    // found.item(1).classList.add("thing");
-    // found.item(2).classList.add("thing");
-    // // if found > 2 grab those in the middle and add to a span that is created here
-    // let node = document.createElement("DIV");
-    // node.appendChild(found.item(1));
-    // node.appendChild(found.item(2));
-    // document.getElementById('entryField').appendChild(node)
-    // console.log('change', found.item(1));
-    // console.log('change', found.item(2));
+  handleImgs(imgs) {
+    let _complete;
+    let _temp = (imgs === null ? ["<div class='imgBox single'>"] : (imgs.length > 1 ? ["<div class='imgBox multiple'>"] : ["<div class='imgBox single'>"]));
+    if(imgs !== null){
+      imgs.forEach(img =>
+        _temp.push(img)
+    )}
+    _temp.push("</div>");
+    _complete = _temp.join('');
+    return _complete;
   }
-
-  // split a into arr
-  // cycle through reattaching < to each ele
-  // put img ele into separate arr
-  // put return the rest as HTML
-  // then
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
-    let text = a.replace(/<img.*>/g, '');
-    // let imgs = a.replace(/(^<img.*>)/g, '');
+    // CUT OUT IMGS TO ACCOUNT FOR MORE THAN 1 & TO BE STYLED ACCORDINGLY
+    let _complete;
+    let _temp = ["<div class='markedWrapper'>"];
+    let _imgs = a.replace(/<\/p>/g, '').match(/<img.*>/g);
+    let _text = a.replace(/<img.*>/g, '');
+     _text = _text.replace(/<p>/g, '');
+     _text = _text.replace(/<\/p>/g, '');
 
-    let imgs = a.replace(/<(?!img.{2,}>).*/g, '');
-    // <\s*a[^>]*>(.*?)<\s*/\s*a>
-    console.log(imgs);
-    // splits.forEach(element =>{
-    //   if(element.length > 1){
-    //     if(regex.test(element)){
-    //       imgs.push(fix.concat(element))
-    //     }else{
-    //       content.push(fix.concat(element))
-    //     }
-    //   }})
-    // console.log('imgs', imgs);
-    // console.log('content', content);
-
-    // console.log('after markked', a);
-    return {__html: text};
+    // if there isnst </p> in text put one
+    _temp.push(_text.concat(this.handleImgs(_imgs)));
+    _temp.push("</div>")
+    _complete =  _temp.join('');
+    console.log("_complete", _complete);
+    return {__html: _complete};
   }
 
   prettyDate(date){
@@ -77,6 +65,8 @@ class Section extends Component {
 
     if(this.props.loaded){
       // SHOW SINGLE MATCHING SECTION FOR "/URL/PATH/TO/SECTION"
+      //  {imgs ? imgs : ''}
+
       filtered =
         this.props.data.filter(({fields}, index) =>
           fields.path === this.props.routing.match.url).map(({fields}, index) =>
