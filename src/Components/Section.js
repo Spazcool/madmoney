@@ -12,7 +12,7 @@ class Section extends Component {
      super(props);
      this.handleImgs = this.handleImgs.bind(this);
   }
-
+// TODO DONT APPLY THE DIV TO A NULL OR SINGLE, SEE IF THAT ALLOWS THE overflow
   handleImgs(imgs) {
     let _complete;
     let _temp = (imgs === null ? ["<div class='imgBox single'>"] : (imgs.length > 1 ? ["<div class='imgBox multiple'>"] : ["<div class='imgBox single'>"]));
@@ -27,6 +27,7 @@ class Section extends Component {
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
     // CUT OUT IMGS TO ACCOUNT FOR MORE THAN 1 & TO BE STYLED ACCORDINGLY
+    // TODO SEARCH NPM FOR A MORE ROBUST PARSER, AVOID ALL THIS SPAGHETTI CODE
     let _complete;
     let _temp = ["<div class='markedWrapper'>"];
     let _imgs = a.replace(/<\/p>/g, '').match(/<img.*>/g);
