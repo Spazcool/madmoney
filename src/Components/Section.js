@@ -2,6 +2,7 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
+import HTMLParser from 'fast-html-parser';
 import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
@@ -26,6 +27,18 @@ class Section extends Component {
   }
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
+    // TODO NPM INSTALL CHEERIO TRY THAT TO PARSE AND STITCH
+    // let root = HTMLParser.parse(a);
+    // root.childNodes.forEach(node => {
+    //   if(node.tagName === 'p'){
+    //     node.childNodes.forEach((subnode, index) => {
+    //       if(subnode.tagName === 'img'){
+    //         node.childNodes.splice(index, 1)
+    //       }})
+    //     }
+    // })
+    //
+    // // console.log(HTMLParser.stringify(root))
     // CUT OUT IMGS TO ACCOUNT FOR MORE THAN 1 & TO BE STYLED ACCORDINGLY
     // TODO SEARCH NPM FOR A MORE ROBUST PARSER, AVOID ALL THIS SPAGHETTI CODE
     let _complete;
@@ -39,7 +52,7 @@ class Section extends Component {
     _temp.push(_text.concat(this.handleImgs(_imgs)));
     _temp.push("</div>")
     _complete =  _temp.join('');
-    console.log("_complete", _complete);
+    // console.log("_complete", _complete);
     return {__html: _complete};
   }
 
