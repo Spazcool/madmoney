@@ -12,6 +12,9 @@
 }
 
 /*CONTENT*/
+.section p{
+  font-size: 1.5em;
+}
 .section a:hover{
   color: red;
   /* color:hsl(171, 100%, 41%); */
@@ -24,19 +27,20 @@
   border-radius: 5px;
   float: right;
   margin: 0 0 3px 3px;
-  width: 30em;
+  width: 20em;
 }
-
-.imgBox {
-  border: 2px dotted red;
-  /* width: 100%; */
+.columns{
+  overflow: auto;
+  width: 100%;
 }
-.imgBox img{
-  /* display: inline-block; */
-  width: 40%;
+.column{
+  margin-top: 0.75rem;
+  overflow: auto;
+}
+.column img{
   float: none;
+  width: 99.5%;
 }
-
 
 /*SHARE BUTTONS*/
 #share a {

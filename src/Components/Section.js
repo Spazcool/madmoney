@@ -11,18 +11,17 @@ import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 class Section extends Component {
   constructor(props) {
      super(props);
-     this.handleImgs = this.handleImgs.bind(this);
+     // this.handleImgs = this.handleImgs.bind(this);
   }
-// TODO DONT APPLY THE DIV TO A NULL OR SINGLE, SEE IF THAT ALLOWS THE overflow
+
   handleImgs(imgs) {
     let _multiple;
-    let _temp = ["<div class='container imgBox'>"];
+    let _temp = ["<div class='columns is-multiline'>"];
     if(imgs.length === 1){
       return imgs[0]
     }else{
-      imgs.forEach(img =>
-        _temp.push(img)
-      )}
+      imgs.forEach(img => _temp.push("<div class='column is-6'>"+img+"</div>"))
+    }
     _temp.push("</div>");
     _multiple = _temp.join('');
     return _multiple;
@@ -45,7 +44,6 @@ class Section extends Component {
      }
     _temp.push("</div>")
     _complete =  _temp.join('');
-    // console.log("_complete", _complete);
     return {__html: _complete};
   }
 
