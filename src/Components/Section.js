@@ -2,7 +2,7 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
-import HTMLParser from 'fast-html-parser';
+// import HTMLParser from 'fast-html-parser';
 import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
@@ -15,44 +15,33 @@ class Section extends Component {
   }
 // TODO DONT APPLY THE DIV TO A NULL OR SINGLE, SEE IF THAT ALLOWS THE overflow
   handleImgs(imgs) {
-    let _complete;
-    let _temp = (imgs === null ? ["<div class='imgBox single'>"] : (imgs.length > 1 ? ["<div class='imgBox multiple'>"] : ["<div class='imgBox single'>"]));
-    if(imgs !== null){
+    let _multiple;
+    let _temp = ["<span class='imgBox multiple'>"];
+    if(imgs === null){
+      return ''
+    }else if(imgs.length === 1){
+      return imgs[0]
+    }else{
       imgs.forEach(img =>
         _temp.push(img)
-    )}
-    _temp.push("</div>");
-    _complete = _temp.join('');
-    return _complete;
+      )}
+    _temp.push("</span>");
+    _multiple = _temp.join('');
+    return _multiple;
   }
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
   interpretHTML(a) {
-    // TODO NPM INSTALL CHEERIO TRY THAT TO PARSE AND STITCH
-    // let root = HTMLParser.parse(a);
-    // root.childNodes.forEach(node => {
-    //   if(node.tagName === 'p'){
-    //     node.childNodes.forEach((subnode, index) => {
-    //       if(subnode.tagName === 'img'){
-    //         node.childNodes.splice(index, 1)
-    //       }})
-    //     }
-    // })
-    //
-    // // console.log(HTMLParser.stringify(root))
     // CUT OUT IMGS TO ACCOUNT FOR MORE THAN 1 & TO BE STYLED ACCORDINGLY
-    // TODO SEARCH NPM FOR A MORE ROBUST PARSER, AVOID ALL THIS SPAGHETTI CODE
     let _complete;
     let _temp = ["<div class='markedWrapper'>"];
     let _imgs = a.replace(/<\/p>/g, '').match(/<img.*>/g);
     let _text = a.replace(/<img.*>/g, '');
      _text = _text.replace(/<p>/g, '');
      _text = _text.replace(/<\/p>/g, '');
-
-    // if there isnst </p> in text put one
-    _temp.push(_text.concat(this.handleImgs(_imgs)));
+    _temp.push(this.handleImgs(_imgs).concat(_text));
     _temp.push("</div>")
     _complete =  _temp.join('');
-    // console.log("_complete", _complete);
+    console.log("_complete", _complete);
     return {__html: _complete};
   }
 
@@ -79,8 +68,6 @@ class Section extends Component {
 
     if(this.props.loaded){
       // SHOW SINGLE MATCHING SECTION FOR "/URL/PATH/TO/SECTION"
-      //  {imgs ? imgs : ''}
-
       filtered =
         this.props.data.filter(({fields}, index) =>
           fields.path === this.props.routing.match.url).map(({fields}, index) =>
