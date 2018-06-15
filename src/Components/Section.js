@@ -67,7 +67,7 @@ class Section extends Component {
               index === this.props.data.length - 1).map(({fields}, index) =>
                 <section className="section" key={fields.title + index}>
                   <div className="container">
-                    <h1 className="title is -1">{fields.title}</h1>
+                    <h1 className="title is-1">{fields.title}</h1>
                     <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                     <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
                   </div>
@@ -78,7 +78,7 @@ class Section extends Component {
             this.props.data.slice(0, 5).map(({fields}, index) =>
               <section className="section" key={fields.title + index}>
                 <div className="container">
-                  <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+                  <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
                   <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                   <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.content))}/>
                   <br/>
@@ -99,7 +99,7 @@ class Section extends Component {
             fields.path === this.props.routing.match.url).map(({fields}, index) =>
               <section className="section" key={fields.title + index}>
                 <div className="container">
-                  <a href={fields.path}><h1 className="title is -1">{fields.title}</h1></a>
+                  <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
                   <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                   <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
                   {fields.download ? <a href={fields.download}>Download</a> : ''}

@@ -43,7 +43,7 @@ class NavBar extends Component {
     }
 
     return (
-      <nav className="navbar is-fixed-top is-white" aria-label="dropdown navigation">
+      <nav className="navbar is-fixed-top is-light" aria-label="dropdown navigation">
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
             <div className="navbar-item"><img src={madLogo} alt="Madmoney" width="50" height="30"/></div>
@@ -55,7 +55,7 @@ class NavBar extends Component {
           </a>
         </div>
         <div className="navbar-menu" id="sibling-menu">
-          <a className="navbar-item" href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span> Blogs</a>
+          <a className="navbar-item" href="/blogs"><span className="icon is-$primary"><i className="fas fa-rss"></i></span> Blogs</a>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Downloads</a>
             <div className="navbar-dropdown">

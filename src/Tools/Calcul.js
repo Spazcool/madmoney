@@ -68,11 +68,7 @@ class Calcul extends Component {
         }else{
           _tempName[event.target.name] = Number(event.target.value);
         }
-        this.setState({
-          [obj]: _tempName
-        }, () => {
-          this.calculateYield();
-        });
+        this.setState({[obj]: _tempName}, () => {this.calculateYield();});
       }
     }
   }

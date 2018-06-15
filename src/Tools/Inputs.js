@@ -3,7 +3,6 @@ import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-slider/dist/bulma-slider.min.css';
 import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
 import 'bulma-extensions/bulma-tooltip/dist/bulma-tooltip.min.css';
-// import FadeIn from 'react-fade-in';
 import React, { Component } from 'react';
 
 class Inputs extends Component {
@@ -63,18 +62,6 @@ class Inputs extends Component {
         // Set output position
         output.style['left'] = newPosition.position;
       }
-
-     // Add event listener to update output when slider value change
-      // slider.addEventListener( 'input', function( e ) {
-      //   if ( e.target.classList.contains( 'has-output-tooltip' ) ) {
-      //     // Get new output position
-      //     let newPosition = this.getSliderOutputPosition( e.target );
-      //     // Set output position
-      //     output.style[ 'left' ] = newPosition.position;
-      //   }
-      //   // Update output with slider value
-      //   output.value = e.target.value;
-      // } );
     }
   }
 

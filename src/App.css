@@ -1,8 +1,11 @@
 .App {
-  /* background-color: #FFFFEE; */
-  /* background-color: #ffe3f1; */
   /* background-image: url("https://www.transparenttextures.com/patterns/french-stucco.png"); */
   text-align: center;
+}
+.navbar{
+  /* background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png"); */
+  /* background-image: url("https://www.transparenttextures.com/patterns/dark-brick-wall.png"); */
+  /* background-image: url("https://www.transparenttextures.com/patterns/french-stucco.png"); */
 }
 
 /*HEADER*/
@@ -16,8 +19,7 @@
   font-size: 1.5em;
 }
 .section a:hover{
-  color: red;
-  /* color:hsl(171, 100%, 41%); */
+  color:hsl(171, 100%, 41%);
 }
 .markedWrapper{
   overflow: auto;
@@ -73,5 +75,5 @@ footer a{
   color:inherit;
 }
 footer a:hover{
-  color:hsl(171, 100%, 41%);
+  color: hsl(171, 100%, 41%);
 }
