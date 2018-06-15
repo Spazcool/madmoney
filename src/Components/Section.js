@@ -2,7 +2,6 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
-// import HTMLParser from 'fast-html-parser';
 import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
@@ -14,7 +13,7 @@ class Section extends Component {
     let _multiple;
     let _temp = ["<div class='columns is-multiline'>"];
     if(imgs.length === 1){
-      return imgs[0]
+      return "<span class='single'>"+imgs[0]+"</span>";
     }else{
       imgs.forEach(img => _temp.push("<div class='column is-6'>"+img+"</div>"))
     }
@@ -28,9 +27,7 @@ class Section extends Component {
     let _complete;
     let _temp = ["<div class='markedWrapper'>"];
     let _imgs = a.replace(/<\/p>/g, '').match(/<img.*>/g);
-    let _text = a.replace(/<img.*>/g, '');
-     _text = _text.replace(/<p>/g, '');
-     _text = _text.replace(/<\/p>/g, '');
+    let _text = a.replace(/<img.*>|<p>|<\/p>/g, '');
      if(_imgs === null){
        _temp.push(_text);
      }else if(_imgs.length > 1){

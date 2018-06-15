@@ -23,23 +23,20 @@
   overflow: auto;
   text-align: left;
 }
-.markedWrapper img{
+.single img{
   border-radius: 5px;
   float: right;
   margin: 0 0 3px 3px;
   width: 20em;
 }
 .columns{
+  padding-top: 0.75rem;
   overflow: auto;
   width: 100%;
 }
-.column{
-  margin-top: 0.75rem;
-  overflow: auto;
-}
 .column img{
-  float: none;
-  width: 99.5%;
+  border-radius: 5px;
+  width: 100%;
 }
 
 /*SHARE BUTTONS*/
