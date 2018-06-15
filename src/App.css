@@ -26,19 +26,17 @@
   margin: 0 0 3px 3px;
   width: 30em;
 }
+
 .imgBox {
-  /* margin-top:  -2em; */
-  /* border: 1px dotted red; */
-  /* float: right;
-  width: 30em; */
+  border: 2px dotted red;
+  /* width: 100%; */
 }
 .imgBox img{
-  /* border-radius: 5px; */
+  /* display: inline-block; */
+  width: 40%;
+  float: none;
 }
 
-.multiple{
-
-}
 
 /*SHARE BUTTONS*/
 #share a {

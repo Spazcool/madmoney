@@ -16,16 +16,14 @@ class Section extends Component {
 // TODO DONT APPLY THE DIV TO A NULL OR SINGLE, SEE IF THAT ALLOWS THE overflow
   handleImgs(imgs) {
     let _multiple;
-    let _temp = ["<span class='imgBox multiple'>"];
-    if(imgs === null){
-      return ''
-    }else if(imgs.length === 1){
+    let _temp = ["<div class='container imgBox'>"];
+    if(imgs.length === 1){
       return imgs[0]
     }else{
       imgs.forEach(img =>
         _temp.push(img)
       )}
-    _temp.push("</span>");
+    _temp.push("</div>");
     _multiple = _temp.join('');
     return _multiple;
   }
@@ -38,10 +36,16 @@ class Section extends Component {
     let _text = a.replace(/<img.*>/g, '');
      _text = _text.replace(/<p>/g, '');
      _text = _text.replace(/<\/p>/g, '');
-    _temp.push(this.handleImgs(_imgs).concat(_text));
+     if(_imgs === null){
+       _temp.push(_text);
+     }else if(_imgs.length > 1){
+       _temp.push(_text.concat(this.handleImgs(_imgs)));
+     }else{
+       _temp.push(this.handleImgs(_imgs).concat(_text));
+     }
     _temp.push("</div>")
     _complete =  _temp.join('');
-    console.log("_complete", _complete);
+    // console.log("_complete", _complete);
     return {__html: _complete};
   }
 
