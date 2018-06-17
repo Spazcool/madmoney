@@ -113,7 +113,9 @@ class Inputs extends Component {
 
     for(let i = 0; i < inputTitles.length; i++){
       inputs.push(
-        <div className="tile is-child box field" key={inputTitles[i]}>
+        <div
+          className={(inputTitles[i] === 'prix' ? 'prix' : (inputTitles[i] === 'revenus' ? 'revenus' : 'frais')) + ' tile is-child box field'} 
+          key={inputTitles[i]}>
           <h2 className="label is-capitalized">{inputTitles[i]}</h2>
           {inputNames.filter(input =>
           input[0] === inputTitles[i]).map(input =>

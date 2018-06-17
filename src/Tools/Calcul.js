@@ -14,7 +14,7 @@ class Calcul extends Component {
         cashFlow:0,
         notaryFee: 0,
         totalPurchase:0,
-        yieldNet:0,
+        'Net Yield':0,
       },
       frais:{
         administrative:0,
@@ -53,7 +53,7 @@ class Calcul extends Component {
     _output.notaryFee = ((_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice).toFixed(0);
     _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10)).toFixed(0);
     let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100).toFixed(0);
-    _output.yieldNet = isNaN(_yieldNet) ? 0 : _yieldNet;
+    _output['Net Yield'] = isNaN(_yieldNet) ? 0 : _yieldNet;
     this.setState({
       output: _output
     })

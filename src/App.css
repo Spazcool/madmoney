@@ -61,9 +61,14 @@
 }
 
 /*CALCULATOR*/
-.embiggen{
-  font-size: 50px;
-  font-weight: bold;
+.frais{
+  background-color: red;
+}
+.prix{
+  background-color: blue;
+}
+.revenus{
+  background-color: green;
 }
 .tile-title{
   font-size: 10px;

@@ -19,7 +19,11 @@ class Outputs extends Component {
         <div className="tile is-child box" key={outputNames[i][1]}>
           <div className="answer">
             <label className="label is-capitalized">{outputNames[i][1]}</label>
-            <h1 className="embiggen">{this.props.output[outputNames[i][1]]}</h1>
+            <h1 className="subtitle is-1">
+              {outputNames[i][1] !== 'Net Yield' ? String.fromCharCode(8364) : ''}
+              {this.props.output[outputNames[i][1]]}
+              {outputNames[i][1] === 'Net Yield' ? '%' : ''}
+            </h1>
           </div>
         </div>
       )
