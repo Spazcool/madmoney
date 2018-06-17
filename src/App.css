@@ -2,7 +2,7 @@
   /* background-image: url("https://www.transparenttextures.com/patterns/french-stucco.png"); */
   text-align: center;
 }
-.navbar{
+.nav{
   /* background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png"); */
   /* background-image: url("https://www.transparenttextures.com/patterns/dark-brick-wall.png"); */
   /* background-image: url("https://www.transparenttextures.com/patterns/french-stucco.png"); */
@@ -61,19 +61,6 @@
 }
 
 /*CALCULATOR*/
-.frais{
-  background-color: red;
-}
-.prix{
-  background-color: blue;
-}
-.revenus{
-  background-color: green;
-}
-.tile-title{
-  font-size: 10px;
-  font-weight: bold;
-}
 
 /*FOOTER*/
 footer a{

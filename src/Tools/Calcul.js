@@ -1,5 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
+import Info from './Info';
 import Inputs from './Inputs';
 import Outputs from './Outputs';
 import React, { Component } from 'react';
@@ -88,6 +89,7 @@ class Calcul extends Component {
             output={this.state.output}
           />
         </div>
+        <Info />
       </div>
     )
   }

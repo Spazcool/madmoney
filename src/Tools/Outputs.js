@@ -16,12 +16,21 @@ class Outputs extends Component {
 
     for(let i = 0; i < outputNames.length; i++){
       outputs.push(
-        <div className="tile is-child box" key={outputNames[i][1]}>
+        <div
+          className="tile is-child box"
+          key={outputNames[i][1]}>
           <div className="answer">
-            <label className="label is-capitalized">{outputNames[i][1]}</label>
+            <label
+              className={
+                (outputNames[i][1] === 'totalPurchase' ? 'is-primary' :
+                (outputNames[i][1] === 'annualRent' ? 'is-danger' :
+                (outputNames[i][1] === 'annualExpenses' ? 'is-info' :
+                (outputNames[i][1] === 'cashFlow' ? 'is-warning' : ' is-success')))) + " label notification is-capitalized"}>
+              {outputNames[i][1]}
+            </label>
             <h1 className="subtitle is-1">
               {outputNames[i][1] !== 'Net Yield' ? String.fromCharCode(8364) : ''}
-              {this.props.output[outputNames[i][1]]}
+              {Number(this.props.output[outputNames[i][1]]).toLocaleString("fr-FR", {minimumFractionDigits: 2})}
               {outputNames[i][1] === 'Net Yield' ? '%' : ''}
             </h1>
           </div>
@@ -31,12 +40,12 @@ class Outputs extends Component {
 
     return(
       <div className="tile">
-        <div className="tile is-vertical is-parent">
+        <div className="tile is-parent is-vertical">
           {outputs[4]}
           {outputs[1]}
           {outputs[0]}
         </div>
-        <div className="tile is-vertical is-parent">
+        <div className="tile is-parent is-vertical">
           {outputs[5]}
           {outputs[2]}
         </div>

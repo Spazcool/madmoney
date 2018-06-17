@@ -17,7 +17,6 @@ class Inputs extends Component {
     let idVal = element.id;
     let outputs = document.getElementsByTagName('output');
     for(let i = 0; i < outputs.length; i++){
-      console.log(outputs[i].htmlFor.value)
       if (outputs[i].htmlFor.value === idVal){
         return outputs[i];
       }
@@ -85,6 +84,7 @@ class Inputs extends Component {
     let lostMonthes =
       <div className="control" key="lostMonthesBox">
         <label className="label">Lost Monthes</label>
+        <br/>
         <input
           className="slider is-fullwidth is-info is-small has-output-tooltip"
           id="lostMonthes"
@@ -96,7 +96,7 @@ class Inputs extends Component {
           type="range"
           value={this.props.revenus.lostMonthes}
         />
-      <output htmlFor="lostMonthes">{this.props.revenus.lostMonthes}</output>
+      <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
       </div>;
 
     let inputs = [];
@@ -114,9 +114,13 @@ class Inputs extends Component {
     for(let i = 0; i < inputTitles.length; i++){
       inputs.push(
         <div
-          className={(inputTitles[i] === 'prix' ? 'prix' : (inputTitles[i] === 'revenus' ? 'revenus' : 'frais')) + ' tile is-child box field'} 
+          className='tile is-child box'
           key={inputTitles[i]}>
-          <h2 className="label is-capitalized">{inputTitles[i]}</h2>
+          <h2 className={
+            (inputTitles[i] === 'prix' ? 'is-primary' :
+            (inputTitles[i] === 'revenus' ? 'is-danger' : 'is-info')) + " notification label is-capitalized"}>
+            {inputTitles[i]}
+          </h2>
           {inputNames.filter(input =>
           input[0] === inputTitles[i]).map(input =>
           input[1] === "oldProperty" ? switcher :
