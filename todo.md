@@ -6,11 +6,11 @@
     []charts instead || w/ output numbers
 
     []print view button
-    []link to spreadsheet
     []data items will be renamed in french
     []revenus inputs monthlyRent on top
     []downloads button
     []lostMonthes tooltip positioned over everfything else, needs to be below navbar
+
 **NICETIES**
   []title links black to blue
   []fade in for 'looking for something types'

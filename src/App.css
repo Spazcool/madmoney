@@ -61,7 +61,10 @@
 }
 
 /*CALCULATOR*/
-
+.svg-container{
+  width: 10px;
+  border: 2px dotted red;
+}
 /*FOOTER*/
 footer a{
   color:inherit;
