@@ -48,12 +48,22 @@ class Calcul extends Component {
     let _prix = this.state.prix;
     let _revenus = this.state.revenus;
     let _output = Object.assign({}, this.state.output);
-    _output.annualExpenses = (_frais.monthlyExpenses * 12).toFixed(0);
-    _output.annualRent = ((_revenus.monthlyRent * 12) - (_revenus.monthlyRent * _revenus.lostMonthes)).toFixed(0);
-    _output.cashFlow = ((_output.annualRent - _output.annualExpenses) / 12 - _frais.monthlyMortgage).toFixed(0);
-    _output.notaryFee = ((_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice).toFixed(0);
-    _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10)).toFixed(0);
-    let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100).toFixed(0);
+    // annualExpenses is all of the frais added up
+    _output.annualExpenses = (
+      (_frais.monthlyExpenses * 12) +
+      (_frais.monthlyMortgage * 12) +
+      _frais.administrative +
+      _frais.copropriete +
+      _frais.divers +
+      _frais.fonciere +
+      _frais.habitation +
+      _frais.loyers +
+      _frais.reperation);
+    _output.annualRent = ((_revenus.monthlyRent * 12) - (_revenus.monthlyRent * _revenus.lostMonthes));
+    _output.cashFlow = ((_output.annualRent - _output.annualExpenses) / 12 - _frais.monthlyMortgage);
+    _output.notaryFee = ((_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice);
+    _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10));
+    let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100);
     _output['Net Yield'] = isNaN(_yieldNet) ? 0 : _yieldNet;
     this.setState({
       output: _output

@@ -102,7 +102,7 @@ class Section extends Component {
                   <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
                   <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
                   <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
-                  {fields.download ? <a href={fields.download}>Download</a> : ''}
+                  {fields.download ? <a class="button is-info" href={fields.download}>Download</a> : ''}
                   <br/>
                   <Share
                     media={fields.content}

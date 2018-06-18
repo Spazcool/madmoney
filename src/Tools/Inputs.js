@@ -77,7 +77,7 @@ class Inputs extends Component {
             onChange={this.props.handleChange}
             type="checkbox"
           />
-        <label htmlFor="switchExample"> + <span className="tooltip" data-tooltip={this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>{this.props.output.notaryFee}</span></label>
+        <label htmlFor="switchExample"> + <span className="tooltip" data-tooltip={this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>{Number(this.props.output.notaryFee).toFixed(0)}</span></label>
         </div>
       </div>;
 

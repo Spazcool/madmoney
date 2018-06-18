@@ -15,14 +15,14 @@ class Share extends Component {
 
     let facebook =
         <a
-          className="button is-primary facebook"
+          className="button is-link facebook"
           href={"https://www.facebook.com/share.php?u=www.madmoney.com"+this.props.url+"&title="+this.props.title}
           target="blank">
           <i className="fab fa-facebook"></i>
         </a>;
     let googlePlus =
         <a
-          className="button is-primary googleplus"
+          className="button is-success googleplus"
           href={"https://plus.google.com/share?url=www.madmoney.com"+this.props.url}
           target="blank">
           <i className="fab fa-google-plus"></i>
@@ -36,14 +36,14 @@ class Share extends Component {
         </a>;
       let pinterest =
           <a
-            className="button is-primary pinterest"
+            className="button is-danger pinterest"
             href={"https://pinterest.com/pin/create/bookmarklet/?media="+this.props.media+"&url="+this.props.url+"&is_video=false&description="+this.props.title}
             target="blank">
             <i className="fab fa-pinterest-p"></i>
           </a>;
       let twitter =
           <a
-            className="button is-primary twitter"
+            className="button is-warning twitter"
             href={"https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.madmoney.com"+this.props.url+"&ref_src="+this.props.source+"&text="+this.props.title+"&tw_p=tweetbutton&url=http%3A%2F%2Fwww.madmoney.com"+this.props.url+"&via=madmoney"}
             target="blank">
             <i className="fab fa-twitter"></i>

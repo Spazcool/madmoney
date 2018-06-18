@@ -1,5 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
+import DonutChart from './DonutChart';
 import React, { Component } from 'react';
 
 class Outputs extends Component {
@@ -30,9 +31,12 @@ class Outputs extends Component {
             </label>
             <h1 className="subtitle is-1">
               {outputNames[i][1] !== 'Net Yield' ? String.fromCharCode(8364) : ''}
-              {Number(this.props.output[outputNames[i][1]]).toLocaleString("fr-FR", {minimumFractionDigits: 2})}
+              {Number(this.props.output[outputNames[i][1]]).toLocaleString("fr-FR", {maximumFractionDigits: 2})}
               {outputNames[i][1] === 'Net Yield' ? '%' : ''}
             </h1>
+            <DonutChart
+              style={{width: '10px'}}
+              />
           </div>
         </div>
       )
