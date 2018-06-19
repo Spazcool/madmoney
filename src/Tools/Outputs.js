@@ -40,7 +40,6 @@ class Outputs extends Component {
         </div>
       )
     }
-    // _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10));
 
     return(
       <div className="tile">
