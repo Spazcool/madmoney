@@ -1,6 +1,5 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import Chart from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import React, { Component } from 'react';
 
