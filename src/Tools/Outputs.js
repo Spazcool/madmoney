@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 
 class Outputs extends Component {
   render(){
+
     let outputs = [];
     let outputNames = [];
 
@@ -34,11 +35,12 @@ class Outputs extends Component {
               {Number(this.props.output[outputNames[i][1]]).toLocaleString("fr-FR", {maximumFractionDigits: 2})}
               {outputNames[i][1] === 'Net Yield' ? '%' : ''}
             </h1>
-            <DonutChart className="DonutChart"/>
+            <DonutChart data={[this.props.prix.basePrice, this.props.prix.repairCosts, this.props.output.notaryFee]} labels={['cat', 'dog', 'bird']}/>
           </div>
         </div>
       )
     }
+    // _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10));
 
     return(
       <div className="tile">

@@ -97,6 +97,7 @@ class Calcul extends Component {
           />
           <Outputs
             output={this.state.output}
+            prix={this.state.prix}
           />
         </div>
         <Info />
