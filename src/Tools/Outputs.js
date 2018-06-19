@@ -34,9 +34,7 @@ class Outputs extends Component {
               {Number(this.props.output[outputNames[i][1]]).toLocaleString("fr-FR", {maximumFractionDigits: 2})}
               {outputNames[i][1] === 'Net Yield' ? '%' : ''}
             </h1>
-            <DonutChart
-              style={{width: '10px'}}
-              />
+            <DonutChart className="DonutChart"/>
           </div>
         </div>
       )

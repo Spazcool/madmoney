@@ -62,8 +62,11 @@
 
 /*CALCULATOR*/
 .svg-container{
-  width: 10px;
   border: 2px dotted red;
+}
+.plots{
+  margin: 0;
+  padding: 0;
 }
 /*FOOTER*/
 footer a{
