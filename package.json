@@ -15,7 +15,6 @@
     "chart.js": "^2.7.2",
     "cli-table2": "^0.2.0",
     "contentful": "^6.1.0",
-    "jsx-to-string": "^1.4.0",
     "marked": "^0.3.19",
     "react": "^16.3.2",
     "react-chartjs": "^1.2.0",
