@@ -60,11 +60,11 @@ class Calcul extends Component {
       _frais.loyers +
       _frais.reperation);
     _output.annualRent = ((_revenus.monthlyRent * 12) - (_revenus.monthlyRent * _revenus.lostMonthes));
-    _output.cashFlow = ((_output.annualRent - _output.annualExpenses) / 12 - _frais.monthlyMortgage);
+    // _output.cashFlow = ((_output.annualRent - _output.annualExpenses) / 12 - _frais.monthlyMortgage);
     _output.notaryFee = ((_prix.oldProperty ? 0.08 : 0.045) * _prix.basePrice);
     _output.totalPurchase = (parseInt(_prix.basePrice, 10) + parseInt(_prix.repairCosts, 10) + parseInt(_output.notaryFee, 10));
-    let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100);
-    _output['Net Yield'] = isNaN(_yieldNet) ? 0 : _yieldNet;
+    // let _yieldNet = ((_output.annualRent - _output.annualExpenses) / _output.totalPurchase * 100);
+    // _output['Net Yield'] = isNaN(_yieldNet) ? 0 : _yieldNet;
     this.setState({
       output: _output
     })

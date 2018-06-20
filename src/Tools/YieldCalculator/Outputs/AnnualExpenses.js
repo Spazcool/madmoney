@@ -5,16 +5,7 @@ import React, { Component } from 'react';
 
 class AnnualExpenses extends Component {
   render(){
-    let sum =
-      (this.props.frais.monthlyExpenses * 12) +
-      (this.props.frais.monthlyMortgage * 12) +
-      this.props.frais.administrative +
-      this.props.frais.copropriete +
-      this.props.frais.divers +
-      this.props.frais.fonciere +
-      this.props.frais.habitation +
-      this.props.frais.loyers +
-      this.props.frais.reperation;
+    let sum = this.props.output.annualExpenses;
     return(
       <div className="tile is-child box">
         <div className="answer">

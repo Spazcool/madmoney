@@ -14,7 +14,7 @@ class Outputs extends Component {
         <div className="tile is-parent is-vertical">
           <TotalPurchase output={this.props.output} prix={this.props.prix}/>
           <AnnualRent revenus={this.props.revenus}/>
-          <AnnualExpenses frais={this.props.frais}/>
+          <AnnualExpenses frais={this.props.frais} output={this.props.output}/>
         </div>
         <div className="tile is-parent is-vertical">
           <NetYield output={this.props.output}/>
