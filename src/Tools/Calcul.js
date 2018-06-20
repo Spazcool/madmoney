@@ -89,15 +89,17 @@ class Calcul extends Component {
       <div className="box notification">
         <div className="Calcul tile is-ancestor">
           <Inputs
-            output={this.state.output}
             frais={this.state.frais}
+            output={this.state.output}
             prix={this.state.prix}
             revenus={this.state.revenus}
             handleChange={this.handleChange}
           />
           <Outputs
+            frais={this.state.frais}
             output={this.state.output}
             prix={this.state.prix}
+            revenus={this.state.revenus}
           />
         </div>
         <Info />
