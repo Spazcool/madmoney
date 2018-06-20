@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import DonutChart from './DonutChart';
 import React, { Component } from 'react';
 
+// TODO use a bargraph not a donut
 class AnnualRent extends Component {
   render(){
     let lost = this.props.revenus.monthlyRent * this.props.revenus.lostMonthes;
