@@ -1,4 +1,4 @@
-import './../../App.css';
+import './../../../App.css';
 import 'bulma/css/bulma.css';
 import DonutChart from './DonutChart';
 import React, { Component } from 'react';

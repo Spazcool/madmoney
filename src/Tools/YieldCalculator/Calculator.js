@@ -1,8 +1,8 @@
-import './../App.css';
+import './../../App.css';
 import 'bulma/css/bulma.css';
 import Info from './Info';
 import Inputs from './Inputs';
-import Outputs from './Outputs';
+import Outputs from './Outputs/Outputs';
 import React, { Component } from 'react';
 
 class Calcul extends Component {

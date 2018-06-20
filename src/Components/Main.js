@@ -1,4 +1,4 @@
-import Calcul from './../Tools/Calcul';
+import Calcul from './../Tools/YieldCalculator/Calculator';
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Section from './Section';

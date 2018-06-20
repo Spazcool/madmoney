@@ -1,5 +1,5 @@
-import './../../App.css';
-import ArrowRight from './../../Imgs/ArrowRight.png';
+import './../../../App.css';
+import ArrowRight from './../../../Imgs/ArrowRight.png';
 import 'bulma/css/bulma.css';
 import React, { Component } from 'react';
 

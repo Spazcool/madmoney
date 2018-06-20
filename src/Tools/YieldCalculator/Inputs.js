@@ -1,4 +1,4 @@
-import './../App.css';
+import './../../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-slider/dist/bulma-slider.min.css';
 import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';

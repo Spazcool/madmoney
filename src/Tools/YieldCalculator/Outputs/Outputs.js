@@ -1,11 +1,11 @@
-import AnnualExpenses from './Outputs/AnnualExpenses';
-import AnnualRent from './Outputs/AnnualRent';
-import './../App.css';
+import AnnualExpenses from './AnnualExpenses';
+import AnnualRent from './AnnualRent';
+import './../../../App.css';
 import 'bulma/css/bulma.css';
-import CashFlow from './Outputs/CashFlow';
-import NetYield from './Outputs/NetYield';
+import CashFlow from './CashFlow';
+import NetYield from './NetYield';
 import React, { Component } from 'react';
-import TotalPurchase from './Outputs/TotalPurchase';
+import TotalPurchase from './TotalPurchase';
 
 class Outputs extends Component {
   render(){
