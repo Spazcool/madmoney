@@ -5,9 +5,10 @@ import React, { Component } from 'react';
 
 class CashFlow extends Component {
   render(){
-    let cashIn = this.props.output.annualRent / 12;
+    let cashIn = ((this.props.revenus.monthlyRent * 12) - (this.props.revenus.monthlyRent * this.props.revenus.lostMonthes)) / 12;
     let cashOut = this.props.output.annualExpenses / 12;
-    let flow = (this.props.output.annualRent - this.props.output.annualExpenses) / 12;
+    let flow = cashIn - cashOut;
+
     return(
       <div className="tile is-child box">
         <div className="answer">
@@ -39,4 +40,5 @@ class CashFlow extends Component {
     )
   }
 }
+
 export default CashFlow;

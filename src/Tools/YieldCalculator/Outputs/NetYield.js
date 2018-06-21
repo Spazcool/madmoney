@@ -1,11 +1,14 @@
 import './../../../App.css';
 import 'bulma/css/bulma.css';
-import DonutChart from './DonutChart';
+import Pie from './Charts/PieChart';
 import React, { Component } from 'react';
 
 class NetYield extends Component {
   render(){
-    let net = (this.props.output.annualRent - this.props.output.annualExpenses) / this.props.output.totalPurchase * 100;
+    let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
+    let totalPurchase = (parseInt(this.props.prix.basePrice, 10) + parseInt(this.props.prix.repairCosts, 10) + parseInt(notaryFee, 10));
+    let net = ((((this.props.revenus.monthlyRent * 12) - (this.props.revenus.monthlyRent * this.props.revenus.lostMonthes))) - this.props.output.annualExpenses) / totalPurchase * 100;
+
     return(
       <div className="tile is-child box">
         <div className="answer">
@@ -15,7 +18,7 @@ class NetYield extends Component {
           <h1 className="subtitle is-1">
             {Number(isNaN(net) ? 0 : net).toLocaleString("fr-FR", {maximumFractionDigits: 2})}%
           </h1>
-          <DonutChart
+          <Pie
             data={[
               net.toFixed(2),
               (100 - net).toFixed(2)

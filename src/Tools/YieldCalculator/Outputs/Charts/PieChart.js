@@ -1,14 +1,13 @@
-import './../../../App.css';
+import './../../../../App.css';
 import 'bulma/css/bulma.css';
-import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import React, { Component } from 'react';
 
-class DonutChart extends Component {
+class PieChart extends Component {
   render() {
     const data = {
       labels: this.props.labels,
-      datasets: [
-        {
+      datasets: [{
         data: this.props.data,
         backgroundColor: [
           '#FF6384',
@@ -32,12 +31,12 @@ class DonutChart extends Component {
           '#55DD77',
           '#77A8D1'
         ]
-      }
-    ]
+      }]
     };
     return (
-      <Doughnut data={data} />
+      <Pie data={data}/>
     )
   }
 }
-export default DonutChart;
+
+export default PieChart;

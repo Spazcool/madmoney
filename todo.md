@@ -10,6 +10,7 @@
     []revenus inputs monthlyRent on top
     []downloads button
     []lostMonthes tooltip positioned over everfything else, needs to be below navbar
+    []frais montthly items need to be differentiated by color or theme
 
 **NICETIES**
   []title links black to blue

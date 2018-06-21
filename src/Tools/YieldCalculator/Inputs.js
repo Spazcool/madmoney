@@ -16,6 +16,7 @@ class Inputs extends Component {
   findOutputForSlider(element) {
     let idVal = element.id;
     let outputs = document.getElementsByTagName('output');
+
     for(let i = 0; i < outputs.length; i++){
       if (outputs[i].htmlFor.value === idVal){
         return outputs[i];
@@ -24,11 +25,10 @@ class Inputs extends Component {
   }
 
   getSliderOutputPosition(slider) {
-    let newPlace,
-        minValue;
+    let newPlace, minValue;
     let style = window.getComputedStyle(slider, null);
     let sliderWidth = parseInt( style.getPropertyValue('width'), 10);
-    // Figure out placement percentage between left and right of input
+
     if (!slider.getAttribute('min')) {
       minValue = 0;
     } else {
@@ -36,7 +36,7 @@ class Inputs extends Component {
     }
 
     let newPoint = (slider.value - minValue) / (slider.getAttribute('max') - minValue);
-    // Prevent bubble from going beyond left or right (unsupported browsers)
+
     if (newPoint < 0) {
       newPlace = 0;
     } else if (newPoint >= 1) {
@@ -56,18 +56,23 @@ class Inputs extends Component {
 
     if (output){
       if (slider.classList.contains('has-output-tooltip')){
-        // Get new output position
         let newPosition = this.getSliderOutputPosition(slider);
-        // Set output position
         output.style['left'] = newPosition.position;
       }
     }
   }
 
   render(){
+    let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
     let switcher =
       <div className="control" key="switcher">
-        <label className="label">Old Property</label>
+        <label className="label">
+          <span
+            className="tooltip is-tooltip-right"
+            data-tooltip={"Some useful info about this thing."}>
+              Old Property
+          </span>
+        </label>
         <div className="field">
           <input
             checked={this.props.prix.oldProperty}
@@ -77,13 +82,26 @@ class Inputs extends Component {
             onChange={this.props.handleChange}
             type="checkbox"
           />
-        <label htmlFor="switchExample"> + <span className="tooltip" data-tooltip={this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>{Number(this.props.output.notaryFee).toFixed(0)}</span></label>
+          <label htmlFor="switchExample">
+          + <span
+            className="tooltip is-tooltip-right"
+            data-tooltip={String.fromCharCode(8364) + this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>
+              {String.fromCharCode(8364)}
+              {Number(notaryFee).toFixed(0)}
+            </span>
+          </label>
         </div>
       </div>;
 
     let lostMonthes =
       <div className="control" key="lostMonthesBox">
-        <label className="label">Lost Monthes</label>
+        <label className="label">
+          <span
+            className="tooltip is-tooltip-right"
+            data-tooltip={"Some useful info about this thing."}>
+              Lost Monthes
+          </span>
+        </label>
         <br/>
         <input
           className="slider is-fullwidth is-info is-small has-output-tooltip"
@@ -96,7 +114,7 @@ class Inputs extends Component {
           type="range"
           value={this.props.revenus.lostMonthes}
         />
-      <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
+        <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
       </div>;
 
     let inputs = [];
@@ -126,7 +144,13 @@ class Inputs extends Component {
           input[1] === "oldProperty" ? switcher :
           (input[1] === "lostMonthes" ? lostMonthes :
             <div className="control" key={input[1]}>
-              <label className="label is-capitalized">{input[1]}</label>
+              <label className="label is-capitalized">
+                <span
+                  className="tooltip is-tooltip-right"
+                  data-tooltip={"Some useful info about this thing."}>
+                    {input[1]}
+                  </span>
+                </label>
               <input
                 className="input"
                 name={input[1]}
@@ -148,4 +172,5 @@ class Inputs extends Component {
     )
   }
 }
+
 export default Inputs;

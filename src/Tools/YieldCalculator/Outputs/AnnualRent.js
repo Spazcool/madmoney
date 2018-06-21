@@ -1,9 +1,8 @@
 import './../../../App.css';
 import 'bulma/css/bulma.css';
-import DonutChart from './DonutChart';
+import BarChart from './Charts/BarChart';
 import React, { Component } from 'react';
 
-// TODO use a bargraph not a donut
 class AnnualRent extends Component {
   render(){
     let lost = this.props.revenus.monthlyRent * this.props.revenus.lostMonthes;
@@ -19,14 +18,14 @@ class AnnualRent extends Component {
             {String.fromCharCode(8364)}
             {Number(anum).toLocaleString("fr-FR", {maximumFractionDigits: 2})}
           </h1>
-          <DonutChart
+          <BarChart
             data={[
               lost,
               rent
             ]}
             labels={[
-              'Monthes Vacant',
-              'Monthes Rented'
+              'Potential Annual Rent Lost',
+              'Potential Annual Rent'
             ]}
           />
         </div>
@@ -34,4 +33,5 @@ class AnnualRent extends Component {
     )
   }
 }
+
 export default AnnualRent;

@@ -12,16 +12,17 @@ class Outputs extends Component {
     return(
       <div className="tile">
         <div className="tile is-parent is-vertical">
-          <TotalPurchase output={this.props.output} prix={this.props.prix}/>
+          <TotalPurchase prix={this.props.prix}/>
           <AnnualRent revenus={this.props.revenus}/>
           <AnnualExpenses frais={this.props.frais} output={this.props.output}/>
         </div>
         <div className="tile is-parent is-vertical">
-          <NetYield output={this.props.output}/>
-          <CashFlow frais={this.props.frais} output={this.props.output}/>
+          <NetYield output={this.props.output} prix={this.props.prix} revenus={this.props.revenus}/>
+          <CashFlow output={this.props.output} revenus={this.props.revenus}/>
         </div>
       </div>
     )
   }
 }
+
 export default Outputs;

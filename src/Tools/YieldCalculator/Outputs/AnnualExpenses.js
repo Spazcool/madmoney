@@ -1,6 +1,6 @@
 import './../../../App.css';
 import 'bulma/css/bulma.css';
-import DonutChart from './DonutChart';
+import DonutChart from './Charts/DonutChart';
 import React, { Component } from 'react';
 
 class AnnualExpenses extends Component {
