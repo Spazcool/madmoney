@@ -11,6 +11,8 @@
     []downloads button
     []lostMonthes tooltip positioned over everfything else, needs to be below navbar
     []frais montthly items need to be differentiated by color or theme
+    []remove bar graph from AnnualRent comp, or change it heavily
+    []slider for administrative
 
 **NICETIES**
   []title links black to blue
@@ -22,3 +24,41 @@
 
 **DEPLOY**
   []AWS?
+
+RENAME
+  frais:{
+    annuels
+  },
+  depenses [all inputs to be based on a yearly rate] (depenses annuelles totales for output):{
+    gestion (monthly)
+    copropriete (yearly)
+    divers (yearly)
+    taxe fonciere (yearly)
+    assurance habitation (yearly)
+    entretien (yearly)
+  },
+  remboursement de pret:{
+    mensualite
+  },
+  prix total d'acquisition (same name for output):{
+    prix d'achat (FAI)
+    frais de renovation
+    propriete ancienne
+  },
+  recette locative (recette locative annuelle for output):{
+    vacance
+    loyer mensuel
+
+  netyield = rendement net
+  cashflow = cash flow mensuel
+  telechargements
+  calculatrice
+  calculatrice de rendement net
+  blogs = articles
+  home = accueil
+  shore = partager
+
+  Looking for an Entry?
+  A la recherche d'un article?
+  A la recherche d'un document?
+  A la recherche d'un outil?

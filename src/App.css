@@ -59,10 +59,14 @@
   text-align: center;
 }
 .centeredText{
+  font-size: 2em;
+  left: 50%;
+  overflow:hidden;
   position: absolute;
   top: 48%;
-  left: 50%;
   transform: translate(-50%, -50%);
+  white-space:nowrap;
+
 }
 .bounceRight {
   -moz-animation: bounceRight 2s infinite;

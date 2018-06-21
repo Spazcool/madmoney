@@ -63,6 +63,54 @@ class Inputs extends Component {
   }
 
   render(){
+    let administrative =
+      <div className="control">
+        <label className="label">
+          <span
+            className="tooltip is-tooltip-right"
+            data-tooltip={"Some useful info about this thing."}>
+              Administrative
+          </span>
+        </label>
+        <br/>
+        <input
+          className="slider is-fullwidth is-info is-small has-output-tooltip"
+          id="administrative"
+          min="0"
+          max="10"
+          name="administrative"
+          onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
+          step="1"
+          type="range"
+          value={this.props.frais.administrative}
+        />
+        <output htmlFor="administrative" style={{top:'30px'}}>{this.props.frais.administrative}</output>
+      </div>;
+
+    let lostMonthes =
+      <div className="control" key="lostMonthesBox">
+        <label className="label">
+          <span
+            className="tooltip is-tooltip-right"
+            data-tooltip={"Some useful info about this thing."}>
+              Lost Monthes
+          </span>
+        </label>
+        <br/>
+        <input
+          className="slider is-fullwidth is-info is-small has-output-tooltip"
+          id="lostMonthes"
+          min="0"
+          max="12"
+          name="lostMonthes"
+          onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
+          step="1"
+          type="range"
+          value={this.props.revenus.lostMonthes}
+        />
+        <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
+      </div>;
+
     let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
     let switcher =
       <div className="control" key="switcher">
@@ -93,36 +141,12 @@ class Inputs extends Component {
         </div>
       </div>;
 
-    let lostMonthes =
-      <div className="control" key="lostMonthesBox">
-        <label className="label">
-          <span
-            className="tooltip is-tooltip-right"
-            data-tooltip={"Some useful info about this thing."}>
-              Lost Monthes
-          </span>
-        </label>
-        <br/>
-        <input
-          className="slider is-fullwidth is-info is-small has-output-tooltip"
-          id="lostMonthes"
-          min="0"
-          max="12"
-          name="lostMonthes"
-          onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
-          step="1"
-          type="range"
-          value={this.props.revenus.lostMonthes}
-        />
-        <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
-      </div>;
-
     let inputs = [];
     let inputNames = [];
     let inputTitles = [];
 
     for(let data in this.props){
-      if(!this.props.hasOwnProperty(data) || data === "handleChange" || data === "output") continue;
+      if(!this.props.hasOwnProperty(data) || data === "handleChange" || data === "expenses") continue;
       for(let datem in this.props[data]){
         inputNames.push([data, datem])
       }
@@ -136,13 +160,15 @@ class Inputs extends Component {
           key={inputTitles[i]}>
           <h2 className={
             (inputTitles[i] === 'prix' ? 'is-primary' :
-            (inputTitles[i] === 'revenus' ? 'is-danger' : 'is-info')) + " notification label is-capitalized"}>
+            (inputTitles[i] === 'revenus' ? 'is-danger' :
+            (inputTitles[i] === 'frais' ? 'is-info' : 'is-warning'))) + " notification label is-capitalized"}>
             {inputTitles[i]}
           </h2>
           {inputNames.filter(input =>
           input[0] === inputTitles[i]).map(input =>
           input[1] === "oldProperty" ? switcher :
           (input[1] === "lostMonthes" ? lostMonthes :
+          (input[1] === "administrative" ? administrative :
             <div className="control" key={input[1]}>
               <label className="label is-capitalized">
                 <span
@@ -159,15 +185,16 @@ class Inputs extends Component {
                 value={this.props[input[1]]}
               />
             </div>
-          ))}
+          )))}
         </div>
       );
     }
     return(
       <div className="tile is-parent is-vertical is-4">
-        {inputs[1]}
         {inputs[2]}
+        {inputs[3]}
         {inputs[0]}
+        {inputs[1]}
       </div>
     )
   }

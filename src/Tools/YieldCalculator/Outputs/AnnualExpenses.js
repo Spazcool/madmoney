@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 class AnnualExpenses extends Component {
   render(){
-    let sum = this.props.output.annualExpenses;
+    let sum = this.props.expenses.annual;
     return(
       <div className="tile is-child box">
         <div className="answer">
@@ -19,7 +19,6 @@ class AnnualExpenses extends Component {
           <DonutChart
             data={[
               (this.props.frais.monthlyExpenses * 12),
-              (this.props.frais.monthlyMortgage * 12),
               this.props.frais.administrative,
               this.props.frais.copropriete,
               this.props.frais.divers,
@@ -30,7 +29,6 @@ class AnnualExpenses extends Component {
             ]}
             labels={[
               'Monthly Expenses',
-              'Monthly Mortgage',
               'Administrative',
               'Copropriete',
               'Divers',

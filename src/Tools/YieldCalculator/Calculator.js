@@ -9,8 +9,8 @@ class Calculator extends Component {
   constructor() {
     super();
     this.state = {
-      output:{
-        annualExpenses:0,
+      expenses:{
+        annual:0,
       },
       frais:{
         administrative:0,
@@ -20,8 +20,10 @@ class Calculator extends Component {
         habitation:0,
         loyers:0,
         monthlyExpenses:0,
-        monthlyMortgage:0,
         reperation:0,
+      },
+      mortgage:{
+        monthly:0,
       },
       prix:{
         basePrice:0,
@@ -39,11 +41,11 @@ class Calculator extends Component {
 
   calculateExpenses(){
     let _frais = this.state.frais;
-    let _output = Object.assign({}, this.state.output);
-    _output.annualExpenses = (
+    let _revenus = this.state.revenus;
+    let _expenses = Object.assign({}, this.state.expenses);
+    _expenses.annual = (
       (_frais.monthlyExpenses * 12) +
-      (_frais.monthlyMortgage * 12) +
-      _frais.administrative +
+      ((_frais.administrative / 100) * (((_revenus.monthlyRent * 12) - (_revenus.monthlyRent * _revenus.lostMonthes)))) +
       _frais.copropriete +
       _frais.divers +
       _frais.fonciere +
@@ -52,7 +54,7 @@ class Calculator extends Component {
       _frais.reperation);
 
     this.setState({
-      output: _output
+      expenses: _expenses
     })
   }
 
@@ -75,15 +77,17 @@ class Calculator extends Component {
       <div className="box notification">
         <div className="calculator tile is-ancestor">
           <Inputs
+            expenses={this.state.expenses}
             frais={this.state.frais}
-            output={this.state.output}
+            mortgage={this.state.mortgage}
             prix={this.state.prix}
             revenus={this.state.revenus}
             handleChange={this.handleChange}
           />
           <Outputs
+            expenses={this.state.expenses}
             frais={this.state.frais}
-            output={this.state.output}
+            mortgage={this.state.mortgage}
             prix={this.state.prix}
             revenus={this.state.revenus}
           />

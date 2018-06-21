@@ -7,7 +7,7 @@ class NetYield extends Component {
   render(){
     let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
     let totalPurchase = (parseInt(this.props.prix.basePrice, 10) + parseInt(this.props.prix.repairCosts, 10) + parseInt(notaryFee, 10));
-    let net = ((((this.props.revenus.monthlyRent * 12) - (this.props.revenus.monthlyRent * this.props.revenus.lostMonthes))) - this.props.output.annualExpenses) / totalPurchase * 100;
+    let net = ((((this.props.revenus.monthlyRent * 12) - (this.props.revenus.monthlyRent * this.props.revenus.lostMonthes))) - this.props.expenses.annual) / totalPurchase * 100;
 
     return(
       <div className="tile is-child box">

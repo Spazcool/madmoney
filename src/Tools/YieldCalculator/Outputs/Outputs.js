@@ -14,11 +14,11 @@ class Outputs extends Component {
         <div className="tile is-parent is-vertical">
           <TotalPurchase prix={this.props.prix}/>
           <AnnualRent revenus={this.props.revenus}/>
-          <AnnualExpenses frais={this.props.frais} output={this.props.output}/>
+          <AnnualExpenses expenses={this.props.expenses} frais={this.props.frais}/>
         </div>
         <div className="tile is-parent is-vertical">
-          <NetYield output={this.props.output} prix={this.props.prix} revenus={this.props.revenus}/>
-          <CashFlow output={this.props.output} revenus={this.props.revenus}/>
+          <NetYield expenses={this.props.expenses} prix={this.props.prix} revenus={this.props.revenus}/>
+          <CashFlow expenses={this.props.expenses} frais={this.props.frais} mortgage={this.props.mortgage} revenus={this.props.revenus}/>
         </div>
       </div>
     )
