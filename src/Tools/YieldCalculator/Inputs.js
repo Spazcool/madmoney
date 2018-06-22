@@ -86,7 +86,7 @@ class Inputs extends Component {
           type="range"
           value={this.props.Dépenses.Gestion}
         />
-      <output htmlFor="Gestion" style={{top:'30px'}}>{this.props.Dépenses.Gestion}%</output>
+      <output htmlFor="Gestion" style={{top:'30px', textOverflow: 'clip'}}>{this.props.Dépenses.Gestion}%</output>
       </div>;
 
     let Vacance =
