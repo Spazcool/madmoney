@@ -51,30 +51,32 @@ class Inputs extends Component {
   }
 
   handleSlide(e) {
-    let slider = document.querySelector('input[type="range"].slider');
-    let output = this.findOutputForSlider(slider);
-
-    if (output){
-      if (slider.classList.contains('has-output-tooltip')){
-        let newPosition = this.getSliderOutputPosition(slider);
-        output.style['left'] = newPosition.position;
+    let sliders = document.querySelectorAll('input[type="range"].slider');
+    sliders.forEach(slider => {
+      let output = this.findOutputForSlider(slider);
+      if (output) {
+        if (slider.classList.contains('has-output-tooltip')) {
+          let newPosition = this.getSliderOutputPosition(slider);
+          output.style['left'] = newPosition.position;
+        }
       }
-    }
+    })
+
   }
 
   render(){
     let Gestion =
-      <div className="control">
+      <div className="control" key="Gestion">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Percentage de Loyer Mensuel."}>
+            data-tooltip={"Percentage de Recette Locative Annuelle."}>
               Gestion
           </span>
         </label>
         <br/>
         <input
-          className="slider is-fullwidth is-info is-small has-output-tooltip"
+          className="slider is-fullwidth has-output-tooltip is-info"
           id="Gestion"
           min="0"
           max="10"
@@ -88,7 +90,7 @@ class Inputs extends Component {
       </div>;
 
     let Vacance =
-      <div className="control">
+      <div className="control" key="Vacance">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
@@ -98,7 +100,7 @@ class Inputs extends Component {
         </label>
         <br/>
         <input
-          className="slider is-fullwidth is-info is-small has-output-tooltip is-danger"
+          className="slider is-fullwidth has-output-tooltip is-danger"
           id="Vacance"
           min="0"
           max="12"
@@ -113,7 +115,7 @@ class Inputs extends Component {
 
     let notaryFee = ((this.props.Prix['Propriete Ancienne'] ? 0.08 : 0.045) * this.props.Prix['Prix d\'Achat']);
     let Ancienne =
-      <div className="control">
+      <div className="control" key="Ancienne">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
@@ -124,7 +126,7 @@ class Inputs extends Component {
         <div className="field">
           <input
             checked={this.props.Prix['Propriete Ancienne']}
-            className="switch is-info"
+            className="switch is-primary"
             id="Ancienne"
             name="Propriete Ancienne"
             onChange={this.props.handleChange}
