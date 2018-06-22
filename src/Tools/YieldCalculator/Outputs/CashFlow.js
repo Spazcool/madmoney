@@ -5,15 +5,15 @@ import React, { Component } from 'react';
 
 class CashFlow extends Component {
   render(){
-    let cashIn = ((this.props.revenus.monthlyRent * 12) - (this.props.revenus.monthlyRent * this.props.revenus.lostMonthes)) / 12;
-    let cashOut = this.props.expenses.annual / 12 + parseInt(this.props.mortgage.monthly, 10);
+    let cashIn = ((this.props.Recette['Loyer Mensuel'] * 12) - (this.props.Recette['Loyer Mensuel'] * this.props.Recette.Vacance)) / 12;
+    let cashOut = this.props.expenses.annual / 12 + parseInt(this.props.Remboursement.Mensualite, 10);
     let flow = cashIn - cashOut;
 
     return(
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-warning'>
-            Monthly Cash Flow
+            Cash Flow Mensuel
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}

@@ -9,10 +9,8 @@ class Hero extends Component {
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
-              Madmoney
             </h1>
             <h2 className="subtitle">
-              Madmoney
             </h2>
           </div>
         </div>

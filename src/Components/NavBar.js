@@ -55,15 +55,15 @@ class NavBar extends Component {
           </a>
         </div>
         <div className="navbar-menu" id="sibling-menu">
-          <a className="navbar-item" href="/blogs"><span className="icon is-$primary"><i className="fas fa-rss"></i></span> Blogs</a>
+          <a className="navbar-item" href="/blogs"><span className="icon is-$primary"><i className="fas fa-rss"></i></span>Articles</a>
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span> Downloads</a>
+            <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span>Téléchargements</a>
             <div className="navbar-dropdown">
               {this.props.loaded ? docs : loading}
             </div>
           </div>
           <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span> Calculator</a>
+            <a className="navbar-link" href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span>Outils</a>
             <div className="navbar-dropdown">
               {this.props.loaded ? tools : loading}
             </div>

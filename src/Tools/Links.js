@@ -1,9 +1,9 @@
 const data = [
   {
     fields:{
-      title:'Yield Calculator',
-      path: '/tools/2018/06/01/Yield_Calculator',
-      content: "Calculate your yield.",
+      title:'Calculatrice de Rendement Net',
+      path: '/tools/2018/06/01/Calculatrice_de_Rendement_Net',
+      content: "Calculatrice de rendement net.",
       date: '2018-06-01',
     },
     sys:{

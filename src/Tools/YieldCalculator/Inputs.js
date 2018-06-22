@@ -63,77 +63,77 @@ class Inputs extends Component {
   }
 
   render(){
-    let administrative =
+    let Gestion =
       <div className="control">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Some useful info about this thing."}>
-              Administrative
+            data-tooltip={"Percentage de Loyer Mensuel."}>
+              Gestion
           </span>
         </label>
         <br/>
         <input
           className="slider is-fullwidth is-info is-small has-output-tooltip"
-          id="administrative"
+          id="Gestion"
           min="0"
           max="10"
-          name="administrative"
+          name="Gestion"
           onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
           step="1"
           type="range"
-          value={this.props.frais.administrative}
+          value={this.props.Dépenses.Gestion}
         />
-        <output htmlFor="administrative" style={{top:'30px'}}>{this.props.frais.administrative}</output>
+      <output htmlFor="Gestion" style={{top:'30px'}}>{this.props.Dépenses.Gestion}%</output>
       </div>;
 
-    let lostMonthes =
-      <div className="control" key="lostMonthesBox">
+    let Vacance =
+      <div className="control">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Some useful info about this thing."}>
-              Lost Monthes
+            data-tooltip={"Number of potentially untentanted monthes."}>
+              Vacance
           </span>
         </label>
         <br/>
         <input
-          className="slider is-fullwidth is-info is-small has-output-tooltip"
-          id="lostMonthes"
+          className="slider is-fullwidth is-info is-small has-output-tooltip is-danger"
+          id="Vacance"
           min="0"
           max="12"
-          name="lostMonthes"
+          name="Vacance"
           onChange={(e) => {this.props.handleChange(e); this.handleSlide(e)}}
           step="1"
           type="range"
-          value={this.props.revenus.lostMonthes}
+          value={this.props.Recette.Vacance}
         />
-        <output htmlFor="lostMonthes" style={{top:'30px'}}>{this.props.revenus.lostMonthes}</output>
+      <output htmlFor="Vacance" style={{top:'30px'}}>{this.props.Recette.Vacance}</output>
       </div>;
 
-    let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
-    let switcher =
-      <div className="control" key="switcher">
+    let notaryFee = ((this.props.Prix['Propriete Ancienne'] ? 0.08 : 0.045) * this.props.Prix['Prix d\'Achat']);
+    let Ancienne =
+      <div className="control">
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Some useful info about this thing."}>
-              Old Property
+            data-tooltip={"Propriete Ancienne costs more."}>
+              Propriete Ancienne
           </span>
         </label>
         <div className="field">
           <input
-            checked={this.props.prix.oldProperty}
+            checked={this.props.Prix['Propriete Ancienne']}
             className="switch is-info"
-            id="switchExample"
-            name="oldProperty"
+            id="Ancienne"
+            name="Propriete Ancienne"
             onChange={this.props.handleChange}
             type="checkbox"
           />
-          <label htmlFor="switchExample">
+          <label htmlFor="Ancienne">
           + <span
             className="tooltip is-tooltip-right"
-            data-tooltip={String.fromCharCode(8364) + this.props.prix.basePrice + ' x ' + (this.props.prix.oldProperty ? "0.08" : "0.045")}>
+            data-tooltip={String.fromCharCode(8364) + this.props.Prix['Prix d\'Achat'] + ' x ' + (this.props.Prix['Propriete Ancienne'] ? "0.08" : "0.045")}>
               {String.fromCharCode(8364)}
               {Number(notaryFee).toFixed(0)}
             </span>
@@ -148,7 +148,7 @@ class Inputs extends Component {
     for(let data in this.props){
       if(!this.props.hasOwnProperty(data) || data === "handleChange" || data === "expenses") continue;
       for(let datem in this.props[data]){
-        inputNames.push([data, datem])
+        inputNames.push([data, datem]);
       }
       inputTitles.push(data);
     }
@@ -159,18 +159,20 @@ class Inputs extends Component {
           className='tile is-child box'
           key={inputTitles[i]}>
           <h2 className={
-            (inputTitles[i] === 'prix' ? 'is-primary' :
-            (inputTitles[i] === 'revenus' ? 'is-danger' :
-            (inputTitles[i] === 'frais' ? 'is-info' : 'is-warning'))) + " notification label is-capitalized"}>
-            {inputTitles[i]}
+            (inputTitles[i] === 'Prix' ? 'is-primary' :
+            (inputTitles[i] === 'Recette' ? 'is-danger' :
+            (inputTitles[i] === 'Dépenses' ? 'is-info' : 'is-warning'))) + " notification label"}>
+              {(inputTitles[i] === 'Remboursement' ? 'Remboursement de Pret' :
+              (inputTitles[i] === 'Prix' ? 'Prix Total d\'Acquisition' :
+              (inputTitles[i] === 'Recette' ? 'Recette Locative' : inputTitles[i])))}
           </h2>
           {inputNames.filter(input =>
           input[0] === inputTitles[i]).map(input =>
-          input[1] === "oldProperty" ? switcher :
-          (input[1] === "lostMonthes" ? lostMonthes :
-          (input[1] === "administrative" ? administrative :
+          input[1] === "Propriete Ancienne" ? Ancienne :
+          (input[1] === "Vacance" ? Vacance :
+          (input[1] === "Gestion" ? Gestion :
             <div className="control" key={input[1]}>
-              <label className="label is-capitalized">
+              <label className="label">
                 <span
                   className="tooltip is-tooltip-right"
                   data-tooltip={"Some useful info about this thing."}>

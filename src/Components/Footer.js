@@ -18,15 +18,15 @@ class Footer extends Component {
           <div className="content has-text-centered">
             <div className="columns">
               <div className="column">
-                <p className="title is-5"><a href="/">Home</a></p>
-                <p><a href="/docs"><span className="icon"><i className="fas fa-book"></i></span>Docs</a></p>
-                <p><a href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span>Tools</a></p>
-                <p><a href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span>Archive</a></p>
+                <p className="title is-5"><a href="/">Accueil</a></p>
+                <p><a href="/docs"><span className="icon"><i className="fas fa-book"></i></span>Documents</a></p>
+                <p><a href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span>Outils</a></p>
+                <p><a href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span>Articles</a></p>
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
-                <p className="title is-5">Share</p>
-                <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.madmoney.com"><span className="icon"><i className="fab fa-facebook"></i></span>Share</a></p>
+                <p className="title is-5">Partager</p>
+                <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.madmoney.com"><span className="icon"><i className="fab fa-facebook"></i></span>Partager</a></p>
                 <p><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.madmoney.com%2F&ref_src=twsrc%5Etfw&text=Check%20this%20out&tw_p=tweetbutton&url=http%3A%2F%2Fwww.madmoney.com%2F&via=madmoney"><span className="icon"><i className="fab fa-twitter"></i></span>Tweet</a></p>
               </div>
               <div className="is-divider-vertical"></div>
@@ -39,7 +39,7 @@ class Footer extends Component {
               <div className="is-divider-vertical"></div>
               <div className="column">
                 <p>
-                  <span className="icon"><i className="fas fa-code"></i></span> with <span className="icon"><i className="fas fa-heart"></i></span> by <a href="https://www.spazcool.com">Douglas Wright</a>.
+                  <span className="icon"><i className="fas fa-code"></i></span> avec <span className="icon"><i className="fas fa-heart"></i></span> par <a href="https://www.spazcool.com">Douglas Wright</a>.
                 </p>
                 <p>
                   <a href="https://bulma.io">

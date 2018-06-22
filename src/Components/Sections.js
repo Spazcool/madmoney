@@ -14,19 +14,21 @@ class Sections extends Component {
       <article className="Sections box">
         <i className="fa fa-spinner fa-spin"></i>
       </article>;
-    let type = 'something';
+    let type = 'e quelque chose';
 
     if(this.props.loaded && this.props.data.length > 0){
       if(this.props.data[0].sys.type === "Tool"){
-        type = 'a ' + this.props.data[0].sys.type;
+        type = '\'un outil';
+      }else if(this.props.data[0].sys.type === "Asset"){
+        type = '\'un document';
       }else{
-        type = 'an ' + this.props.data[0].sys.type;
+        type = '\'un article';
       }
     }
 
     return(
       <div className="notification is-danger is-radiusless">
-        <h1 className="title is-5">Looking for {type}?</h1>
+        <h1 className="title is-5">{String.fromCharCode(192)} la recherche d{type}?</h1>
         {this.props.loaded ? <Dropdown data={this.props.data} /> : loading}
       </div>
     );

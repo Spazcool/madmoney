@@ -5,14 +5,14 @@ import React, { Component } from 'react';
 
 class TotalPurchase extends Component {
   render(){
-    let notaryFee = ((this.props.prix.oldProperty ? 0.08 : 0.045) * this.props.prix.basePrice);
-    let totalPurchase = (parseInt(this.props.prix.basePrice, 10) + parseInt(this.props.prix.repairCosts, 10) + parseInt(notaryFee, 10));
+    let notaryFee = ((this.props.Prix['Propriete Ancienne'] ? 0.08 : 0.045) * this.props.Prix['Prix d\'Achat']);
+    let totalPurchase = (parseInt(this.props.Prix['Prix d\'Achat'], 10) + parseInt(this.props.Prix['Frais de Renovation'], 10) + parseInt(notaryFee, 10));
 
     return(
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-primary'>
-            Initial Purchase Price
+            Prix Total d'Acquisition
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}
@@ -20,14 +20,14 @@ class TotalPurchase extends Component {
           </h1>
           <DonutChart
             data={[
-              this.props.prix.basePrice,
-              this.props.prix.repairCosts,
+              this.props.Prix['Prix d\'Achat'],
+              this.props.Prix['Frais de Renovation'],
               notaryFee
             ]}
             labels={[
-              'Base Price',
-              'Repair Costs',
-              'Notary Fee'
+              'Prix d\'Achat',
+              'Frais de Renovation',
+              'Frais de Notaire'
             ]}
           />
         </div>

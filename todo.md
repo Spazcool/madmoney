@@ -3,7 +3,6 @@
     []CLEAN INPUTS to numbers, dont trust user
     []loop through calculator inputs to change to int and clean from user
     []if not numbers input box should light up warning user
-    []charts instead || w/ output numbers
 
     []print view button
     []data items will be renamed in french
@@ -11,8 +10,8 @@
     []downloads button
     []lostMonthes tooltip positioned over everfything else, needs to be below navbar
     []frais montthly items need to be differentiated by color or theme
-    []remove bar graph from AnnualRent comp, or change it heavily
     []slider for administrative
+    administrative output needs to be the annual amount lost not the percentage
 
 **NICETIES**
   []title links black to blue
@@ -24,6 +23,10 @@
 
 **DEPLOY**
   []AWS?
+oldProperty in calculator needs to change to propriete ancienne
+in INPUTS
+  map over an array with the useful information labled accoridngly
+  data-tooltip={"Some useful info about this thing."}>
 
 RENAME
   frais:{
@@ -48,17 +51,3 @@ RENAME
   recette locative (recette locative annuelle for output):{
     vacance
     loyer mensuel
-
-  netyield = rendement net
-  cashflow = cash flow mensuel
-  telechargements
-  calculatrice
-  calculatrice de rendement net
-  blogs = articles
-  home = accueil
-  shore = partager
-
-  Looking for an Entry?
-  A la recherche d'un article?
-  A la recherche d'un document?
-  A la recherche d'un outil?

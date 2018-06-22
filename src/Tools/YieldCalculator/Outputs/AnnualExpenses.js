@@ -6,11 +6,12 @@ import React, { Component } from 'react';
 class AnnualExpenses extends Component {
   render(){
     let sum = this.props.expenses.annual;
+
     return(
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-info'>
-            Annual Expenses
+            Dépenses Annuelles Totales
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}
@@ -18,24 +19,20 @@ class AnnualExpenses extends Component {
           </h1>
           <DonutChart
             data={[
-              (this.props.frais.monthlyExpenses * 12),
-              this.props.frais.administrative,
-              this.props.frais.copropriete,
-              this.props.frais.divers,
-              this.props.frais.fonciere,
-              this.props.frais.habitation,
-              this.props.frais.loyers,
-              this.props.frais.reperation
+              this.props.Dépenses['Assurance Habitation'],
+              this.props.Dépenses.Copropriete,
+              this.props.Dépenses.Divers,
+              this.props.Dépenses.Entretien,
+              ((this.props.Dépenses.Gestion / 100) * (((this.props.Recette['Loyer Mensuel'] * 12) - (this.props.Recette['Loyer Mensuel'] * this.props.Recette.Vacance)))),
+              this.props.Dépenses['Taxe Fonciere']
             ]}
             labels={[
-              'Monthly Expenses',
-              'Administrative',
+              'Assurance Habitation',
               'Copropriete',
               'Divers',
-              'Fonciere',
-              'Habitation',
-              'Loyers',
-              'Reperation'
+              'Entretien',
+              'Gestion',
+              'Taxe Fonciere'
             ]}
           />
         </div>
@@ -43,4 +40,5 @@ class AnnualExpenses extends Component {
     )
   }
 }
+
 export default AnnualExpenses;
