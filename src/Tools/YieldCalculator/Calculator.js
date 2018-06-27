@@ -71,9 +71,9 @@ class Calculator extends Component {
 
   render() {
     return(
-      <div className="box notification">
+      <div className="calculator box notification">
         <Instructions />
-        <div className="calculator tile is-ancestor">
+        <div className="tile is-ancestor">
           <Inputs
             expenses={this.state.expenses}
             Dépenses={this.state.Dépenses}

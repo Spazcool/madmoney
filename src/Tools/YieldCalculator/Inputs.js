@@ -195,7 +195,7 @@ class Inputs extends Component {
       );
     }
     return(
-      <div className="tile is-parent is-vertical is-4">
+      <div className="tile is-parent is-vertical is-4 inputs">
         {inputs[2]}
         {inputs[3]}
         {inputs[0]}
