@@ -114,3 +114,16 @@ footer a{
 footer a:hover{
   color: hsl(171, 100%, 41%);
 }
+
+
+@media print {
+  .footer, .hero, .hero-body, nav, .sections {
+    display: none;
+  }
+  .App{
+    font-size: 0.5em;
+  }
+  .is-4{
+    width: 5%;
+  }
+}

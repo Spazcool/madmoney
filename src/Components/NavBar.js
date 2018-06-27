@@ -3,7 +3,7 @@ import 'bulma/css/bulma.css';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
-import madLogo from './../Imgs/images.png';
+import madLogo from './../Imgs/mm.png';
 import React, { Component } from 'react';
 import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 

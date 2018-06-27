@@ -13,7 +13,11 @@ class NetYield extends Component {
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-success'>
-            Rendement Net
+            <span
+              className="tooltip is-tooltip-bottom"
+              data-tooltip={this.props.tooltip}>
+                Rendement Net
+            </span>
           </label>
           <h1 className="subtitle is-1">
             {Number(isNaN(net) ? 0 : net).toLocaleString("fr-FR", {maximumFractionDigits: 2})}%

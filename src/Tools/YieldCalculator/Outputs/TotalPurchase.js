@@ -12,7 +12,11 @@ class TotalPurchase extends Component {
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-primary'>
-            Prix Total d'Acquisition
+            <span
+              className="tooltip is-tooltip-bottom"
+              data-tooltip={this.props.tooltip}>
+                Prix Total d'Acquisition
+            </span>
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}

@@ -27,7 +27,7 @@ class Sections extends Component {
     }
 
     return(
-      <div className="notification is-danger is-radiusless">
+      <div className="notification is-danger is-radiusless sections">
         <h1 className="title is-5">{String.fromCharCode(192)} la recherche d{type}?</h1>
         {this.props.loaded ? <Dropdown data={this.props.data} /> : loading}
       </div>

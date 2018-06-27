@@ -3,6 +3,7 @@ import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-slider/dist/bulma-slider.min.css';
 import 'bulma-extensions/bulma-switch/dist/bulma-switch.min.css';
 import 'bulma-extensions/bulma-tooltip/dist/bulma-tooltip.min.css';
+import tooltip from './InputTooltipInfo';
 import React, { Component } from 'react';
 
 class Inputs extends Component {
@@ -70,7 +71,7 @@ class Inputs extends Component {
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Percentage de Recette Locative Annuelle."}>
+            data-tooltip={tooltip.Dépenses.Gestion}>
               Gestion
           </span>
         </label>
@@ -94,7 +95,7 @@ class Inputs extends Component {
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Number of potentially untentanted monthes."}>
+            data-tooltip={tooltip.Recette.Vacance}>
               Vacance
           </span>
         </label>
@@ -119,7 +120,7 @@ class Inputs extends Component {
         <label className="label">
           <span
             className="tooltip is-tooltip-right"
-            data-tooltip={"Propriete Ancienne costs more."}>
+            data-tooltip={tooltip.Prix['Propriete Ancienne']}>
               Propriete Ancienne
           </span>
         </label>
@@ -177,7 +178,7 @@ class Inputs extends Component {
               <label className="label">
                 <span
                   className="tooltip is-tooltip-right"
-                  data-tooltip={"Some useful info about this thing."}>
+                  data-tooltip={tooltip[inputTitles[i]][input[1]]}>
                     {input[1]}
                   </span>
                 </label>

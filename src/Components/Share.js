@@ -3,7 +3,7 @@ import 'bulma/css/bulma.css';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faGooglePlus from '@fortawesome/fontawesome-free-brands/faGooglePlus';
 import faLinkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
-import faPinterestP from '@fortawesome/fontawesome-free-brands/faPinterestP';
+import faInstagram from '@fortawesome/fontawesome-free-brands/faInstagram';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
 import React, { Component } from 'react';
@@ -11,7 +11,7 @@ import solid from '@fortawesome/fontawesome-free-solid';
 
 class Share extends Component {
   render() {
-    fontawesome.library.add(solid, faFacebook, faGooglePlus, faLinkedin, faPinterestP, faTwitter);
+    fontawesome.library.add(solid, faFacebook, faGooglePlus, faLinkedin, faInstagram, faTwitter);
 
     let facebook =
         <a
@@ -22,28 +22,28 @@ class Share extends Component {
         </a>;
     let googlePlus =
         <a
-          className="button is-success googleplus"
+          className="button is-danger googleplus"
           href={"https://plus.google.com/share?url=www.madmoney.com"+this.props.url}
           target="blank">
           <i className="fab fa-google-plus"></i>
         </a>;
     let linkedIn =
         <a
-          className="button is-primary linkedin"
+          className="button is-link linkedin"
           href={"https://www.linkedin.com/shareArticle?mini=true&url=www.madmoney.com"+this.props.url+"&title="+this.props.title+"&source="+this.props.source}
           target="blank">
           <i className="fab fa-linkedin"></i>
         </a>;
       let pinterest =
           <a
-            className="button is-danger pinterest"
+            className="button is-danger instagram"
             href={"https://pinterest.com/pin/create/bookmarklet/?media="+this.props.media+"&url="+this.props.url+"&is_video=false&description="+this.props.title}
             target="blank">
-            <i className="fab fa-pinterest-p"></i>
+            <i className="fab fa-instagram"></i>
           </a>;
       let twitter =
           <a
-            className="button is-warning twitter"
+            className="button is-link twitter"
             href={"https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.madmoney.com"+this.props.url+"&ref_src="+this.props.source+"&text="+this.props.title+"&tw_p=tweetbutton&url=http%3A%2F%2Fwww.madmoney.com"+this.props.url+"&via=madmoney"}
             target="blank">
             <i className="fab fa-twitter"></i>

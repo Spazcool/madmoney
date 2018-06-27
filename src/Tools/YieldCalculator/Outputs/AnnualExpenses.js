@@ -11,7 +11,11 @@ class AnnualExpenses extends Component {
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-info'>
-            Dépenses Annuelles Totales
+            <span
+              className="tooltip is-tooltip-bottom"
+              data-tooltip={this.props.tooltip}>
+                Dépenses Annuelles Totales
+            </span>
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}

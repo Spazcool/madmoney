@@ -13,7 +13,11 @@ class CashFlow extends Component {
       <div className="tile is-child box">
         <div className="answer">
           <label className='label notification is-warning'>
-            Cash Flow Mensuel
+            <span
+              className="tooltip is-tooltip-bottom"
+              data-tooltip={this.props.tooltip}>
+                Cash Flow Mensuel
+            </span>
           </label>
           <h1 className="subtitle is-1">
             {String.fromCharCode(8364)}
