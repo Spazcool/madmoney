@@ -34,7 +34,7 @@ class DonutChart extends Component {
       }]
     };
     return (
-      <Doughnut data={data}/>
+      <Doughnut className='chart' data={data}/>
     )
   }
 }

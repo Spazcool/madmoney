@@ -23,6 +23,7 @@ class TotalPurchase extends Component {
             {Number(totalPurchase).toLocaleString("fr-FR", {maximumFractionDigits: 2})}
           </h1>
           <DonutChart
+            className='chart'
             data={[
               this.props.Prix['Prix d\'Achat'],
               this.props.Prix['Frais de Renovation'],
