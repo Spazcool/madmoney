@@ -62,7 +62,6 @@ class Inputs extends Component {
         }
       }
     })
-
   }
 
   render(){

@@ -1,6 +1,6 @@
 import './../../../../App.css';
 import 'bulma/css/bulma.css';
-import { Doughnut } from 'react-chartjs-2';
+import Chart, { Doughnut } from 'react-chartjs-2';
 import React, { Component } from 'react';
 
 class DonutChart extends Component {
@@ -34,7 +34,7 @@ class DonutChart extends Component {
       }]
     };
     return (
-      <Doughnut className='chart' data={data}/>
+      <Doughnut data={data}/>
     )
   }
 }
