@@ -15,6 +15,7 @@
 
 **MADELINE**
   []name of the site? and the web address?
+  []MadMonnaie .com .io .fr
   []go through InputTooltipInfo  & OutputTooltipInfo adding relevant information
   []check translation for both Info and Instructions components, adding any relevant information
   []set up intstagram, facebook, twitter, live, g+, amazon accounts
