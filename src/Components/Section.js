@@ -22,8 +22,15 @@ class Section extends Component {
     return _multiple;
   }
   //INTEPRET MARKDOWN & HTML FROM CONTENTFUL
+  // TODO
+  // DOUBLE CHECK THAT THE POSTS FROM CONTENTFUL ARE ALREADY BEING INTERPRETTED
+  // IS THERE A MORE GRACEFUL WAY OF REMOVING IMGS FROM THE TEXT?
+  // CAN I KEEP THE FORMATTING TAGS AND STILL REMOVE IMGS?
+  // BUG
+  // ALL FORMATTING RULES ARE REMOVED WITH FUNC, USER NEEDS TO ACCESS TO SUCH FORMATTING
   interpretHTML(a) {
     // CUT OUT IMGS TO ACCOUNT FOR MORE THAN 1 & TO BE STYLED ACCORDINGLY
+
     let _complete;
     let _temp = ["<div class='markedWrapper'>"];
     let _imgs = a.replace(/<\/p>/g, '').match(/<img.*>/g);
