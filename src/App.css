@@ -8,11 +8,18 @@
 }
 
 /*CONTENT*/
-.section p{
-  font-size: 1.5em;
-}
 .section a:hover{
   color:hsl(171, 100%, 41%);
+}
+.section p{
+  font-size: 1.5em;
+  padding-bottom: 1em;
+  text-align: left;
+}
+.section ul{
+  list-style: initial;
+  padding-bottom: 1em;
+  padding-left: 1em;
 }
 .markedWrapper{
   overflow: auto;
