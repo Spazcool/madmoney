@@ -26,15 +26,15 @@ class Footer extends Component {
               <div className="is-divider-vertical"></div>
               <div className="column">
                 <p className="title is-5">Partager</p>
-                <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.madmoney.com"><span className="icon"><i className="fab fa-facebook"></i></span>Partager</a></p>
-                <p><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.madmoney.com%2F&ref_src=twsrc%5Etfw&text=Check%20this%20out&tw_p=tweetbutton&url=http%3A%2F%2Fwww.madmoney.com%2F&via=madmoney"><span className="icon"><i className="fab fa-twitter"></i></span>Tweet</a></p>
+                <p><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//www.madmonnaie.fr"><span className="icon"><i className="fab fa-facebook"></i></span>Partager</a></p>
+                <p><a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.madmonnaie.fr%2F&ref_src=twsrc%5Etfw&text=Check%20this%20out&tw_p=tweetbutton&url=http%3A%2F%2Fwww.madmonnaie.fr%2F&via=madmonnaie"><span className="icon"><i className="fab fa-twitter"></i></span>Tweet</a></p>
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
                 <p className="title is-5">Contact</p>
-                <p><a href="http://www.facebook.com/madmoney"><span className="icon"><i className="fab fa-facebook"></i></span>facebook/madmoney</a></p>
-                <p><a href="http://www.twitter.com/madmoney"><span className="icon"><i className="fab fa-twitter"></i></span>@madmoney</a></p>
-                <p><a href="mailto:madmoney@live.fr?subject=I saw your site..."><span className="icon"><i className="fas fa-envelope"></i></span>madmoney@live.fr</a></p>
+                <p><a href="http://www.facebook.com/madmonnaie"><span className="icon"><i className="fab fa-facebook"></i></span>facebook/madmonnaie</a></p>
+                <p><a href="http://www.twitter.com/madmonnaie"><span className="icon"><i className="fab fa-twitter"></i></span>@madmonnaie</a></p>
+                <p><a href="mailto:madmonnaie@live.fr?subject=I saw your site..."><span className="icon"><i className="fas fa-envelope"></i></span>madmonnaie@live.fr</a></p>
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
