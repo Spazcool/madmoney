@@ -22,18 +22,12 @@ class App extends Component {
     space: 'dktgpvzygyep',
     accessToken: '7687e36de5d2b00b1747c9832727c68300a22523ef63abb84a4d6e04e1b6cd1d'
   })
-// BUG
-// ACCENTED CHARACTERS BREAK THE PATH NAME
-// (très) ==> (tr%C3%A8s)
-// CONVERT UNICODE TO HUMAN OR THE OTHER WAY ROUND?
-// FIX
-// COULD REMOVE THE TITLE PORTION, REPLACE IT WITH A RANDOMIZED CODE
+
   createPath(type, date, title){
     let _type = type === "Entry" ? "blogs" : "docs";
     let _date = date.split(/[-T]/);
-    let _title = title.replace(/ /g,"_");
-    let _path = '/' + _type + '/' + _date[0] + '/' + _date[1] + '/' + _date[2] + '/' + _title[0];
-    console.log("PATH: ", _path);
+    let _title = title.replace(/ /g,"_").replace(/\?/g, '');
+    let _path = '/' + _type + '/' + _date[0] + '/' + _date[1] + '/' + _date[2] + '/' + _title;
     return _path;
   }
 
