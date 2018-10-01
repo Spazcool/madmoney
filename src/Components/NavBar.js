@@ -5,7 +5,7 @@ import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
 import madLogo from './../Imgs/mm.png';
 import React, { Component } from 'react';
-import solid, {faBook, faFileArchive, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
+import solid, {faBook, faFileArchive, faNewspaper, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 
 class NavBar extends Component {
 
@@ -31,7 +31,7 @@ class NavBar extends Component {
   }
 
   render() {
-    fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faRss, faToolbox, faFileArchive);
+    fontawesome.library.add(solid, faTwitter, faFacebook, faBook, faNewspaper, faRss, faToolbox, faFileArchive);
 
     let docs;
     let loading = <span><i className="fa fa-spinner fa-spin"></i></span>;
@@ -55,7 +55,7 @@ class NavBar extends Component {
           </a>
         </div>
         <div className="navbar-menu" id="sibling-menu">
-          <a className="navbar-item" href="/blogs"><span className="icon is-$primary"><i className="fas fa-rss"></i></span>Articles</a>
+          <a className="navbar-item" href="/blogs"><span className="icon is-$primary"><i className="fas fa-newspaper"></i></span>Articles</a>
           <div className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link" href="/docs"><span className="icon"><i className="fas fa-book"></i></span>Téléchargements</a>
             <div className="navbar-dropdown">

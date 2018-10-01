@@ -6,11 +6,11 @@ import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import fontawesome from '@fortawesome/fontawesome';
 import React, { Component } from 'react';
-import solid, {faBook, faCode, faEnvelope, faHeart, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
+import solid, {faBook, faCode, faEnvelope, faHeart, faNewspaper, faRss, faToolbox} from '@fortawesome/fontawesome-free-solid';
 
 class Footer extends Component {
   render() {
-    fontawesome.library.add(solid, faBook, faCode, faEnvelope, faFacebook, faHeart, faRss, faToolbox, faTwitter);
+    fontawesome.library.add(solid, faBook, faCode, faEnvelope, faFacebook, faHeart, faNewspaper, faRss, faToolbox, faTwitter);
 
     return (
       <footer className="footer">
@@ -21,7 +21,7 @@ class Footer extends Component {
                 <p className="title is-5"><a href="/">Accueil</a></p>
                 <p><a href="/docs"><span className="icon"><i className="fas fa-book"></i></span>Documents</a></p>
                 <p><a href="/tools"><span className="icon"><i className="fas fa-toolbox"></i></span>Outils</a></p>
-                <p><a href="/blogs"><span className="icon"><i className="fas fa-rss"></i></span>Articles</a></p>
+                <p><a href="/blogs"><span className="icon"><i className="fas fa-newspaper"></i></span>Articles</a></p>
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
@@ -31,10 +31,10 @@ class Footer extends Component {
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
-                <p className="title is-5">Contact</p>
+                <p className="title is-5">Suivre</p>
                 <p><a href="http://www.facebook.com/madmonnaie"><span className="icon"><i className="fab fa-facebook"></i></span>facebook/madmonnaie</a></p>
                 <p><a href="http://www.twitter.com/madmonnaie"><span className="icon"><i className="fab fa-twitter"></i></span>@madmonnaie</a></p>
-                <p><a href="mailto:madmonnaie@live.fr?subject=I saw your site..."><span className="icon"><i className="fas fa-envelope"></i></span>madmonnaie@live.fr</a></p>
+                <p><a href="https://zapier.com/engine/rss/3841173/madmonnaie/"><span className="icon"><i className="fas fa-rss"></i></span>RSS</a></p>
               </div>
               <div className="is-divider-vertical"></div>
               <div className="column">
