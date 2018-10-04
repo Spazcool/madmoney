@@ -13,8 +13,8 @@
   * get anything imported to contentful through CLI or app.js
   * create comment MODEL
   * create script for posting comment to CONTENTFUL
-  ** char limit
-  ** not a robot?
+    * char limit
+    * not a robot?
 
 ## **NICETIES**
   []title links black to blue on hover
