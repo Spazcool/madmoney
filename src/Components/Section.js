@@ -1,6 +1,7 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
+import Comments from './Comments';
 import fontawesome from '@fortawesome/fontawesome';
 import marked from 'marked';
 import React, { Component } from 'react';
@@ -111,6 +112,7 @@ class Section extends Component {
                     title={fields.title}
                     url={fields.path}
                   />
+                <Comments/>
                 </div>
               </section>);
       }

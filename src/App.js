@@ -5,7 +5,7 @@ import Hero from './Components/Hero';
 import Main from './Components/Main';
 import NavBar from './Components/NavBar';
 import React, { Component } from 'react';
-import ToolLinks from './Tools/Links'; //DUMB OBJ FOR THE LINKS
+import ToolLinks from './Tools/Links'; //DUMB OBJ FOR LINKS TOOLS
 
 class App extends Component {
   constructor() {
