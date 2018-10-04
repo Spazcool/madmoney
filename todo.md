@@ -8,13 +8,13 @@
   []reduce font size of articles
 
   []comments section for individual blogs:
-    * through contentful OR disqus?
-    * comment model = blog id, date, comment
-    * get anything imported to contentful through CLI or app.js
-    * create comment MODEL
-    * create script for posting comment to CONTENTFUL
-      ** char limit
-      ** not a robot?
+  * through contentful OR disqus?
+  * comment model = blog id, date, comment
+  * get anything imported to contentful through CLI or app.js
+  * create comment MODEL
+  * create script for posting comment to CONTENTFUL
+  ** char limit
+  ** not a robot?
 
 ## **NICETIES**
   []title links black to blue on hover
