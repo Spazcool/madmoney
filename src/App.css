@@ -40,6 +40,9 @@
   border-radius: 5px;
   width: 100%;
 }
+.keyword{
+  background-color: red;
+}
 
 /*SHARE BUTTONS*/
 #share a {
@@ -121,7 +124,6 @@ footer a{
 footer a:hover{
   color: hsl(171, 100%, 41%);
 }
-
 
 @media print {
   .footer, .hero, .hero-body, nav, .sections {

@@ -2,6 +2,7 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
+import Keyword from './Keyword';
 import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
@@ -98,21 +99,34 @@ class Section extends Component {
         content =
           this.props.data.filter(({fields}, index) =>
             fields.path === this.props.routing.match.url).map(({fields}, index) =>
-              <section className="section" key={fields.title + index}>
-                <div className="container">
-                  <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
-                  <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
-                  <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
-                  {fields.download ? <a class="button is-info" href={fields.download}>Download</a> : ''}
-                  <br/>
-                  <Share
-                    media={fields.content}
-                    source={fields.path}
-                    title={fields.title}
-                    url={fields.path}
-                  />
+
+            <div className="tile is-ancestor">
+
+              <div className="tile is-10 is-parent">
+                <div class="tile is-child">
+                  <section className="section" key={fields.title + index}>
+                    <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
+                    <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
+                    <p dangerouslySetInnerHTML={this.interpretHTML(marked(fields.description ? fields.description : fields.content))}/>
+                    {fields.download ? <a class="button is-info" href={fields.download}>Download</a> : ''}
+                    <br/>
+                    <Share
+                      media={fields.content}
+                      source={fields.path}
+                      title={fields.title}
+                      url={fields.path}
+                    />
+                  </section>
                 </div>
-              </section>);
+              </div>
+
+              <div className="tile is-parent">
+                <div class="tile is-child box">
+                  <Keyword/>
+                </div>
+              </div>
+
+            </div>);
       }
     }
 
