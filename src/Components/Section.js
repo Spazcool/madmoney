@@ -2,13 +2,29 @@ import './../App.css';
 import 'bulma/css/bulma.css';
 import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
-import Keyword from './Keyword';
+// import Keyword from './Keyword';
 import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
 import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
 
 class Section extends Component {
+
+  findKeywords(text){
+    let wordCounts = { };
+    let words = text.split(/\b/);
+    for(let i = 0; i < words.length; i++){
+      words[i] = words[i].toLowerCase();
+      if(words[i].match(/^[a-z]+$/g,'')){
+         wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
+      }
+    }
+    // FILTER OUT ARTILES & COMMON WORDS
+    // SORT K/V PAIRS BY HIGHEST V
+
+    console.log(wordCounts);
+    return wordCounts;
+  }
 
   handleImgs(imgs) {
     let _multiple;
@@ -29,6 +45,8 @@ class Section extends Component {
     let _imgs = a.match(/<img.*>/g, '');
     let _text = a.replace(/<img.*>/g, '');
     let _temp = ["<div class='markedWrapper'>"];
+
+    this.findKeywords(_text);
 
     if(_imgs === null){
      _temp.push(_text);
@@ -100,10 +118,10 @@ class Section extends Component {
           this.props.data.filter(({fields}, index) =>
             fields.path === this.props.routing.match.url).map(({fields}, index) =>
 
-            <div className="tile is-ancestor">
+            <div className="tile is-ancestor" key={index}>
 
               <div className="tile is-10 is-parent">
-                <div class="tile is-child">
+                <div className="tile is-child">
                   <section className="section" key={fields.title + index}>
                     <a href={fields.path}><h1 className="title is-1">{fields.title}</h1></a>
                     <h6 className="subtitle">{this.prettyDate(fields.date)}</h6>
@@ -121,8 +139,8 @@ class Section extends Component {
               </div>
 
               <div className="tile is-parent">
-                <div class="tile is-child box">
-                  <Keyword/>
+                <div className="tile is-child box">
+                <p>suftt</p>
                 </div>
               </div>
 
