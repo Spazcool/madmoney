@@ -13,6 +13,7 @@ class Section extends Component {
   findKeywords(text){
     let wordCounts = { };
     let words = text.split(/\b/);
+    let wordCountsSorted = [];
     for(let i = 0; i < words.length; i++){
       words[i] = words[i].toLowerCase();
       if(words[i].match(/^[a-z]+$/g,'')){
@@ -21,7 +22,9 @@ class Section extends Component {
     }
     // FILTER OUT ARTILES & COMMON WORDS
     // SORT K/V PAIRS BY HIGHEST V
+    wordCountsSorted = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
 
+    console.log(wordCountsSorted);
     console.log(wordCounts);
     return wordCounts;
   }
