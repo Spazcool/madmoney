@@ -7,25 +7,32 @@ import marked from 'marked';
 import React, { Component } from 'react';
 import Share from './Share';
 import solid, {faSpinner} from '@fortawesome/fontawesome-free-solid';
+import sw from 'stopword';
 
 class Section extends Component {
 
   findKeywords(text){
+    // BUG <p> tags are in the text
+
+    // console.log(text);
+
     let wordCounts = { };
-    let words = text.split(/\b/);
     let wordCountsSorted = [];
+    // BUG accented words are being dropped
+    let wordList = text.split(/\b/);
+
+    console.log(wordList);
+    let words = sw.removeStopwords(wordList, sw.fr)
+
     for(let i = 0; i < words.length; i++){
       words[i] = words[i].toLowerCase();
       if(words[i].match(/^[a-z]+$/g,'')){
          wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
       }
     }
-    // FILTER OUT ARTILES & COMMON WORDS
-    // SORT K/V PAIRS BY HIGHEST V
     wordCountsSorted = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
-
-    console.log(wordCountsSorted);
-    console.log(wordCounts);
+    // console.log(wordCountsSorted);
+    // console.log(wordCounts);
     return wordCounts;
   }
 
