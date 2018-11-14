@@ -1,6 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
+// import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import bulmaLogo from './../Imgs/made-with-bulma--semiblack.png';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';

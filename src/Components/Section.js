@@ -1,6 +1,5 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
 // import Keyword from './Keyword';
 import marked from 'marked';
@@ -118,7 +117,7 @@ class Section extends Component {
                     title={fields.title}
                     url={fields.path}
                   />
-                  <div className="is-divider"></div>
+                  <hr/>
                 </div>
               </section>);
         }
