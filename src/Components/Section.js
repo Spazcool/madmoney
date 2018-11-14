@@ -11,17 +11,12 @@ import sw from 'stopword';
 class Section extends Component {
 
   findKeywords(text){
-    // BUG <p> tags are in the text
-
-    // console.log(text);
+    // console.log('text: ', text);
 
     let wordCounts = { };
     let wordCountsSorted = [];
-    // BUG accented words are being dropped
     let wordList = text.split(/\b/);
-
-    console.log(wordList);
-    let words = sw.removeStopwords(wordList, sw.fr)
+    let words = sw.removeStopwords(wordList, sw.fr);
 
     for(let i = 0; i < words.length; i++){
       words[i] = words[i].toLowerCase();
@@ -30,8 +25,11 @@ class Section extends Component {
       }
     }
     wordCountsSorted = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
-    // console.log(wordCountsSorted);
-    // console.log(wordCounts);
+    
+    console.log('wordList: ', wordList);
+    console.log('words: ', words);
+    console.log('wordCountsSorted: ', wordCountsSorted);
+    console.log('wordCounts: ', wordCounts);
     return wordCounts;
   }
 
