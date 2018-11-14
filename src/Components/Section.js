@@ -12,24 +12,23 @@ class Section extends Component {
 
   findKeywords(text){
     // console.log('text: ', text);
-
     let wordCounts = { };
     let wordCountsSorted = [];
-    let wordList = text.split(/\b/);
+    // TODO remove num, special char, words < 3.length
+    let wordList = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").split(/\b/);
     let words = sw.removeStopwords(wordList, sw.fr);
 
     for(let i = 0; i < words.length; i++){
-      words[i] = words[i].toLowerCase();
-      if(words[i].match(/^[a-z]+$/g,'')){
+      // if(words[i].match(/^[a-z]+$/g,'')){
          wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
-      }
+      // }
     }
     wordCountsSorted = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
-    
+
     console.log('wordList: ', wordList);
     console.log('words: ', words);
-    console.log('wordCountsSorted: ', wordCountsSorted);
-    console.log('wordCounts: ', wordCounts);
+    // console.log('wordCountsSorted: ', wordCountsSorted);
+    // console.log('wordCounts: ', wordCounts);
     return wordCounts;
   }
 
