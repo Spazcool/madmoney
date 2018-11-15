@@ -89,7 +89,7 @@ class Section extends Component {
                     title={fields.title}
                     url={fields.path}
                   />
-                  <div className="is-divider"></div>
+                  <hr/>
                 </div>
               </section>);
         }
