@@ -1,6 +1,6 @@
 import './../App.css';
 import 'bulma/css/bulma.css';
-import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
+// import 'bulma-extensions/bulma-divider/dist/bulma-divider.min.css';
 import fontawesome from '@fortawesome/fontawesome';
 import marked from 'marked';
 import React, { Component } from 'react';
