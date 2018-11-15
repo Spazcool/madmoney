@@ -11,25 +11,25 @@ import sw from 'stopword';
 class Section extends Component {
 
   findKeywords(text){
-    // console.log('text: ', text);
+    // REPLACE ACCENTED CHARS & REMOVE SPECIAL CHARS & NUMBERS
+    let _text = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, " ").split(/\b/);
     let wordCounts = { };
-    let wordCountsSorted = [];
-    // TODO remove num, special char, words < 3.length
-    let wordList = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").split(/\b/);
-    let words = sw.removeStopwords(wordList, sw.fr);
+    let wordCountsDescend = [];
+    let words = sw.removeStopwords(_text, sw.fr);
 
     for(let i = 0; i < words.length; i++){
-      // if(words[i].match(/^[a-z]+$/g,'')){
-         wordCounts["_" + words[i]] = (wordCounts["_" + words[i]] || 0) + 1;
-      // }
+      // DONT ALLOW WHITESPACE OR SINGLE LETTERS OR SHORT WORDS
+      if(words[i].match(/^[a-z]+$/g,'') && words[i].length >= 4){
+         wordCounts[words[i]] = (wordCounts[words[i]] || 0) + 1;
+      }
     }
-    wordCountsSorted = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
 
-    console.log('wordList: ', wordList);
-    console.log('words: ', words);
-    // console.log('wordCountsSorted: ', wordCountsSorted);
-    // console.log('wordCounts: ', wordCounts);
-    return wordCounts;
+    wordCountsDescend = Object.keys(wordCounts).sort((a,b) => wordCounts[b]-wordCounts[a]);
+    // console.log('_text: ', _text);
+    // console.log('words: ', words);
+    console.log('wordCountsDescend: ', wordCountsDescend);
+    console.log('wordCounts: ', wordCounts);
+    return wordCountsDescend;
   }
 
   handleImgs(imgs) {
@@ -52,7 +52,7 @@ class Section extends Component {
     let _text = a.replace(/<img.*>/g, '');
     let _temp = ["<div class='markedWrapper'>"];
 
-    this.findKeywords(_text);
+    // this.findKeywords(_text);
 
     if(_imgs === null){
      _temp.push(_text);
@@ -146,7 +146,10 @@ class Section extends Component {
 
               <div className="tile is-parent">
                 <div className="tile is-child box">
-                <p>suftt</p>
+                
+                {this.findKeywords(fields.content).map((word, index) =>
+                  <p key={index}>{word}</p>
+                )}
                 </div>
               </div>
 
